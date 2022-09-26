@@ -46,3 +46,13 @@ C:\Users\zx454\source\repos\Calibration\Calibration\bin\ClosedXML.pdb
 C:\Users\zx454\source\repos\Calibration\Calibration\bin\ClosedXML.xml
 C:\Users\zx454\source\repos\Calibration\Calibration\bin\DocumentFormat.OpenXml.xml
 C:\Users\zx454\source\repos\Calibration\Calibration\bin\ExcelNumberFormat.xml
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\Microsoft.Win32.TaskScheduler.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\Microsoft.Win32.TaskScheduler.xml
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\de\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\es\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\fr\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\it\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\pl\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\ru\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\zx454\source\repos\Calibration\Calibration\bin\zh-Hant\Microsoft.Win32.TaskScheduler.resources.dll

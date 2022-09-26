@@ -1,13 +1,46 @@
 ﻿$(document).ready(function () {
   $('#example').DataTable({
-    responsive: true
+    responsive: true,
   });
 
   $('#scrollx').DataTable({
     scrollX: true,
   });
 
-  DisplayChart()
+  $('#fixHeader').DataTable({
+    responsive: true,
+    initComplete: function () {
+      this.api()
+        .columns()
+        .every(function () {
+          var column = this;
+          var select = $('<select class="form-select form-select-sm"><option value="">ทั้งหมด</option></select>')
+            .appendTo($(column.footer()).empty())
+            .on('change', function () {
+              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+              column.search(val ? '^' + val + '$' : '', true, false).draw();
+            });
+
+          column
+            .data()
+            .unique()
+            .sort()
+            .each(function (d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>');
+            });
+        });
+    },
+  })
+
+  $("#datepicker").datepicker({
+    format: "yyyy",
+    viewMode: "years",
+    minViewMode: "years",
+    setDate: new Date(),
+    autoclose: true //to close picker once year is selected
+  });
+
 });
 
 function MessageNoti(status, title, message, href) {
@@ -19,52 +52,22 @@ function MessageNoti(status, title, message, href) {
   })
 }
 
-function DisplayChart() {
-
-  const data = [
-    { date: '2020-03-1', error: 0.8 },
-    { date: '2020-03-2', error: 0.1 },
-    { date: '2020-03-3', error: 0.5 },
-    { date: '2020-03-4', error: 0.9 },
-    { date: '2020-03-5', error: 0.4 },
-    { date: '2020-03-6', error: 0.8 },
-    { date: '2020-03-7', error: 0.1 },
-    { date: '2020-03-8', error: 0.5 },
-    { date: '2020-03-9', error: 0.9 },
-    { date: '2020-03-10', error: 0.4 },
-    { date: '2020-03-11', error: 0.8 },
-    { date: '2020-03-12', error: 0.1 },
-    { date: '2020-03-13', error: 0.5 },
-    { date: '2020-03-14', error: 0.9 },
-    { date: '2020-03-15', error: 0.4 },
-    { date: '2020-03-16', error: 0.8 },
-    { date: '2020-03-17', error: 0.1 },
-    { date: '2020-03-18', error: 0.5 },
-    { date: '2020-03-19', error: 0.9 },
-    { date: '2020-03-20', error: 0.4 },
-    { date: '2020-03-21', error: 0.8 },
-    { date: '2020-03-22', error: 0.1 },
-    { date: '2020-03-23', error: 0.5 },
-    { date: '2020-03-24', error: 0.9 },
-    { date: '2020-03-25', error: 0.4 },
-    { date: '2020-03-26', error: 0.8 },
-    { date: '2020-03-27', error: 0.1 },
-    { date: '2020-03-28', error: 0.5 },
-    { date: '2020-03-29', error: 0.9 },
-    { date: '2020-03-30', error: 0.4 },
-    { date: '2020-03-31', error: 0.9 },
-  ];
-
+function DisplayChart(data = [{ date: "", error: "" }]) {
+  const Utils = ChartUtils.init();
   new Chart(document.getElementById("myChart"), {
     type: 'line',
     data: {
       datasets: [
         {
-          label: 'ค่า ERROR',
+          label: 'ERROR',
           fill: false,
-          lineTension: 0.4,
-          backgroundColor: 'red',
+          //tension: 0.4,
+          backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+          borderColor: Utils.CHART_COLORS.red,
           borderWidth: 2,
+          pointStyle: 'circle',
+          pointRadius: 5,
+          pointHoverRadius: 10,
           data: data.map(o => ({ x: o.date, y: o.error }))
         }
       ]
@@ -132,3 +135,5 @@ function ShowPreview(input) {
     document.getElementById("hidentImg").hidden = "hidden";
   }
 }
+
+

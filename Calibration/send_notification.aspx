@@ -122,6 +122,7 @@
             <table class="table table-bordered bg-light">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>เลขที่ใบลงทะเบียน</th>
                   <th>รหัสเครื่องมือ</th>
                   <th>ชื่อเครื่องมือ</th>

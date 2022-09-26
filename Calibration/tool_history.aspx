@@ -8,49 +8,59 @@
           <i class="bi bi-clipboard2-pulse-fill"></i>
           ประวัติเครื่องมือ</h4>
         <div>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Filter">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="collapse"
+            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <i class="bi bi-funnel-fill"></i>
           </button>
         </div>
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="Filter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
+      <div class="collapse" id="collapseExample">
+        <hr />
+        <div class="card mb-3" style="background-color: #f0f9ff;">
+          <div class="card-body">
 
-              <%--<div class="mb-3">
-                <label for="SelectYear" class="form-label">ปี : </label>
-                <select class="form-select" id="SelectYear">
-                  <option selected value="0">กรุณาเลือก</option>
-                  <option value="2565">2565</option>
-                  <option value="2567">2567</option>
-                  <option value="2568">2568</option>
-                  <option value="2569">2569</option>
-                  <option value="2570">2570</option>
-                </select>
-              </div>--%>
+            <div class="mb-3">
+              <label for="picker" class="form-label">เดือน/ปี : </label>
+              <input type="month" class="form-control" name="picker" id="Picker" runat="server" required />
+              <div class="form-check">
 
-              <div class="mb-3">
-                <label for="SelectYear" class="form-label">เดือน/ปี : </label>
-                <input class="form-control" type="month" />
+                <input class="form-check-input" type="checkbox" value=""
+                  id="flexCheckDefault" runat="server" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  ทั้งปี
+                </label>
               </div>
-
-              <div class="mb-3">
-                <label for="SelectCode" class="form-label">รหัสเครื่องมือ : </label>
-                <select class="form-select" id="SelectCode">
-                  <option selected value="0">กรุณาเลือก</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-              <button type="button" class="btn btn-primary">ยืนยัน</button>
+
+            <div class="d-flex justify-content-between align-items-center gap-2">
+              <div class="mb-3 w-50">
+                <label for="SelectCode" class="form-label px-0">รหัสเครื่องมือ : </label>
+                <asp:DropDownList ID="SelectCode" runat="Server" CssClass="form-select">
+                  <asp:ListItem Text="กรุณาเลือก" Value="0" />
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="SelectCode"
+                  InitialValue="0" runat="server" ForeColor="Red" />
+              </div>
+
+              <div class="mb-3 w-50">
+                <label for="SelectTool" class="form-label px-0">เลือกเครื่องมือ : </label>
+                <asp:DropDownList ID="SelectTool" runat="Server" CssClass="form-select">
+                  <asp:ListItem Text="กรุณาเลือก" Value="0" />
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="SelectTool"
+                  InitialValue="0" runat="server" ForeColor="Red" />
+              </div>
+            </div>
+
+            <div class=" d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">
+                ปิด</button>
+              <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary"
+                Text="ยืนยัน" />
             </div>
           </div>
         </div>
@@ -59,7 +69,6 @@
       <hr />
 
       <div class="row">
-
         <div class="col-6">
           <div class="card">
             <div class="row">
@@ -104,15 +113,55 @@
             </div>
           </div>
         </div>
-
         <div class="col-6">
           <canvas id="myChart"></canvas>
         </div>
-
       </div>
 
       <hr />
 
+      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </tfoot>
+      </table>
+
     </ContentTemplate>
+    <Triggers>
+      <asp:PostBackTrigger ControlID="Button2" />
+    </Triggers>
   </asp:UpdatePanel>
 </asp:Content>

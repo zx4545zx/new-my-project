@@ -11,7 +11,7 @@
               &nbsp;BACK
             </a>
           </div>
-          <h4 class="m-0 p-2 text-lg card">ตั้งค่าการแจ้งเตือน Email ทั่วไป</h4>
+          <h4 class="m-0 p-2 text-lg card">ตั้งค่าการแจ้งเตือน Email</h4>
         </div>
 
         <hr />

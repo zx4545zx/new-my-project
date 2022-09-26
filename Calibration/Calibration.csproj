@@ -59,6 +59,10 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.10.1.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.10.1\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -79,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="administrator.aspx" />
+    <Content Include="ApprovePage\notification_defective_email.aspx" />
+    <Content Include="ApprovePage\notification_email.aspx" />
+    <Content Include="ApprovePage\notification_error_email.aspx" />
     <Content Include="approver.aspx" />
     <Content Include="ApprovePage\notification_approve.aspx" />
     <Content Include="approver_new.aspx" />
@@ -93,8 +100,10 @@
     <Content Include="Content\bootstrap%405.2.0\sidebars.js" />
     <Content Include="Content\bootstrap-icons%401.9.1\bootstrap-icons.css" />
     <Content Include="Content\chart-js\chart.js" />
+    <Content Include="Content\chart-js\utils.js" />
     <Content Include="Content\datatables%401.12.1\buttons.dataTables.min.css" />
     <Content Include="Content\datatables%401.12.1\dataTables.bootstrap5.min.js" />
+    <Content Include="Content\datatables%401.12.1\dataTables.fixedHeader.min.js" />
     <Content Include="Content\datatables%401.12.1\dataTables.responsive.min.js" />
     <Content Include="Content\datatables%401.12.1\jquery.dataTables.min.js" />
     <Content Include="Content\datatables%401.12.1\dataTables.bootstrap5.min.css" />
@@ -1866,6 +1875,7 @@
     <Content Include="department.aspx" />
     <Content Include="department_new.aspx" />
     <Content Include="department_update.aspx" />
+    <Content Include="EmailAuto\SendOne.aspx" />
     <Content Include="email_auto.aspx" />
     <Content Include="evaluate.aspx" />
     <Content Include="factory.aspx" />
@@ -1882,19 +1892,20 @@
     <Content Include="meter.aspx" />
     <Content Include="meter_new.aspx" />
     <Content Include="meter_update.aspx" />
+    <Content Include="notification_defective_page.aspx" />
+    <Content Include="notification_error_page.aspx" />
     <Content Include="notification_new.aspx" />
+    <Content Include="notification_page.aspx" />
     <Content Include="notification_setting.aspx" />
     <Content Include="notification_update.aspx" />
     <Content Include="plan.aspx" />
+    <Content Include="Print\print_pages.aspx" />
     <Content Include="production_company.aspx" />
     <Content Include="production_company_new.aspx" />
     <Content Include="production_company_update.aspx" />
     <Content Include="register_tool.aspx" />
-    <Content Include="Scripts\buttons.html5.min.js" />
     <Content Include="Scripts\Config.js" />
-    <Content Include="Scripts\dataTables.buttons.min.js" />
-    <Content Include="Scripts\jquery.dataTables.min.js" />
-    <Content Include="Scripts\jszip.min.js" />
+    <Content Include="Scripts\xlsx.full.min.js" />
     <Content Include="send_notification.aspx" />
     <Content Include="send_notification_completed.aspx" />
     <Content Include="send_notification_defective.aspx" />
@@ -1915,6 +1926,27 @@
     </Compile>
     <Compile Include="administrator.aspx.designer.cs">
       <DependentUpon>administrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovePage\notification_defective_email.aspx.cs">
+      <DependentUpon>notification_defective_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovePage\notification_defective_email.aspx.designer.cs">
+      <DependentUpon>notification_defective_email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovePage\notification_email.aspx.cs">
+      <DependentUpon>notification_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovePage\notification_email.aspx.designer.cs">
+      <DependentUpon>notification_email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovePage\notification_error_email.aspx.cs">
+      <DependentUpon>notification_error_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovePage\notification_error_email.aspx.designer.cs">
+      <DependentUpon>notification_error_email.aspx</DependentUpon>
     </Compile>
     <Compile Include="approver.aspx.cs">
       <DependentUpon>approver.aspx</DependentUpon>
@@ -1944,6 +1976,7 @@
     <Compile Include="approver_update.aspx.designer.cs">
       <DependentUpon>approver_update.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AutoEmail\AutoSendEmail.cs" />
     <Compile Include="calibate_unit.aspx.cs">
       <DependentUpon>calibate_unit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2006,6 +2039,13 @@
     </Compile>
     <Compile Include="department_update.aspx.designer.cs">
       <DependentUpon>department_update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmailAuto\SendOne.aspx.cs">
+      <DependentUpon>SendOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailAuto\SendOne.aspx.designer.cs">
+      <DependentUpon>SendOne.aspx</DependentUpon>
     </Compile>
     <Compile Include="email_auto.aspx.cs">
       <DependentUpon>email_auto.aspx</DependentUpon>
@@ -2113,12 +2153,33 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="notification_defective_page.aspx.cs">
+      <DependentUpon>notification_defective_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notification_defective_page.aspx.designer.cs">
+      <DependentUpon>notification_defective_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notification_error_page.aspx.cs">
+      <DependentUpon>notification_error_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notification_error_page.aspx.designer.cs">
+      <DependentUpon>notification_error_page.aspx</DependentUpon>
+    </Compile>
     <Compile Include="notification_new.aspx.cs">
       <DependentUpon>notification_new.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="notification_new.aspx.designer.cs">
       <DependentUpon>notification_new.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notification_page.aspx.cs">
+      <DependentUpon>notification_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notification_page.aspx.designer.cs">
+      <DependentUpon>notification_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="notification_setting.aspx.cs">
       <DependentUpon>notification_setting.aspx</DependentUpon>
@@ -2140,6 +2201,13 @@
     </Compile>
     <Compile Include="plan.aspx.designer.cs">
       <DependentUpon>plan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print\print_pages.aspx.cs">
+      <DependentUpon>print_pages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print\print_pages.aspx.designer.cs">
+      <DependentUpon>print_pages.aspx</DependentUpon>
     </Compile>
     <Compile Include="production_company.aspx.cs">
       <DependentUpon>production_company.aspx</DependentUpon>

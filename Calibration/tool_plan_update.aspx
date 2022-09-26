@@ -124,7 +124,7 @@
                   <div class="col me-4">
                     <div class="row">
                       <label class="form-label px-0">ISO : </label>
-                      <asp:DropDownList ID="Iso" runat="Server" CssClass="form-select">
+                      <asp:DropDownList ID="Iso" runat="Server" CssClass="form-select sub-color">
                         <asp:ListItem Text="กรุณาเลือก" Value="0" />
                       </asp:DropDownList>
                       <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Iso"

@@ -6,7 +6,7 @@
     <ContentTemplate>
 
       <div class="d-flex justify-content-between align-items-end w-100">
-        <h4 class="m-0 text-lg">ตั้งค่าการแจ้งเตือน Email ทั่วไป</h4>
+        <h4 class="m-0 text-lg">ตั้งค่าการแจ้งเตือน Email</h4>
         <div>
           <a href="notification_new.aspx" class="btn btn-primary">
             <i class="bi bi-plus-circle-fill"></i>
@@ -19,7 +19,7 @@
       <table id="example" class="table table-striped table-bordered nowrap" style="width: 100%">
         <thead>
           <tr>
-            <th width="5%" class="text-center">ID</th>
+            <th width="5%" class="text-center">#</th>
             <th width="10%" class="text-center">Action</th>
             <th width="1%" class="text-center">แผนก</th>
             <th>ชื่อผู้รับทราบ</th>
@@ -34,7 +34,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Action</th>
             <th width="1%" class="text-center">แผนก</th>
             <th>ชื่อผู้รับทราบ</th>

@@ -29,7 +29,8 @@
               <div class="col me-4">
                 <div class="mb-3 row">
                   <label class="form-label px-0">แผนก : </label>
-                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select">
+                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select"
+                    AutoPostBack="true" OnSelectedIndexChanged="Department_SelectedIndexChanged">
                     <asp:ListItem Text="กรุณาเลือก" Value="0" />
                   </asp:DropDownList>
                   <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Department"
@@ -55,9 +56,6 @@
                 </div>
               </div>
             </div>
-
-
-
 
             <div class="row">
               <div class="col me-4">
@@ -91,21 +89,21 @@
               <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                    id="flexDefault1" value="แจ้งเตือนการสอบเทียบประจำเดือน" runat="server">
+                    id="flexDefault1" value="อ่านค่าผิดพลาดปรับได้" runat="server">
                   <label class="form-check-label" for="flexRadioDefault1">
                     อ่านค่าผิดพลาดปรับได้
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                    id="flexDefault2" value="0" runat="server">
+                    id="flexDefault2" value="เสียซ่อมได้" runat="server">
                   <label class="form-check-label" for="flexRadioDefault2">
                     เสียซ่อมได้
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                    id="Checkbox3" value="0" runat="server">
+                    id="Checkbox3" value="อื่นๆ" runat="server">
                   <label class="form-check-label" for="flexRadioDefault2">
                     อื่นๆ
                   </label>
@@ -114,14 +112,14 @@
               <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                    id="Checkbox1" value="แจ้งเตือนการสอบเทียบประจำเดือน" runat="server">
+                    id="Checkbox1" value="อ่านค่าผิดพลาดปรับไม่ได้" runat="server">
                   <label class="form-check-label" for="flexRadioDefault1">
                     อ่านค่าผิดพลาดปรับไม่ได้
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                    id="Checkbox2" value="0" runat="server">
+                    id="Checkbox2" value="เสียซ่อมไม่ได้ได้" runat="server">
                   <label class="form-check-label" for="flexRadioDefault2">
                     เสียซ่อมไม่ได้ได้
                   </label>
@@ -155,6 +153,7 @@
             <table class="table table-bordered bg-light">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>เลขที่ใบลงทะเบียน</th>
                   <th>รหัสเครื่องมือ</th>
                   <th>ชื่อเครื่องมือ</th>
@@ -173,8 +172,8 @@
             <div class="row">
               <div class="col me-4">
                 <div class="mb-3 row">
-                  <label for="master" class="form-label px-0">ผู้รับทราบ : </label>
-                  <input type="text" class="form-control" id="Text1"
+                  <label for="second" class="form-label px-0">ผู้รับทราบ : </label>
+                  <input type="text" class="form-control" id="second"
                     placeholder="เรียน..." runat="server" required disabled>
                 </div>
               </div>
@@ -186,6 +185,8 @@
                 </div>
               </div>
             </div>
+
+            <asp:HiddenField ID="HiddenField1" runat="server" />
 
             <div class="row">
               <div class="col me-4">
@@ -204,7 +205,7 @@
 
           <div class="mx-5 text-end">
             <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary btn-lg"
-              Text="Send Email" />
+              Text="Send Email" OnClick="Button2_Click" />
           </div>
         </div>
       </div>

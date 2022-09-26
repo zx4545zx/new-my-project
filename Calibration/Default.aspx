@@ -24,7 +24,7 @@
 
       <hr />
 
-      <table id="example" class="table table-striped table-bordered nowrap" style="width: 100%">
+      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
         <thead>
           <tr>
             <th>#</th>

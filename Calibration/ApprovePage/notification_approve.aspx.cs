@@ -17,7 +17,8 @@ namespace Calibration.ApproverNotification
           FROM dbo.tool_register tr
           INNER JOIN dbo.registrar r ON tr.registrar_id = r.id
           INNER JOIN dbo.department d ON r.department_id = d.id
-          WHERE tr.status = 2 AND r.department_id = {dep_id};
+          WHERE tr.status = 1 AND r.department_id = {dep_id}
+          ORDER BY id DESC;
         ";
         DataTable AllData = Model.Database.SqlQuery(sql);
         Literal1.Text = Shared.Render.NotiApprovePage(AllData);

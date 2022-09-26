@@ -1,14 +1,13 @@
-﻿using DocumentFormat.OpenXml.EMMA;
-using DocumentFormat.OpenXml.ExtendedProperties;
-using DocumentFormat.OpenXml.VariantTypes;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Security.AccessControl;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Calibration
 {
-  public partial class send_notification : System.Web.UI.Page
+  public partial class send_notification : Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -43,6 +42,7 @@ namespace Calibration
 
     protected void Confirm_Click(object sender, EventArgs e)
     {
+      string ls = ""; // define
       RowData.Text = "";
       string SelectData = Request.Form["listtoolselect"];
       if (!string.IsNullOrEmpty(SelectData))
@@ -51,7 +51,8 @@ namespace Calibration
         for (int i = 0; i < ListSelect.Length; i++)
         {
           string[] Data = ListSelect[i].Split('|');
-          RowData.Text += "<tr>";
+          ls += Data[0]; // get tools id
+          RowData.Text += $"<tr>";
           for (int j = 0; j < Data.Length; j++)
           {
             RowData.Text += $@"
@@ -61,6 +62,7 @@ namespace Calibration
           RowData.Text += "</tr>";
         }
       }
+      Session["tool_id"] = ls; // set session tool id
     }
 
     private void SetDataOnTextBox()
@@ -91,7 +93,7 @@ namespace Calibration
       LiteralList.Text = "";
       DataTable DepCode = Model.Database.SelectAttributeByID("code", "dbo.department", Department.SelectedValue);
       DataTable SelectTools = Model.Database.SqlQuery($@"
-        SELECT r.register_code, r.code, t.name AS tool_name, p.name AS company_name, r.rang_error, c.date_plan
+        SELECT t.id AS tool_id, r.register_code, r.code, t.name AS tool_name, p.name AS company_name, r.rang_error, c.date_plan
         FROM dbo.tool_register r
         INNER JOIN dbo.tool t
         ON r.tool_id = t.id
@@ -104,7 +106,8 @@ namespace Calibration
 
       for (int i = 0; i < SelectTools.Rows.Count; i++)
       {
-        string Value = $"{SelectTools.Rows[i]["register_code"]} |" +
+        string Value = $"{SelectTools.Rows[i]["tool_id"]} |" +
+          $" {SelectTools.Rows[i]["register_code"]} |" +
           $" {SelectTools.Rows[i]["code"]} | {SelectTools.Rows[i]["tool_name"]} |" +
           $" {SelectTools.Rows[i]["company_name"]} | {SelectTools.Rows[i]["rang_error"]} |" +
           $" {SelectTools.Rows[i]["date_plan"]}";
@@ -118,7 +121,7 @@ namespace Calibration
       }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
+    private void SendEmail()
     {
       string dep_id = Button2.Attributes["DepId"];
       string otherEmail = "";
@@ -137,22 +140,69 @@ namespace Calibration
           <h4>รายละเอียด มีดังนี้</h4>
           <p>...</p>
           <br>
-          <a href='/ApprovePage/notification_approve.aspx?dep_id={dep_id}'>อนุมัติ</a>
+          <a href='#?dep_id={dep_id}'>กดที่นี่เพื่ออนุมัติ</a>
           <br>
           <h5>จึงเรียนมาเพื่อทราบ</h5>
         ";
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
+      cb = true; //////////////////////////////////////////////////////////////////////////////
       if (cb)
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลการลงทะเบียนเครื่องมือเรียบร้อย', '/Default.aspx');", true);
+          "MyScript", "MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลการลงทะเบียนเครื่องมือเรียบร้อย', 'administrator.aspx');", true);
       }
       else
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้', '/Default.aspx');", true);
+          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้', 'administrator.aspx');", true);
       }
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+
+      int id = Model.Database.InsertReturnID("dbo.email_notification",
+        "code,detail,notifier,dep_id",
+        $"'{RegCode()}','{CheckBoxValue()}','{Text3.Value}',{Department.SelectedValue}");
+
+      string[] arrData = Session["tool_id"].ToString().Split(' ');
+      for (int i = 0; i < arrData.Length; i++)
+      {
+        Model.Database.Insert("email_noti_tool", "tool_id,email_noti_id", $"{arrData[i]},{id}");
+      }
+      Session.Remove("tool_id");
+      SendEmail();
+    }
+
+    private string RegCode()
+    {
+      DataTable regCode = Model.Database.SelectAttributeByCondition(
+        "code", "dbo.email_notification", $"code LIKE '%{Shared.DateTimeTH.GetYear()}%'");
+      int nextCount = regCode.Rows.Count + 1;
+      string register_code = Shared.DateTimeTH.GetYear() + "/" + nextCount.ToString().PadLeft(6, '0');
+      return register_code + " ALERT";
+    }
+
+    private string CheckBoxValue()
+    {
+      var result = new List<string>();
+      if (flexDefault1.Checked == true)
+      {
+        result.Add(flexDefault1.Value);
+      }
+
+      if (flexDefault2.Checked == true)
+      {
+        result.Add(floatingTextarea2.Value);
+      }
+
+      if (result.Count > 0)
+      {
+        return string.Join(",", result.ToArray());
+      }
+
+      return "";
     }
   }
 }

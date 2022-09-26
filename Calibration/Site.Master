@@ -24,6 +24,7 @@
 
   <!-- chart-js -->
   <script src="./Content/chart-js/chart.js"></script>
+  <script src="./Content/chart-js/utils.js"></script>
 
   <!-- datatables@1.12.1 -->
   <link href="./Content/datatables@1.12.1/dataTables.bootstrap5.min.css" rel="stylesheet" />
@@ -32,21 +33,18 @@
 
   <script src="./Content/datatables@1.12.1/jquery.dataTables.min.js"></script>
   <script src="./Content/datatables@1.12.1/dataTables.bootstrap5.min.js"></script>
+  <script src="./Content/datatables@1.12.1/dataTables.fixedHeader.min.js"></script>
 
   <script src="./Content/datatables@1.12.1/dataTables.responsive.min.js"></script>
-  <script src="./Content/datatables@1.12.1/responsive.bootstrap.min.js"></script>
-
 
   <!-- normalize -->
   <link href="./Content/modern-normalize.css" rel="stylesheet" />
 
   <!-- transition -->
-  <link href="Content/transition.min.css" rel="stylesheet" />
+  <link href="./Content/transition.min.css" rel="stylesheet" />
 
-  <script src="./Content/sweetalert2/sweetalert2.all.min.js"></script>
-  <script type="text/javascript" src="./Scripts/jszip.min.js"></script>
-  <script type="text/javascript" src="./Scripts/dataTables.buttons.min.js"></script>
-  <script type="text/javascript" src="./Scripts/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="./Content/sweetalert2/sweetalert2.all.min.js"></script>
+  <script type="text/javascript" src="./Scripts/xlsx.full.min.js"></script>
   <script type="text/javascript" src="./Scripts/Config.js"></script>
 
 </head>
@@ -75,10 +73,9 @@
                     <li><a class="dropdown-item" href="register_tool.aspx">ขึ้นทะเบียนเครื่องมือ</a></li>
                     <li><a class="dropdown-item" href="Default.aspx">ตรวจสอบทะเบียนเครื่องมือ</a></li>
                     <li><a class="dropdown-item" href="plan.aspx">แผนการสอบเทียบเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลการแจ้งเตือนการสอบเทียบเครื่องมือวัด</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
-                    <li><a class="dropdown-item" href="#">สรุปรายงานทะเบียนเครื่องมือ</a></li>
+                    <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
+                    <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
                     <li><a class="dropdown-item" href="tool_history.aspx">ประวัติเครื่องมือ</a></li>
                   </ul>
                 </li>
@@ -118,10 +115,6 @@
                   <label for="Password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="Password" placeholder="********" runat="server">
                 </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -145,12 +138,12 @@
                   &nbsp; ทะเบียนเครื่องมือ
                 </a>
               </li>
-              <li class="nav-item">
+              <%--<li class="nav-item">
                 <a class="nav-link" href="tool_cancel.aspx">
                   <i class="bi bi-clipboard-x-fill"></i>
                   &nbsp; ยกเลิกเครื่องมือ
                 </a>
-              </li>
+              </li>--%>
               <li class="nav-item">
                 <a class="nav-link" href="plan.aspx">
                   <i class="bi bi-table"></i>
@@ -165,28 +158,19 @@
               </li>
               <%--<li class="nav-item">
                 <a class="nav-link" href="#">
-                  <i class="bi bi-hammer"></i>
-                  &nbsp; การแจ้งซ่อม
-                </a>
-              </li>--%>
-              <%--<li class="nav-item">
-                <a class="nav-link" href="#">
                   <i class="bi bi-file-earmark-bar-graph-fill"></i>
                   &nbsp; รายงาน
                 </a>
               </li>--%>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-envelope-fill"></i>
-                  &nbsp; การแจ้งเตือน
+                  <i class="bi bi-envelope-paper-fill"></i>
+                  &nbsp; สรุปผลแจ้งเตือน
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="approver.aspx">ผู้อนุมัติ (ฝ่าย)</a></li>
-                  <li><a class="dropdown-item" href="notification_setting.aspx">ตั้งค่าแจ้งเตือน Email ทั่วไป</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
+                  <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
+                  <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
+                  <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -214,6 +198,20 @@
                   <li><a class="dropdown-item" href="/status_data.aspx">สถานะข้อมูล</a></li>
                 </ul>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  <i class="bi bi-envelope-fill"></i>
+                  &nbsp; ข้อมูลแจ้งเตือน
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="approver.aspx">ผู้อนุมัติ (ฝ่าย)</a></li>
+                  <li><a class="dropdown-item" href="notification_setting.aspx">ตั้งค่าแจ้งเตือน Email</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
+                </ul>
+              </li>
               <%--<li class="nav-item">
                 <a class="nav-link" href="#">
                   <i class="bi bi-key-fill"></i>
@@ -230,7 +228,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- Footer -->

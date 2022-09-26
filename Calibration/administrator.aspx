@@ -5,6 +5,15 @@
   <asp:UpdatePanel ID="updatepnl" runat="server">
     <ContentTemplate>
 
+      <div class="d-flex justify-content-between align-items-end w-100 mb-3">
+        <h4 class="m-0 text-lg">
+          <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;ทะเบียนเครื่องมือ</h4>
+        <div>
+        </div>
+      </div>
+
+      <hr />
+
       <ul class="nav nav-pills nav-fill d-flex gap-2 mb-3 p-2 navbar-light rounded"
         style="background-color: #e3f2fd;">
         <li class="nav-item">
@@ -27,19 +36,7 @@
 
       <hr />
 
-      <div class="d-flex justify-content-between align-items-end w-100 mb-3">
-        <h4 class="m-0 text-lg">
-          <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;ทะเบียนเครื่องมือ</h4>
-        <div>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#a">
-            <i class="bi bi-funnel-fill"></i>
-          </button>
-        </div>
-      </div>
-
-      <hr />
-
-      <table id="example" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
+      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
         <thead>
           <tr>
             <th>#</th>
@@ -80,21 +77,6 @@
           </tr>
         </tfoot>
       </table>
-
-      <!-- Modal -->
-      <div class="modal fade" id="a" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h1>Hello Admin</h1>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-              <%--<button id="Save" type="button" class="btn btn-primary">Save</button>--%>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </ContentTemplate>
   </asp:UpdatePanel>

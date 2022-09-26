@@ -64,7 +64,7 @@ namespace Calibration
 
       if (objective.Count > 0)
       {
-        return String.Join(",", objective.ToArray());
+        return string.Join(",", objective.ToArray());
       }
 
       return "";
@@ -216,35 +216,35 @@ namespace Calibration
       string code = GetCodeForReg(CottonValue, FactoryValue, MeterValue, DepartmentValue);
 
       int registrar_id = Model.Database.InsertReturnID(
-        "dbo.registrar",
-        "name, tel, email, cotton_id, factory_id, metor_id, department_id, approver_id",
-        $"'{Name}','{PhoneNumber}','{Email}',{CottonValue},{FactoryValue},{MeterValue},{DepartmentValue},{ApproverValue}"
+          "dbo.registrar",
+          "name, tel, email, cotton_id, factory_id, metor_id, department_id, approver_id",
+          $"'{Name}','{PhoneNumber}','{Email}',{CottonValue},{FactoryValue},{MeterValue},{DepartmentValue},{ApproverValue}"
         );
 
       int certificate_id = Model.Database.InsertReturnID(
-        "dbo.certificate",
-        "status",
-        $"{Certificate}"
+          "dbo.certificate",
+          "status",
+          $"{Certificate}"
         );
 
       int tool_id = Model.Database.InsertReturnID(
-        "dbo.tool",
-        "name,model,code,detail",
-        $"'{Tool}','{ModelType}','{ToolNumber}','{Detail}'"
+          "dbo.tool",
+          "name,model,code,detail",
+          $"'{Tool}','{ModelType}','{ToolNumber}','{Detail}'"
         );
 
       int plan_id = Model.Database.InsertReturnID(
-        "dbo.calibration_plan",
-        "status",
-        $"{0}"
+          "dbo.calibration_plan",
+          "status",
+          $"{0}"
         );
 
       bool tool_reg_response = Model.Database.Insert(
-       "dbo.tool_register",
-       "register_code, code, status, location, objective, accept_error, rang_error, img_url, " +
-       "produc_company_id, tool_id, certificate_id, registrar_id, calibration_plan_id, iso_id",
-       $"'{RegCode()}','{code}',{1},'{Location}','{ObjecttiveValue}','{Accept_Error}','{Rang}','{ImgUrl}'," +
-       $"{Company},{tool_id},{certificate_id},{registrar_id},{plan_id},{iso_id}"
+         "dbo.tool_register",
+         "register_code, code, status, location, objective, accept_error, rang_error, img_url, " +
+         "produc_company_id, tool_id, certificate_id, registrar_id, calibration_plan_id, iso_id",
+         $"'{RegCode()}','{code}',{1},'{Location}','{ObjecttiveValue}','{Accept_Error}','{Rang}'," +
+         $"'{ImgUrl}',{Company},{tool_id},{certificate_id},{registrar_id},{plan_id},{iso_id}"
        );
 
       if (tool_reg_response)
@@ -268,7 +268,8 @@ namespace Calibration
           <p>ค่าความผิดพลาดที่รับได้ : {unitError.Value}</p>
           <p>รายละเอียด : {floatingTextarea2.Value}</p>
           <br>
-          <a href='#'>อนุมัติขึ้นทะเบียนเครื่องมือใหม่</a>
+          <a href='ApprovePage/notification_approve.aspx?dep_id=
+          {Department.SelectedValue}'>อนุมัติขึ้นทะเบียนเครื่องมือใหม่</a>
           <br>
           <h5>จึงเรียนมาเพื่อทราบ</h5>
         ";

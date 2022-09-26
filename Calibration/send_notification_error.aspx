@@ -29,7 +29,8 @@
               <div class="col me-4">
                 <div class="mb-3 row">
                   <label class="form-label px-0">แผนก : </label>
-                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select">
+                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select"
+                    AutoPostBack="true" OnSelectedIndexChanged="Department_SelectedIndexChanged">
                     <asp:ListItem Text="กรุณาเลือก" Value="0" />
                   </asp:DropDownList>
                   <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Department"
@@ -88,7 +89,7 @@
               <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexDefault"
-                    id="flexDefault1" value="แจ้งเตือนการสอบเทียบประจำเดือน" runat="server" checked>
+                    id="flexDefault1" value="ไม่สามารถดำเนินการสอบเทียบตามวันเวลาสอบเทียบได้" runat="server" checked>
                   <label class="form-check-label" for="flexRadioDefault1">
                     ไม่สามารถดำเนินการสอบเทียบตามวันเวลาสอบเทียบได้
                   </label>
@@ -117,6 +118,7 @@
             <table class="table table-bordered bg-light">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>เลขที่ใบลงทะเบียน</th>
                   <th>รหัสเครื่องมือ</th>
                   <th>ชื่อเครื่องมือ</th>
@@ -132,16 +134,11 @@
 
             <hr />
 
-
-
-
-
-
             <div class="row">
               <div class="col me-4">
                 <div class="mb-3 row">
-                  <label for="master" class="form-label px-0">ผู้รับทราบ : </label>
-                  <input type="text" class="form-control" id="Text1"
+                  <label for="second" class="form-label px-0">ผู้รับทราบ : </label>
+                  <input type="text" class="form-control" id="second"
                     placeholder="เรียน..." runat="server" required disabled>
                 </div>
               </div>
@@ -153,6 +150,8 @@
                 </div>
               </div>
             </div>
+
+            <asp:HiddenField ID="HiddenField1" runat="server" />
 
             <div class="row">
               <div class="col me-4">
@@ -171,7 +170,7 @@
 
           <div class="mx-5 text-end">
             <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary btn-lg"
-              Text="Send Email" />
+              Text="Send Email" OnClick="Button2_Click" />
           </div>
         </div>
       </div>

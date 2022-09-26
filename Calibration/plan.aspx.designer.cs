@@ -24,6 +24,33 @@ namespace Calibration
     protected global::System.Web.UI.UpdatePanel updatepnl;
 
     /// <summary>
+    /// Picker control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Picker;
+
+    /// <summary>
+    /// SelectCode control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.DropDownList SelectCode;
+
+    /// <summary>
+    /// Button2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Button2;
+
+    /// <summary>
     /// Literal1 control.
     /// </summary>
     /// <remarks>

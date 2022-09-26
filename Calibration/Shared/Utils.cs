@@ -48,28 +48,13 @@ namespace Calibration.Shared
       string Color;
       if (int.Parse(data.Rows[i]["status"].ToString()) == 1)
       {
-        Status = "ขึ้นทะเบียนใหม่";
-        Color = "text-center bg-primary text-white";
+        Status = "รออนุมัติ";
+        Color = "text-center bg-warning";
       }
       else if (int.Parse(data.Rows[i]["status"].ToString()) == 2)
       {
-        Status = "รออนุมัติ (ขึ้นทะเบียนใหม่)";
-        Color = "text-center bg-info";
-      }
-      else if (int.Parse(data.Rows[i]["status"].ToString()) == 3)
-      {
-        Status = "อนุมัติแล้ว (ขึ้นทะเบียนใหม่)";
+        Status = "อนุมัติแล้ว";
         Color = "text-center bg-success text-white";
-      }
-      else if (int.Parse(data.Rows[i]["status"].ToString()) == 4)
-      {
-        Status = "แจ้งบกพร่อง";
-        Color = "text-center bg-info";
-      }
-      else if (int.Parse(data.Rows[i]["status"].ToString()) == 5)
-      {
-        Status = "แจ้งกลับแล้ว (บกพร่อง)";
-        Color = "text-center bg-warning";
       }
       else
       {

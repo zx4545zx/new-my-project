@@ -146,10 +146,10 @@
               <div class="col">
                 <label class="form-label px-0">ISO : </label>
                 <asp:DropDownList ID="Iso" runat="Server" CssClass="form-select">
-                  <asp:ListItem Text="กรุณาเลือก" Value="0" />
+                  <asp:ListItem Text="กรุณาเลือก" Value="null" />
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Iso"
-                  InitialValue="0" runat="server" ForeColor="Red" />
+                <%--<asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Iso"
+                  InitialValue="0" runat="server" ForeColor="Red" />--%>
               </div>
             </div>
 

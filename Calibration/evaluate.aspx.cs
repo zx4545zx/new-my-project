@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calibration.Shared;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -74,18 +75,18 @@ namespace Calibration
 
           RowData.Text += $@"
             <tr>
-              <th scope='row' class='text-center'>{i + 1}</th>
+              <td scope='row'></td>
               <td scope='row' class='text-center'>
               {AllResult.Rows[i]["round_date"].ToString().Split(' ')[0]}</td>
               <td scope='row' class='text-center'>{AllResult.Rows[i]["error"]}</td>
               <td scope='row' class='text-center'>{status}</td>
               <td scope='row' class='text-center'>
-              {AllResult.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
+              {AllResult.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
               <td scope='row'>{AllResult.Rows[i]["resultant"]}</td>
               <td scope='row' class='text-center'>{AllResult.Rows[i]["title"]}</td>
               <td scope='row'>{AllResult.Rows[i]["comment"]}</td>
               <td scope='row' class='text-center'>
-              {AllResult.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
+              {AllResult.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
               <td scope='row' class='text-center'><button class='btn btn-primary'>EDIT</button></td>
             </tr>
           ";
@@ -104,14 +105,31 @@ namespace Calibration
 
       if (returning_ID > 0)
       {
-        bool cb = Model.Database.Insert(
+        bool cb1 = Model.Database.Insert(
           "dbo.tool_register_calibration_results",
           "calibration_results_id, tool_register_id",
           $"{returning_ID}, {Request.QueryString["id"]}");
 
-        // เปลี่ยนรอบการประเมิน
+        DataTable data = Model.Database.SqlQuery(
+          $@"
+            SELECT p.id, p.date_plan, p.rang, p.rang_unit
+            FROM dbo.tool_register r
+            INNER JOIN dbo.calibration_plan p
+            ON r.calibration_plan_id = p.id
+            WHERE r.id = {Request.QueryString["id"]};
+          "
+          );
+        DateTime conv_dt = DateTime.Parse(DatePlan.Value);
+        int count = int.Parse(data.Rows[0]["rang"].ToString());
+        string NextRound = CheckNextRound(data, conv_dt, count);
 
-        if (cb)
+        bool cb2 = Model.Database.UpdateByID(
+          "dbo.calibration_plan",
+          $"date_plan=DATEADD(year, 0, '{NextRound}')",
+          data.Rows[0]["id"].ToString()
+          );
+
+        if (cb1 && cb2)
         {
           ScriptManager.RegisterStartupScript(this, GetType(),
             "MyScript", $"MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลเรียบร้อย'," +
@@ -130,6 +148,33 @@ namespace Calibration
           "MyScript", $"MessageNoti('success', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลได้'," +
           $" '{"/evaluate.aspx?id=" + Request.QueryString["id"]}');", true);
       }
+    }
+
+    private string CheckNextRound(DataTable data, DateTime conv_dt, int count)
+    {
+      string NextRound;
+      if (data.Rows[0]["rang_unit"].ToString() == "d")
+      {
+        NextRound = conv_dt.AddDays(count).ToString("yyyy/MM/dd");
+      }
+      else if (data.Rows[0]["rang_unit"].ToString() == "w")
+      {
+        NextRound = conv_dt.AddDays(count * 7).ToString("yyyy/MM/dd");
+      }
+      else if (data.Rows[0]["rang_unit"].ToString() == "m")
+      {
+        NextRound = conv_dt.AddMonths(count).ToString("yyyy/MM/dd");
+      }
+      else if (data.Rows[0]["rang_unit"].ToString() == "y")
+      {
+        NextRound = conv_dt.AddYears(count).ToString("yyyy/MM/dd");
+      }
+      else
+      {
+        NextRound = data.Rows[0]["date_plan"].ToString().Split(' ')[0];
+      }
+
+      return NextRound;
     }
   }
 }

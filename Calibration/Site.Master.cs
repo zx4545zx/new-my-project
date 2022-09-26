@@ -1,5 +1,10 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.EMMA;
+using DocumentFormat.OpenXml.ExtendedProperties;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.VariantTypes;
 using System;
+using System.Web.UI;
 
 namespace Calibration
 {
@@ -34,7 +39,9 @@ namespace Calibration
       else
       {
         Session.Clear();
-        Response.Redirect("Default.aspx");
+        ScriptManager.RegisterStartupScript(this, GetType(),
+          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'กรุณาตรวจสอบ Username หรือ Password อีกครั้ง', 'Default.aspx');", true);
+
       }
     }
 

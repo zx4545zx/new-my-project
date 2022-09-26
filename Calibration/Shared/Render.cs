@@ -282,7 +282,7 @@ namespace Calibration.Shared
       {
         RowData += (
           "<tr>" +
-          $"<td class='text-center'>{data.Rows[i]["id"]}</td>" +
+          $"<td class='text-center'></td>" +
           "<td>" +
           "<div class='btn-group' role='group'>" +
           $"<a href='notification_update.aspx" +
@@ -359,7 +359,7 @@ namespace Calibration.Shared
               </div>
             </td>
             <td>
-              <a  href='#' class='btn btn-secondary'>
+              <a  href='Print/print_pages.aspx' target=""_blank"" class='btn btn-secondary'>
                 <i class='bi bi-printer-fill'></i>&nbsp;PDF
               </a>
             </td>
@@ -393,11 +393,11 @@ namespace Calibration.Shared
             <td>{data.Rows[i]["app_name"]}</td>
             <td>
               <div class=""btn-group"" role=""group"" aria-label=""Basic example"">
-                <button type=""button"" class=""btn btn-outline-primary"">รายละเอียด</button>
-                <button type=""button"" class=""btn btn-secondary"">
+                <button type=""button"" class=""btn btn-sm btn-outline-primary"">รายละเอียด</button>
+                <a href='Print/print_pages.aspx' target=""_blank"" class=""btn btn-sm btn-secondary"">
                   <i class=""bi bi-printer-fill""></i>
                   &nbsp; PDF
-                </button>
+                </a>
               </div>
             </td>
           </tr>

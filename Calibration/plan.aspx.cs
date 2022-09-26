@@ -33,7 +33,9 @@ namespace Calibration
         int days = Shared.DateTimeTH.GetDayInMonth();
         (_, _, string month) = Shared.DateTimeTH.GetMonth();
         string year = Shared.DateTimeTH.GetYear();
-        Literal1.Text = $"<th colspan=\"{days}\" class=\"text-center\">ประจำเดือน: {month} ปี: {year}</th>";
+        Literal1.Text = $"<th colspan=\"{days}\" class=\"text-center\">" +
+          $"ประจำเดือน <span class='text-danger'>{month}</span>" +
+          $" ปี <span class='text-danger'>{year}</span></th>";
 
         for (int k = 1; k <= days; k++)
         {
