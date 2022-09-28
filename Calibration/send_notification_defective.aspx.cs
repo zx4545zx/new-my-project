@@ -130,19 +130,7 @@ namespace Calibration
       }
       string title = $"{flexDefault1.Value}";
       string recipients = $"{email.Value},{email1.Value}{otherEmail}";
-      string body = $@"
-          <h2>เรียน {master.Value}</h2>
-          <h3>เรื่อง แจ้งเตือนการสอบเทียบเครื่องมือบกพร่อง</h3>
-          <p>โดย ฝ่ายสอบเทียบ</p>
-          <p>แผนก สอบเทียบ</p>
-          <br>
-          <h4>รายละเอียด มีดังนี้</h4>
-          <p>...</p>
-          <br>
-          <a href='ApprovePage/notification_defective_email.aspx?dep_id={dep_id}'>กดที่นี่เพื่ออนุมัติ</a>
-          <br>
-          <h5>จึงเรียนมาเพื่อทราบ</h5>
-        ";
+      string body = EmailBody(dep_id);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
       cb = true; ///////////////////////////////////////////////////////////////////////////////
@@ -217,6 +205,48 @@ namespace Calibration
       }
 
       return "";
+    }
+
+    private string EmailBody(string dep_id)
+    {
+      string body = $@"
+          <p>แจ้งเตือนการสอบเทียบเครื่องมือวัดบกพร่อง</p>
+          <br>
+          <p>ถึง:</p>
+          <p>สำเนาเรียน:</p>
+          <p>เรื่อง:แจ้งเตือนการสอบเทียบเครื่องมือวัด</p>
+          <p>จาก:แผนกสอบเทียบ</p>
+          <br>
+          <p>{CheckBoxValue()}</p>
+          <br>
+          <p>{Textarea1.Value}</p>
+          <br>
+          <p>
+          <table border=""2"">
+          <thead>
+          <tr>
+          <th>#</th>
+          <th>เลขที่ใบลงทะเบียน</th>
+          <th>รหัสเครื่องมือ</th>
+          <th>ชื่อเครื่องมือ</th>
+          <th>ยี่ห้อ</th>
+          <th>ช่วงการใช้งาน</th>
+          <th>วันที่สอบเทียบ</th>
+          </tr>
+          </thead>
+          <tbody>
+          {RowData.Text}
+          </tbody>
+          </table>
+          </p>
+          <br>
+          <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
+          <a href='{Process.Env.Host}/ApprovePage/notification_defective_email.aspx?dep_id={dep_id}' 
+          target='_blank'>กดที่นี่</a>
+          <br>
+        ";
+
+      return body;
     }
   }
 }

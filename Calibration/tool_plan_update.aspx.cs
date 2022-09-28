@@ -281,7 +281,7 @@ namespace Calibration
       string calibration_plan_sql = $@"
        UPDATE dbo.calibration_plan
        SET new_code='{Label2.Text}',rang={RoundNumber.Value},rang_unit='{RoundUnit.SelectedValue}',
-        date_plan=DATEADD(year, 0, '{Date1.Value}'),status=1
+        date_plan=Cast('{Date1.Value}' as date),status=1
        WHERE id={AllData.Rows[0]["calibration_plan_id"]};
       ";
 

@@ -105,7 +105,6 @@
             <thead>
               <tr>
                 <th scope="col" width="1%">#</th>
-                <th scope="col" class='text-center'>รอบการสอบเทียบ</th>
                 <th scope="col" class='text-center'>ค่า Error</th>
                 <th scope="col" class='text-center'>สถานะ</th>
                 <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
@@ -122,7 +121,6 @@
             <tfoot>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col" class='text-center'>รอบการสอบเทียบ</th>
                 <th scope="col" class='text-center'>ค่า Error</th>
                 <th scope="col" class='text-center'>สถานะ</th>
                 <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>

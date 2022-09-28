@@ -6,15 +6,15 @@ namespace Calibration.Model
 {
   public class Database
   {
-    private static readonly string ServerName = "NATTAPON";
-    private static readonly string DBName = "Calibration";
-    private static readonly string ServerUser = "sa";
-    private static readonly string ServerPass = "zx4545zx";
-
     public static DBClass Connection()
     {
       DBClass db = new DBClass();
-      DBClass.Connenct_DB(ServerName, DBName, ServerUser, ServerPass);
+      DBClass.Connenct_DB(
+        Process.Env.ServerName, 
+        Process.Env.DBName, 
+        Process.Env.ServerUser, 
+        Process.Env.ServerPass
+        );
 
       return db;
     }

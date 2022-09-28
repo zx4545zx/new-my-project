@@ -25,6 +25,7 @@
             <th class="text-center">เนื่องจาก</th>
             <th width="10%" class="text-center">สถานะ</th>
             <th class="text-center">วันที่แจ้ง</th>
+             <th>Action</th>
             <th>รายชื่อเครื่องมือ</th>
           </tr>
         </thead>
@@ -42,6 +43,7 @@
             <th class="text-center">เนื่องจาก</th>
             <th width="10%" class="text-center">สถานะ</th>
             <th class="text-center">วันที่แจ้ง</th>
+            <th>Action</th>
             <th>รายชื่อเครื่องมือ</th>
           </tr>
         </tfoot>

@@ -34,7 +34,6 @@
   <script src="./Content/datatables@1.12.1/jquery.dataTables.min.js"></script>
   <script src="./Content/datatables@1.12.1/dataTables.bootstrap5.min.js"></script>
   <script src="./Content/datatables@1.12.1/dataTables.fixedHeader.min.js"></script>
-
   <script src="./Content/datatables@1.12.1/dataTables.responsive.min.js"></script>
 
   <!-- normalize -->
@@ -43,8 +42,11 @@
   <!-- transition -->
   <link href="./Content/transition.min.css" rel="stylesheet" />
 
+  <!-- libs -->
   <script type="text/javascript" src="./Content/sweetalert2/sweetalert2.all.min.js"></script>
   <script type="text/javascript" src="./Scripts/xlsx.full.min.js"></script>
+
+  <!-- config -->
   <script type="text/javascript" src="./Scripts/Config.js"></script>
 
 </head>

@@ -8,34 +8,38 @@
           <i class="bi bi-clipboard2-pulse-fill"></i>
           ประวัติเครื่องมือ</h4>
         <div>
-          <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="collapse"
-            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i class="bi bi-funnel-fill"></i>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-search"></i> ค้นหา
           </button>
         </div>
       </div>
 
       <!-- Modal -->
-      <div class="collapse" id="collapseExample">
-        <hr />
-        <div class="card mb-3" style="background-color: #f0f9ff;">
-          <div class="card-body">
-
-            <div class="mb-3">
-              <label for="picker" class="form-label">เดือน/ปี : </label>
-              <input type="month" class="form-control" name="picker" id="Picker" runat="server" required />
-              <div class="form-check">
-
-                <input class="form-check-input" type="checkbox" value=""
-                  id="flexCheckDefault" runat="server" checked>
-                <label class="form-check-label" for="flexCheckDefault">
-                  ทั้งปี
-                </label>
-              </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> <i class="bi bi-search"></i> ค้นหา</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              
 
-            <div class="d-flex justify-content-between align-items-center gap-2">
-              <div class="mb-3 w-50">
+
+              <div class="mb-3">
+                <label for="picker" class="form-label">เดือน/ปี : </label>
+                <input type="month" class="form-control" name="picker" id="Picker" runat="server" required />
+                <div class="form-check">
+                  <div class="mb-3 "></div>
+                  <input class="form-check-input" type="checkbox" value=""
+                    id="flexCheckDefault" runat="server" checked>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    ทั้งปี
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-3">
                 <label for="SelectCode" class="form-label px-0">รหัสเครื่องมือ : </label>
                 <asp:DropDownList ID="SelectCode" runat="Server" CssClass="form-select">
                   <asp:ListItem Text="กรุณาเลือก" Value="0" />
@@ -44,23 +48,10 @@
                   InitialValue="0" runat="server" ForeColor="Red" />
               </div>
 
-              <div class="mb-3 w-50">
-                <label for="SelectTool" class="form-label px-0">เลือกเครื่องมือ : </label>
-                <asp:DropDownList ID="SelectTool" runat="Server" CssClass="form-select">
-                  <asp:ListItem Text="กรุณาเลือก" Value="0" />
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="SelectTool"
-                  InitialValue="0" runat="server" ForeColor="Red" />
-              </div>
             </div>
-
-            <div class=" d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                data-bs-target="#collapseExample" aria-expanded="false"
-                aria-controls="collapseExample">
-                ปิด</button>
-              <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary"
-                Text="ยืนยัน" />
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary" Text="ยืนยัน" OnClick="Button2_Click" />
             </div>
           </div>
         </div>
@@ -68,44 +59,57 @@
 
       <hr />
 
+      <asp:Panel ID="Panel2" runat="server">
       <div class="row">
         <div class="col-6">
           <div class="card">
             <div class="row">
               <div class="col-6">
-                <img src="Images/default-placeholder.png" class="card-img-top" alt="cover">
+                <img id="ImgCover" src="Images/default-placeholder.png" class="card-img-top rounded" alt="cover" runat="server">
               </div>
               <div class="col-6 d-flex align-items-center">
                 <div class="card-body p-3">
                   <div>
                     <div class="mb-3">
                       <span>เลขที่ขึ้นทะเบียน :&nbsp;</span>
-                      <span>2565/000001</span>
+                      <span>
+                        <asp:Label ID="RegCode" runat="server" Text="5434343"></asp:Label>
+                      </span>
                     </div>
 
                     <div class="mb-3">
                       <span>รหัส :&nbsp;</span>
-                      <span>DC1100/12</span>
+                      <span>
+                        <asp:Label ID="Code" runat="server" Text="43434343"></asp:Label>
+                      </span>
                     </div>
 
                     <div class="mb-3">
                       <span>ชื่อเครื่องมือ :&nbsp;</span>
-                      <span>เครื่องชั่ง</span>
+                      <span>
+                        <asp:Label ID="NameTool" runat="server" Text="434345"></asp:Label>
+                      </span>
                     </div>
 
                     <div class="mb-3">
                       <span>ยี่ห้อ :&nbsp;</span>
-                      <span>CP</span>
+                      <span>
+                        <asp:Label ID="Company" runat="server" Text="434345"></asp:Label>
+                      </span>
                     </div>
 
                     <div class="mb-3">
                       <span>รุ่น :&nbsp;</span>
-                      <span>654651321</span>
+                      <span>
+                        <asp:Label ID="Model" runat="server" Text="434345"></asp:Label>
+                      </span>
                     </div>
 
                     <div class="mb-3">
                       <span>หมายเลขเครื่อง :&nbsp;</span>
-                      <span>165516</span>
+                      <span>
+                        <asp:Label ID="ToolNo" runat="server" Text="434345"></asp:Label>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -117,47 +121,39 @@
           <canvas id="myChart"></canvas>
         </div>
       </div>
+      </asp:Panel>
 
-      <hr />
-
+      <asp:Panel ID="Panel1" runat="server">
       <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col" width="1%">#</th>
+            <th scope="col" class='text-center'>ค่า Error</th>
+            <th scope="col" class='text-center'>สถานะ</th>
+            <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
+            <th scope="col">ผู้ทำการสอบเทียบ</th>
+            <th scope="col" class='text-center'>สถานะข้อมูล</th>
+            <th scope="col">หมายเหตุ</th>
+            <th scope="col" class='text-center'>วันที่บันทึก</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          <asp:Literal ID="RowData" runat="server"></asp:Literal>
         </tbody>
         <tfoot>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col" width="1%">#</th>
+            <th scope="col" class='text-center'>ค่า Error</th>
+            <th scope="col" class='text-center'>สถานะ</th>
+            <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
+            <th scope="col">ผู้ทำการสอบเทียบ</th>
+            <th scope="col" class='text-center'>สถานะข้อมูล</th>
+            <th scope="col">หมายเหตุ</th>
+            <th scope="col" class='text-center'>วันที่บันทึก</th>
           </tr>
         </tfoot>
       </table>
+        </asp:Panel>
 
     </ContentTemplate>
     <Triggers>

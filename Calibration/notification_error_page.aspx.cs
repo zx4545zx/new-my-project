@@ -14,6 +14,11 @@ namespace Calibration
     {
       if (!IsPostBack)
       {
+        string EditBtn = @"
+          <button type='button' class='btn btn-sm btn-warning'>
+          <i class='bi bi-pencil-square'></i>แก้ไข</button>
+        ";
+        if (Session["username"] == null) { EditBtn = ""; }
 
         DataTable dt = Model.Database.SqlQuery(@"
           SELECT en.id, en.code, n.second, n.master, en.notifier, 
@@ -41,8 +46,15 @@ namespace Calibration
           <td>{dt.Rows[i]["detail"]}</td>
           <td>{dt.Rows[i]["detail_other"]}</td>
           <td class='text-center {bg}'>{status}</td>
-
           <td>{dt.Rows[i]["approved_date"].ToString().Split(' ')[0]}</td>
+          <td>
+          <div class=""btn-group"" role=""group"" aria-label=""Basic mixed styles example"">
+            {EditBtn}
+            <a href='#' target=""_blank"" class=""btn btn-sm btn-secondary"">
+            <i class=""bi bi-printer-fill""></i>
+            Print</a>
+          </div>
+          </td>
           <td>
             <table class='table table-sm table-striped table-bordered nowrap'>
               <thead>

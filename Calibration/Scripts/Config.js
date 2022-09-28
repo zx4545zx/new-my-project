@@ -33,14 +33,6 @@
     },
   })
 
-  $("#datepicker").datepicker({
-    format: "yyyy",
-    viewMode: "years",
-    minViewMode: "years",
-    setDate: new Date(),
-    autoclose: true //to close picker once year is selected
-  });
-
 });
 
 function MessageNoti(status, title, message, href) {

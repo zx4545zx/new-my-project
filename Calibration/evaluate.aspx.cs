@@ -19,7 +19,7 @@ namespace Calibration
       {
         DataTable AllData = Model.Database.SqlQuery(
           $@"
-            SELECT r.register_code, r.code, p.date_plan, p.rang, p.rang_unit
+            SELECT r.register_code, r.code, FORMAT(CAST(p.date_plan AS DATE),'dd-MM-yyyy') AS date_plan, p.rang, p.rang_unit
             FROM dbo.tool_register r
             INNER JOIN dbo.calibration_plan p
             ON r.calibration_plan_id = p.id
@@ -36,7 +36,7 @@ namespace Calibration
         }
         else
         {
-          Label3.Text = AllData.Rows[0]["date_plan"].ToString().Split(' ')[0];
+          Label3.Text = AllData.Rows[0]["date_plan"].ToString();
           Label3.CssClass = "btn btn-sm btn-outline-danger disabled";
           Button2.Enabled = true;
         }
@@ -76,8 +76,6 @@ namespace Calibration
           RowData.Text += $@"
             <tr>
               <td scope='row'></td>
-              <td scope='row' class='text-center'>
-              {AllResult.Rows[i]["round_date"].ToString().Split(' ')[0]}</td>
               <td scope='row' class='text-center'>{AllResult.Rows[i]["error"]}</td>
               <td scope='row' class='text-center'>{status}</td>
               <td scope='row' class='text-center'>
@@ -87,7 +85,12 @@ namespace Calibration
               <td scope='row'>{AllResult.Rows[i]["comment"]}</td>
               <td scope='row' class='text-center'>
               {AllResult.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
-              <td scope='row' class='text-center'><button class='btn btn-primary'>EDIT</button></td>
+              <td scope='row' class='text-center'>
+              <a href='evaluate_update.aspx?id={AllResult.Rows[i]["id"]}&tool_id={Request.QueryString["id"]}'
+              class='btn btn-sm btn-warning'>
+              <i class='bi bi-pencil-square'></i>&nbsp;แก้ไข
+              </a>
+              </td>
             </tr>
           ";
         }
@@ -99,7 +102,7 @@ namespace Calibration
       int returning_ID = Model.Database.InsertReturnID(
         "dbo.calibration_results",
         "error,status,created_at,data_status_id,resultant,comment,round_date",
-        $"'{TextBox1.Text}',{Status.SelectedValue},DATEADD(year, 0, '{DatePlan.Value}')," +
+        $"'{TextBox1.Text}',{Status.SelectedValue},Cast( '{DatePlan.Value}' as DATE)," +
         $"{StatusData.SelectedValue},'{TextBox2.Text}','{floatingTextarea2.Value}','{Label3.Text}'"
         );
 
@@ -125,15 +128,13 @@ namespace Calibration
 
         bool cb2 = Model.Database.UpdateByID(
           "dbo.calibration_plan",
-          $"date_plan=DATEADD(year, 0, '{NextRound}')",
+          $"date_plan=Cast( '{NextRound}' as date)",
           data.Rows[0]["id"].ToString()
           );
 
         if (cb1 && cb2)
         {
-          ScriptManager.RegisterStartupScript(this, GetType(),
-            "MyScript", $"MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลเรียบร้อย'," +
-            $" '{"/evaluate.aspx?id=" + Request.QueryString["id"]}');", true);
+          Response.Redirect($"evaluate.aspx?id={Request.QueryString["id"]}");
         }
         else
         {

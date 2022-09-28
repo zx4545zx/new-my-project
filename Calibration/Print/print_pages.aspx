@@ -31,9 +31,9 @@
     <%-- Header --%>
     <div id="printPageButton" class="mx-auto my-4" style="width: 21cm;">
       <div class="d-flex justify-content-between align-items-end">
-        <b class="card p-2">ใบลงทะเบียนเครื่องมือวัด</b>
-        <button class="btn btn-outline-secondary text-black" onclick="window.print();">
-          <i class="bi bi-printer-fill"></i>&nbsp;Print</button>
+        <b class="p-2 d-flex align-items-end"><i class="bi bi-file-earmark-pdf-fill"></i> <span>ใบลงทะเบียนเครื่องมือวัด</span></b>
+        <button class="btn btn-light btn-lg card" onclick="window.print();">
+          <i class="bi bi-printer-fill"></i></button>
       </div>
       <hr />
     </div>

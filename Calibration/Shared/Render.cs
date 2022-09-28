@@ -341,16 +341,16 @@ namespace Calibration.Shared
             <td class='text-center'>{NextRound}</td>
             <td class='text-center'>{data.Rows[i]["created_at"]}</td>
             <td class='text-center'>
-              <a href='/tool_details.aspx?id={data.Rows[i]["id"]}' class='btn btn-info'>
+              <a href='tool_details.aspx?id={data.Rows[i]["id"]}' class='btn btn-info'>
                 <i class='bi bi-info-circle'></i>&nbsp;รายละเอียด
               </a>
             </td>
             <td class='text-center'>
               <div class='btn-group' role='group'>
-                <a href='/tool_plan_update.aspx?id={data.Rows[i]["id"]}' class='btn btn-warning'>
+                <a href='tool_plan_update.aspx?id={data.Rows[i]["id"]}' class='btn btn-warning'>
                   <i class='bi bi-pencil-square'></i>&nbsp;แก้ไขแผน
                 </a>
-                <a href='/evaluate.aspx?id={data.Rows[i]["id"]}' class='btn btn-success'>
+                <a href='evaluate.aspx?id={data.Rows[i]["id"]}' class='btn btn-success'>
                   <i class='bi bi-file-earmark-text-fill'></i>&nbsp;ประเมิน
                 </a>
                 <button type='button' class='btn btn-danger'>

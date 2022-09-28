@@ -1875,9 +1875,9 @@
     <Content Include="department.aspx" />
     <Content Include="department_new.aspx" />
     <Content Include="department_update.aspx" />
-    <Content Include="EmailAuto\SendOne.aspx" />
     <Content Include="email_auto.aspx" />
     <Content Include="evaluate.aspx" />
+    <Content Include="evaluate_update.aspx" />
     <Content Include="factory.aspx" />
     <Content Include="factory_new.aspx" />
     <Content Include="factory_update.aspx" />
@@ -2040,13 +2040,6 @@
     <Compile Include="department_update.aspx.designer.cs">
       <DependentUpon>department_update.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmailAuto\SendOne.aspx.cs">
-      <DependentUpon>SendOne.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmailAuto\SendOne.aspx.designer.cs">
-      <DependentUpon>SendOne.aspx</DependentUpon>
-    </Compile>
     <Compile Include="email_auto.aspx.cs">
       <DependentUpon>email_auto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2060,6 +2053,13 @@
     </Compile>
     <Compile Include="evaluate.aspx.designer.cs">
       <DependentUpon>evaluate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="evaluate_update.aspx.cs">
+      <DependentUpon>evaluate_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="evaluate_update.aspx.designer.cs">
+      <DependentUpon>evaluate_update.aspx</DependentUpon>
     </Compile>
     <Compile Include="factory.aspx.cs">
       <DependentUpon>factory.aspx</DependentUpon>
@@ -2209,6 +2209,7 @@
     <Compile Include="Print\print_pages.aspx.designer.cs">
       <DependentUpon>print_pages.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Process\Env.cs" />
     <Compile Include="production_company.aspx.cs">
       <DependentUpon>production_company.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

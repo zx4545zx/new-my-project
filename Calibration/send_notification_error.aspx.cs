@@ -130,19 +130,7 @@ namespace Calibration
       }
       string title = $"{flexDefault1.Value}";
       string recipients = $"{email.Value},{email1.Value}{otherEmail}";
-      string body = $@"
-          <h2>เรียน {master.Value}</h2>
-          <h3>เรื่อง {flexDefault1.Value}</h3>
-          <p>โดย ฝ่ายสอบเทียบ</p>
-          <p>แผนก สอบเทียบ</p>
-          <br>
-          <h4>รายละเอียด มีดังนี้</h4>
-          <p>...</p>
-          <br>
-          <a href='notification_error_email.aspx?dep_id={dep_id}'>กดที่นี่เพื่ออนุมัติ</a>
-          <br>
-          <h5>จึงเรียนมาเพื่อทราบ</h5>
-        ";
+      string body = EmailBody(dep_id);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
       if (cb)
@@ -169,7 +157,6 @@ namespace Calibration
         Model.Database.Insert("email_noti_err_tool", "tool_id,email_noti_err_id", $"{arrData[i]},{id}");
       }
       Session.Remove("tool_id");
-
       SendEmail();
     }
 
@@ -180,6 +167,46 @@ namespace Calibration
       int nextCount = regCode.Rows.Count + 1;
       string register_code = Shared.DateTimeTH.GetYear() + "/" + nextCount.ToString().PadLeft(6, '0');
       return register_code + " ERROR";
+    }
+
+    private string EmailBody(string dep_id)
+    {
+      string body = $@"
+          <p>แจ้งเตือนไม่สามารถสอบเทียบเครื่องมือวัด</p>
+          <br>
+          <p>ถึง:</p>
+          <p>สำเนาเรียน:</p>
+          <p>เรื่อง:แจ้งเตือนไม่สามารถสอบเทียบเครื่องมือวัด</p>
+          <p>จาก:แผนกสอบเทียบ</p>
+          <br>
+          <p>{flexDefault1.Value}</p>
+          <p>เนื่องจาก:{floatingTextarea2.Value}</p>
+          <br>
+          <p>
+          <table border=""2"">
+          <thead>
+          <tr>
+          <th>#</th>
+          <th>เลขที่ใบลงทะเบียน</th>
+          <th>รหัสเครื่องมือ</th>
+          <th>ชื่อเครื่องมือ</th>
+          <th>ยี่ห้อ</th>
+          <th>ช่วงการใช้งาน</th>
+          <th>วันที่สอบเทียบ</th>
+          </tr>
+          </thead>
+          <tbody>
+          {RowData.Text}
+          </tbody>
+          </table>
+          </p>
+          <br>
+          <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
+          <a href='{Process.Env.Host}/notification_error_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
+          <br>
+        ";
+
+      return body;
     }
   }
 }
