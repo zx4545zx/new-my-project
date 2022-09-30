@@ -9,7 +9,8 @@
           <i class="bi bi-file-earmark-spreadsheet-fill"></i>
           แผนการสอบเทียบเครื่องมือ</h4>
         <div>
-          <button id="export_button" type="button" class="btn btn-sm btn-success">
+          <button id="export_button" type="button" class="btn btn-sm btn-success" 
+            runat="server" onserverclick="export_button_ServerClick">
             <i class="bi bi-file-spreadsheet-fill"></i>
             &nbsp;XLSX
           </button>
@@ -20,9 +21,6 @@
           </button>
         </div>
       </div>
-
-
-
 
       <!-- Modal -->
       <div class="collapse" id="collapseExample">
@@ -38,10 +36,8 @@
             <div class="mb-3">
               <label for="SelectCode" class="form-label px-0">รหัสแผนก : </label>
               <asp:DropDownList ID="SelectCode" runat="Server" CssClass="form-select">
-                <asp:ListItem Text="กรุณาเลือก" Value="0" />
+                <asp:ListItem Text="แสดงทั้งหมด" Value="0" />
               </asp:DropDownList>
-              <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="SelectCode"
-                InitialValue="0" runat="server" ForeColor="Red" />
             </div>
 
             <div class=" d-flex justify-content-end gap-2">
@@ -49,16 +45,12 @@
                 data-bs-target="#collapseExample" aria-expanded="false"
                 aria-controls="collapseExample">
                 ปิด</button>
-              <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary"
-                Text="ยืนยัน" />
+              <button id="Submit" type="button" class="btn btn-primary" 
+                runat="server" onserverclick="Submit_ServerClick">ยืนยัน</button>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
 
       <hr />
 
@@ -86,7 +78,7 @@
         </tbody>
       </table>
 
-      <script type="text/javascript">
+      <%--<script type="text/javascript">
         function html_table_to_excel(type) {
           let data = document.getElementById('scrollx');
           let file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
@@ -99,7 +91,7 @@
           html_table_to_excel('xlsx');
           window.location.reload();
         });
-      </script>
+      </script>--%>
     </ContentTemplate>
   </asp:UpdatePanel>
 </asp:Content>

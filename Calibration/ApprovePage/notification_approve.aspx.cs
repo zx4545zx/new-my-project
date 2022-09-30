@@ -11,6 +11,7 @@ namespace Calibration.ApproverNotification
       if (!IsPostBack)
       {
         string dep_id = Request.QueryString["dep_id"];
+        if (dep_id == null){ return; }
         string sql = $@"
           SELECT tr.id, tr.register_code, tr.code, 
           r.created_at,r.name,d.name AS d_name,r.tel,r.email, tr.status

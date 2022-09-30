@@ -24,6 +24,15 @@ namespace Calibration
     protected global::System.Web.UI.UpdatePanel updatepnl;
 
     /// <summary>
+    /// export_button control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlButton export_button;
+
+    /// <summary>
     /// Picker control.
     /// </summary>
     /// <remarks>
@@ -42,13 +51,13 @@ namespace Calibration
     protected global::System.Web.UI.WebControls.DropDownList SelectCode;
 
     /// <summary>
-    /// Button2 control.
+    /// Submit control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button Button2;
+    protected global::System.Web.UI.HtmlControls.HtmlButton Submit;
 
     /// <summary>
     /// Literal1 control.

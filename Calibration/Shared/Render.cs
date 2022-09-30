@@ -359,7 +359,7 @@ namespace Calibration.Shared
               </div>
             </td>
             <td>
-              <a  href='Print/print_pages.aspx' target=""_blank"" class='btn btn-secondary'>
+              <a  href='Print/print_pages.aspx?id={data.Rows[i]["id"]}' target=""_blank"" class='btn btn-secondary'>
                 <i class='bi bi-printer-fill'></i>&nbsp;PDF
               </a>
             </td>
@@ -394,7 +394,7 @@ namespace Calibration.Shared
             <td>
               <div class=""btn-group"" role=""group"" aria-label=""Basic example"">
                 <button type=""button"" class=""btn btn-sm btn-outline-primary"">รายละเอียด</button>
-                <a href='Print/print_pages.aspx' target=""_blank"" class=""btn btn-sm btn-secondary"">
+                <a href='Print/print_pages.aspx?id={data.Rows[i]["id"]}' target=""_blank"" class=""btn btn-sm btn-secondary"">
                   <i class=""bi bi-printer-fill""></i>
                   &nbsp; PDF
                 </a>

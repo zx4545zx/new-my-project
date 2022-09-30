@@ -1876,6 +1876,8 @@
     <Content Include="department_new.aspx" />
     <Content Include="department_update.aspx" />
     <Content Include="email_auto.aspx" />
+    <Content Include="email_auto_add.aspx" />
+    <Content Include="email_auto_update.aspx" />
     <Content Include="evaluate.aspx" />
     <Content Include="evaluate_update.aspx" />
     <Content Include="factory.aspx" />
@@ -1893,13 +1895,16 @@
     <Content Include="meter_new.aspx" />
     <Content Include="meter_update.aspx" />
     <Content Include="notification_defective_page.aspx" />
+    <Content Include="notification_defective_page_update.aspx" />
     <Content Include="notification_error_page.aspx" />
+    <Content Include="notification_error_page_update.aspx" />
     <Content Include="notification_new.aspx" />
     <Content Include="notification_page.aspx" />
     <Content Include="notification_setting.aspx" />
     <Content Include="notification_update.aspx" />
     <Content Include="plan.aspx" />
     <Content Include="Print\print_pages.aspx" />
+    <Content Include="Print\prin_notification_page.aspx" />
     <Content Include="production_company.aspx" />
     <Content Include="production_company_new.aspx" />
     <Content Include="production_company_update.aspx" />
@@ -2047,6 +2052,20 @@
     <Compile Include="email_auto.aspx.designer.cs">
       <DependentUpon>email_auto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="email_auto_add.aspx.cs">
+      <DependentUpon>email_auto_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="email_auto_add.aspx.designer.cs">
+      <DependentUpon>email_auto_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="email_auto_update.aspx.cs">
+      <DependentUpon>email_auto_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="email_auto_update.aspx.designer.cs">
+      <DependentUpon>email_auto_update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="evaluate.aspx.cs">
       <DependentUpon>evaluate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2160,12 +2179,26 @@
     <Compile Include="notification_defective_page.aspx.designer.cs">
       <DependentUpon>notification_defective_page.aspx</DependentUpon>
     </Compile>
+    <Compile Include="notification_defective_page_update.aspx.cs">
+      <DependentUpon>notification_defective_page_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notification_defective_page_update.aspx.designer.cs">
+      <DependentUpon>notification_defective_page_update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="notification_error_page.aspx.cs">
       <DependentUpon>notification_error_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="notification_error_page.aspx.designer.cs">
       <DependentUpon>notification_error_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notification_error_page_update.aspx.cs">
+      <DependentUpon>notification_error_page_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notification_error_page_update.aspx.designer.cs">
+      <DependentUpon>notification_error_page_update.aspx</DependentUpon>
     </Compile>
     <Compile Include="notification_new.aspx.cs">
       <DependentUpon>notification_new.aspx</DependentUpon>
@@ -2208,6 +2241,13 @@
     </Compile>
     <Compile Include="Print\print_pages.aspx.designer.cs">
       <DependentUpon>print_pages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print\prin_notification_page.aspx.cs">
+      <DependentUpon>prin_notification_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print\prin_notification_page.aspx.designer.cs">
+      <DependentUpon>prin_notification_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Process\Env.cs" />
     <Compile Include="production_company.aspx.cs">

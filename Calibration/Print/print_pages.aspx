@@ -51,31 +51,32 @@
         <div class="col-4 text-center"></div>
       </div>
       <br />
-      <div>วันที่:22/09/2022</div>
-      <div>เลขที่:2565/000434</div>
+      <div><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></div>
+      <div><asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>สำหรับผู้ใช้เครื่องมือวัด</b>
-      <div>ชื่อผู้ขอ:สวัสดี ปีใหม่</div>
-      <div>แผนก:สวัสดี ปีใหม่ ฝ่าย:หน่วยงาน Q.C หมายเลขโทรศัพท์: 2228</div>
+      <div><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></div>
+      <div><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>ต้องการส่งเครื่องมือวัดมาเพื่อ</b>
-      <div>ขึ้นทะเบียนใหม่ ISO,สอบเทียบภายนอก,ไม่มีใบ Cer,ISO 9001</div>
+      <div><asp:Label ID="Label5" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>รายการดังต่อไปนี้</b>
-      <div>ชื่อเครื่องมือวัด: เครื่องชั่ง รหัส: (หน่วยงานสอบเทียบกำหนดให้) QAC319/505</div>
-      <div>ผู้ผลิต: CO รุ่น: hd-1234</div>
-      <div>หมายเลขเครื่อง: E1234 ช่วงใช้งาน: 1-100 c</div>
-      <div>สถานที่ใช้งาน: ไลน์ผลิต ค่าผิดพลาดที่ยอมรับได้: +-1 c</div>
+      <div><asp:Label ID="Label6" runat="server" Text="Label"></asp:Label></div>
+      <div><asp:Label ID="Label7" runat="server" Text="Label"></asp:Label></div>
+      <div><asp:Label ID="Label8" runat="server" Text="Label"></asp:Label></div>
+      <div><asp:Label ID="Label9" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>รายละเอียด</b>
-      <div>ใช้งานคู่กับ QC12345</div>
+      <div></div>
+      <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
       <br />
       <br />
       <hr />
       <br />
       <div><b>ส่วนของหน่วยสอบเทียบ</b></div>
       <b>รายละเอียด</b>
-      <div>ใช้ในไลน์ผลิต สอบเทียบทุกวันที่ 16 ของทุกเดือน</div>
+      <div><asp:Label ID="Label11" runat="server" Text="Label"></asp:Label></div>
     </div>
 
   </form>

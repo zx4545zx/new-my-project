@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="col p-0">
-                    <div>
+                    <div class="text-end">
                       <span class="form-label px-0">รหัส :&nbsp;</span>
                       <asp:Label ID="Label2" runat="server" Text="-"></asp:Label>
                     </div>

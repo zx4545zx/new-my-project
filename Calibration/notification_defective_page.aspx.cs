@@ -10,11 +10,7 @@ namespace Calibration
     {
       if (!IsPostBack)
       {
-        string EditBtn = @"
-          <button type='button' class='btn btn-sm btn-warning'>
-          <i class='bi bi-pencil-square'></i>แก้ไข</button>
-        ";
-        if (Session["username"] == null) { EditBtn = ""; }
+        
 
         DataTable dt = Model.Database.SqlQuery(@"
           SELECT en.id, en.code, n.second, n.master, en.notifier, 
@@ -26,6 +22,12 @@ namespace Calibration
 
         for (int i = 0; i < dt.Rows.Count; i++)
         {
+          string EditBtn = $@"
+          <a href='notification_defective_page_update.aspx?id={dt.Rows[i]["id"]}'
+          class='btn btn-sm btn-warning'><i class='bi bi-pencil-square'></i>แก้ไข</a>
+          ";
+          if (Session["username"] == null) { EditBtn = ""; }
+
           string status;
           string bg;
           if (int.Parse(dt.Rows[i]["status"].ToString()) == 0)
