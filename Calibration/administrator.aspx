@@ -8,6 +8,7 @@
       <div class="d-flex justify-content-between align-items-end w-100 mb-3">
         <h4 class="m-0 text-lg">
           <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;ทะเบียนเครื่องมือ</h4>
+        <a href="administrator.aspx" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a>
         <div>
         </div>
       </div>
@@ -36,47 +37,63 @@
 
       <hr />
 
-      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th class="text-center">เลขที่ใบลงทะเบียน</th>
-            <th class="text-center">รหัส</th>
-            <th class="text-center">ชื่อผู้แจ้ง</th>
-            <th class="text-center">แผนก</th>
-            <th class="text-center">เบอร์ติดต่อ</th>
-            <th class="text-center">Email</th>
-            <th class="text-center">สถานะ</th>
-            <th class="text-center">วันที่สอบเทียบ</th>
-            <th class="text-center">สอบเทียบครั้งถัดไป</th>
-            <th class="text-center">วันที่ลงทะเบียน</th>
-            <th class="text-center">รายละเอียด</th>
-            <th width="10%" class="text-center">Action</th>
-            <th class="text-center">Print</th>
-          </tr>
-        </thead>
-        <tbody>
-          <asp:Literal ID="TableRowData" runat="server"></asp:Literal>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>#</th>
-            <th class="text-center">เลขที่ใบลงทะเบียน</th>
-            <th class="text-center">รหัส</th>
-            <th class="text-center">ชื่อผู้แจ้ง</th>
-            <th class="text-center">แผนก</th>
-            <th class="text-center">เบอร์ติดต่อ</th>
-            <th class="text-center">Email</th>
-            <th class="text-center">สถานะ</th>
-            <th class="text-center">วันที่สอบเทียบ</th>
-            <th class="text-center">สอบเทียบครั้งถัดไป</th>
-            <th class="text-center">วันที่ลงทะเบียน</th>
-            <th class="text-center">รายละเอียด</th>
-            <th width="10%" class="text-center">Action</th>
-            <th class="text-center">Print</th>
-          </tr>
-        </tfoot>
-      </table>
+      <div id="showSpinner">
+        <div class="d-flex justify-content-center align-items-center text-primary" style="height: 50vh;">
+          <div class="spinner-grow" style="width: 8rem; height: 8rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="showeTable" style="display: none;">
+        <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="text-center">เลขที่ใบลงทะเบียน</th>
+              <th class="text-center">รหัส</th>
+              <th class="text-center">ชื่อผู้แจ้ง</th>
+              <th class="text-center">แผนก</th>
+              <th class="text-center">เบอร์ติดต่อ</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">สถานะ</th>
+              <th class="text-center">วันที่ลงทะเบียน</th>
+              <th class="text-center">วันที่สอบเทียบ</th>
+              <th class="text-center">สอบเทียบครั้งถัดไป</th>
+              <th width="10%" class="text-center">Action</th>
+              <th class="text-center">Print</th>
+              <th>รายละเอียด</th>
+              <th>ข้อมูลการแจ้งเตือน</th>
+              <th>ข้อมูลเครื่องมือวัดบกพร่อง</th>
+              <th>ข้อมูลไม่สามารถสอบเทียบได้</th>
+            </tr>
+          </thead>
+          <tbody>
+            <asp:Literal ID="TableRowData" runat="server"></asp:Literal>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>#</th>
+              <th class="text-center">เลขที่ใบลงทะเบียน</th>
+              <th class="text-center">รหัส</th>
+              <th class="text-center">ชื่อผู้แจ้ง</th>
+              <th class="text-center">แผนก</th>
+              <th class="text-center">เบอร์ติดต่อ</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">สถานะ</th>
+              <th class="text-center">วันที่ลงทะเบียน</th>
+              <th class="text-center">วันที่สอบเทียบ</th>
+              <th class="text-center">สอบเทียบครั้งถัดไป</th>
+              <th width="10%" class="text-center">Action</th>
+              <th class="text-center">Print</th>
+              <th>รายละเอียด</th>
+              <th>ข้อมูลการแจ้งเตือน</th>
+              <th>ข้อมูลเครื่องมือวัดบกพร่อง</th>
+              <th>ข้อมูลไม่สามารถสอบเทียบได้</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
     </ContentTemplate>
   </asp:UpdatePanel>

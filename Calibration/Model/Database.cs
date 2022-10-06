@@ -35,6 +35,13 @@ namespace Calibration.Model
       return AllData;
     }
 
+    public static int SqlReturnID(string sql)
+    {
+      DBClass db = Connection();
+      int id = Convert.ToInt32(db.QueryExecuteScalar(sql));
+      return id;
+    }
+
     public static DataTable SelectAll(string tableName)
     {
       DBClass db = Connection();

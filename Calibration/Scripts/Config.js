@@ -1,15 +1,29 @@
 ﻿$(document).ready(function () {
   $('#example').DataTable({
     responsive: true,
+    initComplete: function (settings, json) {
+      $('#showeTable').show();
+      $('#example').DataTable().columns.adjust();
+    },
   });
 
   $('#scrollx').DataTable({
     scrollX: true,
+    initComplete: function (settings, json) {
+      $('#showeTable').show();
+      $('#scrollx').DataTable().columns.adjust();
+    },
   });
 
+  fixHeader();
+});
+
+function fixHeader() {
   $('#fixHeader').DataTable({
     responsive: true,
-    initComplete: function () {
+    deferRender: true,
+    initComplete: function (settings, json) {
+      $('#showeTable').show();   
       this.api()
         .columns()
         .every(function () {
@@ -30,10 +44,10 @@
               select.append('<option value="' + d + '">' + d + '</option>');
             });
         });
+      document.getElementById("showSpinner").hidden = true;
     },
   })
-
-});
+}
 
 function MessageNoti(status, title, message, href) {
   Swal.fire({
@@ -100,7 +114,7 @@ function ConfirmDel(url, id) {
         if (data.d == true) {
           window.location.reload()
         }
-        console.error(data);
+        console.log(data);
       })
       .catch((err) => console.error(err))
   }

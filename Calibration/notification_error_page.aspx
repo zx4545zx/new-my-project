@@ -13,41 +13,55 @@
 
       <hr />
 
-      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th class="text-center">เลขที่ใบแจ้ง</th>
-            <th class="text-center">ส่งถึง</th>
-            <th class="text-center">ผู้อนุมัติ (ฝ่าย)</th>
-            <th class="text-center">ชื่อผู้แจ้ง</th>
-            <th class="text-center">รายละเอียด</th>
-            <th class="text-center">เนื่องจาก</th>
-            <th width="10%" class="text-center">สถานะ</th>
-            <th class="text-center">วันที่แจ้ง</th>
-             <th>Action</th>
-            <th>รายชื่อเครื่องมือ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <asp:Literal ID="TableRowData" runat="server"></asp:Literal>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>#</th>
-            <th class="text-center">เลขที่ใบแจ้ง</th>
-            <th class="text-center">ส่งถึง</th>
-            <th class="text-center">ผู้อนุมัติ (ฝ่าย)</th>
-            <th class="text-center">ชื่อผู้แจ้ง</th>
-            <th class="text-center">รายละเอียด</th>
-            <th class="text-center">เนื่องจาก</th>
-            <th width="10%" class="text-center">สถานะ</th>
-            <th class="text-center">วันที่แจ้ง</th>
-            <th>Action</th>
-            <th>รายชื่อเครื่องมือ</th>
-          </tr>
-        </tfoot>
-      </table>
+      <div id="showSpinner">
+        <div class="d-flex justify-content-center align-items-center text-primary" style="height: 50vh;">
+          <div class="spinner-grow" style="width: 8rem; height: 8rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="showeTable" class="container" style="display:none;">
+        <table id="fixHeader" class="table table-striped table-bordered nowrap" style="width: 100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th width="10%" class="text-center">สถานะ</th>
+              <th class="text-center">เลขที่ใบแจ้ง</th>
+              <th class="text-center">ส่งถึง</th>
+              <th class="text-center">ผู้อนุมัติ (ฝ่าย)</th>
+              <th class="text-center">ชื่อผู้แจ้ง</th>
+              <th class="text-center">รายละเอียด</th>
+              <th class="text-center">เนื่องจาก</th>
+              <th class="text-center">หมายเหตุ</th>
+              <th class="text-center">วันที่แจ้ง</th>
+              <th>Action</th>
+              <th>รายชื่อเครื่องมือ</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <asp:Literal ID="TableRowData" runat="server"></asp:Literal>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>#</th>
+              <th width="10%" class="text-center">สถานะ</th>
+              <th class="text-center">เลขที่ใบแจ้ง</th>
+              <th class="text-center">ส่งถึง</th>
+              <th class="text-center">ผู้อนุมัติ (ฝ่าย)</th>
+              <th class="text-center">ชื่อผู้แจ้ง</th>
+              <th class="text-center">รายละเอียด</th>
+              <th class="text-center">เนื่องจาก</th>
+              <th class="text-center">หมายเหตุ</th>
+              <th class="text-center">วันที่แจ้ง</th>
+              <th>Action</th>
+              <th>รายชื่อเครื่องมือ</th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
     </ContentTemplate>
   </asp:UpdatePanel>

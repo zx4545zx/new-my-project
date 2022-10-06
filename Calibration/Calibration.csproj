@@ -1884,6 +1884,7 @@
     <Content Include="factory_new.aspx" />
     <Content Include="factory_update.aspx" />
     <Content Include="Images\default-placeholder.png" />
+    <Content Include="Images\Double Ring-1s-200px.svg" />
     <Content Include="Images\logo.png" />
     <Content Include="iso.aspx" />
     <Content Include="iso_new.aspx" />

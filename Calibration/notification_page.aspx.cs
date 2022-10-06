@@ -20,18 +20,18 @@ namespace Calibration
         string status;
         string bg;
         if (int.Parse(dt.Rows[i]["status"].ToString()) == 0)
-        { status = "รออนุมัติ"; bg = "bg-warning"; }
-        else { status = "อนุมัติแล้ว"; bg = "bg-success text-light"; }
+        { status = "รอแจ้งรับ"; bg = "bg-warning"; }
+        else { status = "แจ้งรับแล้ว"; bg = "bg-success text-light"; }
 
         TableRowData.Text += $@"
           <tr>
           <td width='1%'></td>
+          <td class='text-center {bg}'>{status}</td>
           <td>{dt.Rows[i]["code"]}</td>
           <td>{dt.Rows[i]["second"]}</td>
           <td>{dt.Rows[i]["master"]}</td>
           <td>{dt.Rows[i]["notifier"]}</td>
           <td>{dt.Rows[i]["detail"]}</td>
-          <td class='text-center {bg}'>{status}</td>
           <td>{dt.Rows[i]["approved_date"].ToString().Split(' ')[0]}</td>
           <td>
             <table class='table table-sm table-striped table-bordered nowrap'>

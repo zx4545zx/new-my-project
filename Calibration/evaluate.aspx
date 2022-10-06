@@ -101,37 +101,39 @@
 
       <div class="card mb-3">
         <div class="card-body">
-          <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap">
-            <thead>
-              <tr>
-                <th scope="col" width="1%">#</th>
-                <th scope="col" class='text-center'>ค่า Error</th>
-                <th scope="col" class='text-center'>สถานะ</th>
-                <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
-                <th scope="col">ผู้ทำการสอบเทียบ</th>
-                <th scope="col" class='text-center'>สถานะข้อมูล</th>
-                <th scope="col">หมายเหตุ</th>
-                <th scope="col" class='text-center'>วันที่บันทึก</th>
-                <th scope="col" class='text-center'>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <asp:Literal ID="RowData" runat="server"></asp:Literal>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col" class='text-center'>ค่า Error</th>
-                <th scope="col" class='text-center'>สถานะ</th>
-                <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
-                <th scope="col">ผู้ทำการสอบเทียบ</th>
-                <th scope="col" class='text-center'>สถานะข้อมูล</th>
-                <th scope="col">หมายเหตุ</th>
-                <th scope="col" class='text-center'>วันที่บันทึก</th>
-                <th scope="col" class='text-center'>Action</th>
-              </tr>
-            </tfoot>
-          </table>
+          <div id="showeTable" class="container" style="display: none;">
+            <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap">
+              <thead>
+                <tr>
+                  <th scope="col" width="1%">#</th>
+                  <th scope="col" class='text-center'>ค่า Error</th>
+                  <th scope="col" class='text-center'>สถานะ</th>
+                  <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
+                  <th scope="col">ผู้ทำการสอบเทียบ</th>
+                  <th scope="col" class='text-center'>สถานะข้อมูล</th>
+                  <th scope="col">หมายเหตุ</th>
+                  <th scope="col" class='text-center'>วันที่บันทึก</th>
+                  <th scope="col" class='text-center'>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <asp:Literal ID="RowData" runat="server"></asp:Literal>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" class='text-center'>ค่า Error</th>
+                  <th scope="col" class='text-center'>สถานะ</th>
+                  <th scope="col" class='text-center'>วันที่ทำการสอบเทียบ</th>
+                  <th scope="col">ผู้ทำการสอบเทียบ</th>
+                  <th scope="col" class='text-center'>สถานะข้อมูล</th>
+                  <th scope="col">หมายเหตุ</th>
+                  <th scope="col" class='text-center'>วันที่บันทึก</th>
+                  <th scope="col" class='text-center'>Action</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </div>
       </div>
 

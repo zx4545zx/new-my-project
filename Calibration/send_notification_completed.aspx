@@ -29,7 +29,8 @@
               <div class="col me-4">
                 <div class="mb-3 row">
                   <label class="form-label px-0">แผนก : </label>
-                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select">
+                  <asp:DropDownList ID="Department" runat="Server" CssClass="form-select" AutoPostBack="true"
+                    OnSelectedIndexChanged="Department_SelectedIndexChanged">
                     <asp:ListItem Text="กรุณาเลือก" Value="0" />
                   </asp:DropDownList>
                   <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Department"
@@ -121,6 +122,7 @@
             <table class="table table-bordered bg-light">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>เลขที่ใบลงทะเบียน</th>
                   <th>รหัสเครื่องมือ</th>
                   <th>ชื่อเครื่องมือ</th>
@@ -153,6 +155,8 @@
               </div>
             </div>
 
+            <asp:HiddenField ID="HiddenField1" runat="server" />
+
             <div class="row">
               <div class="col me-4">
                 <div class="mb-3 row">
@@ -169,11 +173,10 @@
           </div>
           <div class="mx-5 text-end">
             <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary btn-lg"
-              Text="Send Email" />
+              Text="Send Email" OnClick="Button2_Click" />
           </div>
         </div>
       </div>
-
 
       <div class="modal ld ld-slide-ttb-in" id="fullModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">

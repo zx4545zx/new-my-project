@@ -239,7 +239,7 @@ namespace Calibration
           $"{0}"
         );
 
-      bool tool_reg_response = Model.Database.Insert(
+      int id = Model.Database.InsertReturnID(
          "dbo.tool_register",
          "register_code, code, status, location, objective, accept_error, rang_error, img_url, " +
          "produc_company_id, tool_id, certificate_id, registrar_id, calibration_plan_id, iso_id",
@@ -247,8 +247,12 @@ namespace Calibration
          $"'{ImgUrl}',{Company},{tool_id},{certificate_id},{registrar_id},{plan_id},{iso_id}"
        );
 
-      if (tool_reg_response)
+      if (id > 0)
       {
+
+        DataTable dt = Model.Database.SelectInnerJoin(
+          "tr.register_code, tr.code, r.name", "dbo.tool_register tr", "dbo.registrar r", $"tr.registrar_id = r.id WHERE tr.id = {id}");
+
         DataTable Appr = Model.Database.SelectAttributeByID("email,name", "dbo.approver", Approver.SelectedValue);
         string title = "อนุมัติการขึ้นทะเบียนเครื่องมือใหม่";
         string recipients = Appr.Rows[0]["email"].ToString();
@@ -268,7 +272,7 @@ namespace Calibration
           <p>ค่าความผิดพลาดที่รับได้ : {unitError.Value}</p>
           <p>รายละเอียด : {floatingTextarea2.Value}</p>
           <br>
-          <a href='ApprovePage/notification_approve.aspx?dep_id=
+          <a href='{Process.Env.Host}/ApprovePage/notification_approve.aspx?dep_id=
           {Department.SelectedValue}'>อนุมัติขึ้นทะเบียนเครื่องมือใหม่</a>
           <br>
           <h5>จึงเรียนมาเพื่อทราบ</h5>
@@ -277,8 +281,10 @@ namespace Calibration
         bool cb = Shared.SendEmail.Send(title, recipients, body);
         Console.WriteLine(cb);
 
+        string message = $"เลขที่ใบทะเบียน: {dt.Rows[0]["register_code"]}<br>รหัส: {dt.Rows[0]["code"]}<br>ชื่อผู้แจ้ง: {dt.Rows[0]["name"]}";
+
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลการลงทะเบียนเครื่องมือเรียบร้อย', '/Default.aspx');", true);
+          "MyScript", $@"MessageNoti('success', '{message}','', 'Default.aspx');", true);
       }
       else
       {

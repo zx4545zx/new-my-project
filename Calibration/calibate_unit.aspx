@@ -15,6 +15,7 @@
 
       <hr />
 
+      <div id="showeTable" class="container" style="display:none;">
       <table id="scrollx" class="table table-striped table-bordered nowrap" style="width: 100%">
         <thead>
           <tr>
@@ -36,6 +37,7 @@
           </tr>
         </tfoot>
       </table>
+        </div>
     </ContentTemplate>
   </asp:UpdatePanel>
 </asp:Content>

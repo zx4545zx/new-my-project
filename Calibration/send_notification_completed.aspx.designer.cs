@@ -96,13 +96,22 @@ namespace Calibration
     protected global::System.Web.UI.HtmlControls.HtmlTextArea floatingTextarea2;
 
     /// <summary>
-    /// second control.
+    /// RowData control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText second;
+    protected global::System.Web.UI.WebControls.Literal RowData;
+
+    /// <summary>
+    /// Text1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
 
     /// <summary>
     /// email1 control.
@@ -139,5 +148,14 @@ namespace Calibration
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button Button2;
+
+    /// <summary>
+    /// LiteralList control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Literal LiteralList;
   }
 }

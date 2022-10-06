@@ -60,10 +60,12 @@ namespace Calibration
     {
       string[] my = Picker.Value.Split('-');
       string sql = $@"
-      SELECT cr.*
+      SELECT cr.*, ds.title AS ds_name
       FROM dbo.calibration_results cr
       INNER JOIN dbo.tool_register_calibration_results trcr
       ON trcr.calibration_results_id = cr.id
+      INNER JOIN dbo.data_status ds
+      ON ds.id = cr.data_status_id
       WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
       AND MONTH(created_at) = {my[1]}
       AND YEAR(created_at) = {my[0]}
@@ -72,10 +74,12 @@ namespace Calibration
       if (flexCheckDefault.Checked)
       {
         sql = $@"
-        SELECT cr.*
+        SELECT cr.*, ds.title AS ds_name
         FROM dbo.calibration_results cr
         INNER JOIN dbo.tool_register_calibration_results trcr
         ON trcr.calibration_results_id = cr.id
+        INNER JOIN dbo.data_status ds
+        ON ds.id = cr.data_status_id
         WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
         AND YEAR(created_at) = {my[0]}
         ORDER BY cr.created_at ASC;
@@ -87,14 +91,14 @@ namespace Calibration
       {
         RowData.Text += $@"
         <tr>
-        <td width='1%'>#</td>
+        <td width='1%'>{i+1}</td>
         <td class='text-center'>{dt.Rows[i]["error"]}</td>
-        <td class='text-center'>{dt.Rows[i]["status"]}</td>
-        <td class='text-center'>{dt.Rows[i]["created_at"]}</td>
+        <td class='text-center'>{CheckStatus(dt.Rows[i]["status"].ToString())}</td>
+        <td class='text-center'>{dt.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
         <td>{dt.Rows[i]["resultant"]}</td>
-        <td class='text-center'>{dt.Rows[i]["data_status_id"]}</td>
+        <td class='text-center'>{dt.Rows[i]["ds_name"]}</td>
         <td>{dt.Rows[i]["comment"]}</td>
-        <td class='text-center'>{dt.Rows[i]["date_calibrat"]}</td>
+        <td class='text-center'>{dt.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
         </tr>
         ";
       }
@@ -131,6 +135,34 @@ namespace Calibration
         Model.Text = dt.Rows[0]["model"].ToString();
         ToolNo.Text = dt.Rows[0]["tool_no"].ToString();
       }
+    }
+
+    private string CheckStatus(string status)
+    {
+      if (status == "0")
+      {
+        return "ไม่ผ่าน";
+      }
+      else
+      {
+        return "ผ่าน";
+      }
+    }
+
+    protected void export_button_ServerClick(object sender, EventArgs e)
+    {
+      ScriptManager.RegisterStartupScript(this, GetType(),
+          "MyScript", @"
+          function html_table_to_excel(type)
+          {
+            let data = document.getElementById('scrollx');
+            let file = XLSX.utils.table_to_book(data, { sheet: 'sheet1' });
+            XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+            XLSX.writeFile(file, 'file.' + type);
+          }
+          html_table_to_excel('xlsx');
+          DisplayChart();
+          ", true);
     }
   }
 }

@@ -10,6 +10,11 @@ namespace Calibration
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (Session["username"] == null)
+      {
+        Response.Redirect("Default.aspx");
+      }
+
       if (!IsPostBack)
       {
         DataTable Alldep = Model.Database.SqlQuery(@"
@@ -117,6 +122,7 @@ namespace Calibration
       {
         SetDataOnTextBox();
         SetDataOnToolSelect();
+        Text3.Value = Session["username"].ToString();
       }
     }
 
@@ -130,7 +136,7 @@ namespace Calibration
       }
       string title = $"{flexDefault1.Value}";
       string recipients = $"{email.Value},{email1.Value}{otherEmail}";
-      string body = EmailBody(dep_id);
+      string body = EmailBody(dep_id, email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
       if (cb)
@@ -169,13 +175,13 @@ namespace Calibration
       return register_code + " ERROR";
     }
 
-    private string EmailBody(string dep_id)
+    private string EmailBody(string dep_id, string email, string email1, string otheremail)
     {
       string body = $@"
           <p>แจ้งเตือนไม่สามารถสอบเทียบเครื่องมือวัด</p>
           <br>
-          <p>ถึง:</p>
-          <p>สำเนาเรียน:</p>
+          <p>ถึง:{email}</p>
+          <p>สำเนาเรียน:{email1}{otheremail}</p>
           <p>เรื่อง:แจ้งเตือนไม่สามารถสอบเทียบเครื่องมือวัด</p>
           <p>จาก:แผนกสอบเทียบ</p>
           <br>
@@ -202,7 +208,7 @@ namespace Calibration
           </p>
           <br>
           <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
-          <a href='{Process.Env.Host}/notification_error_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
+          <a href='{Process.Env.Host}/ApprovePage/notification_error_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
           <br>
         ";
 

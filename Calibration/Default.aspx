@@ -24,43 +24,61 @@
 
       <hr />
 
-      <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th class="text-nowrap">เลขที่ใบทะเบียน</th>
-            <th class="text-nowrap">รหัส</th>
-            <th class="text-nowrap">วันที่แจ้ง</th>
-            <th class="text-nowrap">ชื่อผู้แจ้ง</th>
-            <th class="text-nowrap">แผนก</th>
-            <th class="text-nowrap">เบอร์ติดต่อ</th>
-            <th class="text-nowrap">อีเมล</th>
-            <th class="text-nowrap">วันที่สอบเทียบ</th>
-            <th class="text-nowrap">สถานะ</th>
-            <th class="text-nowrap">ผู้อนุมัติ</th>
-            <th class="text-nowrap">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <asp:Literal ID="RowData" runat="server"></asp:Literal>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>#</th>
-            <th>เลขที่ใบทะเบียน</th>
-            <th>รหัส</th>
-            <th>วันที่แจ้ง</th>
-            <th>ชื่อผู้แจ้ง</th>
-            <th>แผนก</th>
-            <th>เบอร์ติดต่อ</th>
-            <th>อีเมล</th>
-            <th>วันที่สอบเทียบ</th>
-            <th>สถานะ</th>
-            <th>ผู้อนุมัติ</th>
-            <th>Action</th>
-          </tr>
-        </tfoot>
-      </table>
+      <div id="showSpinner">
+        <div class="d-flex justify-content-center align-items-center text-primary" style="height: 50vh;">
+          <div class="spinner-grow" style="width: 8rem; height: 8rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="showeTable" style="display: none;">
+        <table id="fixHeader" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="text-nowrap text-center">เลขที่ใบทะเบียน</th>
+              <th class="text-nowrap text-center">รหัส</th>
+              <th class="text-nowrap text-center">วันที่แจ้ง</th>
+              <th class="text-nowrap text-center">ชื่อผู้แจ้ง</th>
+              <th class="text-nowrap text-center">แผนก</th>
+              <th class="text-nowrap text-center">เบอร์ติดต่อ</th>
+              <th class="text-nowrap text-center">อีเมล</th>
+              <th class="text-nowrap text-center">วันที่สอบเทียบ</th>
+              <th class="text-nowrap text-center">สถานะ</th>
+              <th class="text-nowrap text-center">ผู้อนุมัติ</th>
+              <th class="text-nowrap text-center">Action</th>
+              <th>รายละเอียด</th>
+              <th>ข้อมูลการแจ้งเตือน</th>
+              <th>ข้อมูลเครื่องมือวัดบกพร่อง</th>
+              <th>ข้อมูลไม่สามารถสอบเทียบได้</th>
+            </tr>
+          </thead>
+          <tbody>
+            <asp:Literal ID="RowData" runat="server"></asp:Literal>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>#</th>
+              <th>เลขที่ใบทะเบียน</th>
+              <th>รหัส</th>
+              <th>วันที่แจ้ง</th>
+              <th>ชื่อผู้แจ้ง</th>
+              <th>แผนก</th>
+              <th>เบอร์ติดต่อ</th>
+              <th>อีเมล</th>
+              <th>วันที่สอบเทียบ</th>
+              <th>สถานะ</th>
+              <th>ผู้อนุมัติ</th>
+              <th>Action</th>
+              <th>รายละเอียด</th>
+              <th>ข้อมูลการแจ้งเตือน</th>
+              <th>ข้อมูลเครื่องมือวัดบกพร่อง</th>
+              <th>ข้อมูลไม่สามารถสอบเทียบได้</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </ContentTemplate>
   </asp:UpdatePanel>
 </asp:Content>

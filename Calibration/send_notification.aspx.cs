@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Page = System.Web.UI.Page;
 
 namespace Calibration
 {
@@ -10,6 +11,11 @@ namespace Calibration
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (Session["username"] == null)
+      {
+        Response.Redirect("Default.aspx");
+      }
+
       if (!IsPostBack)
       {
         DataTable Alldep = Model.Database.SqlQuery(@"
@@ -36,6 +42,7 @@ namespace Calibration
       {
         SetDataOnTextBox();
         SetDataOnToolSelect();
+        Text3.Value = Session["username"].ToString();
       }
     }
 
@@ -130,7 +137,7 @@ namespace Calibration
       }
       string title = $"{flexDefault1.Value}";
       string recipients = $"{email.Value},{email1.Value}{otherEmail}";
-      string body = EmailBody(dep_id);
+      string body = EmailBody(dep_id, email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
       cb = true; //////////////////////////////////////////////////////////////////////////////
@@ -191,13 +198,13 @@ namespace Calibration
       return "";
     }
 
-    private string EmailBody(string dep_id)
+    private string EmailBody(string dep_id, string email, string email1, string otheremail)
     {
       string body = $@"
           <p>แจ้งเตือนการสอบเทียบเครื่องมือวัด</p>
           <br>
-          <p>ถึง:</p>
-          <p>สำเนาเรียน:</p>
+          <p>ถึง:{email}</p>
+          <p>สำเนาเรียน:{email1}{otheremail}</p>
           <p>เรื่อง:แจ้งเตือนการสอบเทียบเครื่องมือวัด</p>
           <p>จาก:แผนกสอบเทียบ</p>
           <br>
@@ -223,10 +230,9 @@ namespace Calibration
           </p>
           <br>
           <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
-          <a href='{Process.Env.Host}/notification_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
+          <a href='{Process.Env.Host}/ApprovePage/notification_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
           <br>
         ";
-
       return body;
     }
   }

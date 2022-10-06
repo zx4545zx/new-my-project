@@ -1,8 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.EMMA;
-using DocumentFormat.OpenXml.ExtendedProperties;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.VariantTypes;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Web.UI;
 

@@ -144,7 +144,15 @@ namespace Calibration
       RenderTable(data, days, month, year);
 
       ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "$('#scrollx').DataTable({scrollX: true});", true);
+          "MyScript", @"
+            $('#scrollx').DataTable({
+              scrollX: true,
+              initComplete: function (settings, json) {
+                $('#showeTable').show();
+                $('#scrollx').DataTable().columns.adjust();
+              },
+            });
+          ", true);
     }
 
     protected void export_button_ServerClick(object sender, EventArgs e)
@@ -159,7 +167,13 @@ namespace Calibration
             XLSX.writeFile(file, 'file.' + type);
           }
           html_table_to_excel('xlsx');
-          $('#scrollx').DataTable({scrollX: true});
+          $('#scrollx').DataTable({
+            scrollX: true,
+            initComplete: function (settings, json) {
+              $('#showeTable').show();
+              $('#scrollx').DataTable().columns.adjust();
+            },
+          });
           ", true);
     }
   }

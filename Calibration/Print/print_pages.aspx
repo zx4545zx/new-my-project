@@ -25,7 +25,7 @@
     }
   </style>
 </head>
-<body>
+<body onload="window.print();">
   <form id="form1" runat="server" class="container p-2">
 
     <%-- Header --%>
@@ -51,21 +51,38 @@
         <div class="col-4 text-center"></div>
       </div>
       <br />
-      <div><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></div>
-      <div><asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></div>
+      <div class="text-end"><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></div>
+      <div class="text-end"><asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>สำหรับผู้ใช้เครื่องมือวัด</b>
       <div><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></div>
-      <div><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></div>
+      <div class="row">
+        <div class="col-4"><asp:Label ID="Label4" runat="server" Text="แผนก : "></asp:Label></div>
+        <div class="col-2"><asp:Label ID="Label12" runat="server" Text="Code : "></asp:Label></div>
+        <div class="col-3"><asp:Label ID="Label13" runat="server" Text="ฝ่าย : "></asp:Label></div>
+        <div class="col-3"><asp:Label ID="Label14" runat="server" Text="หมายเลขโทรศัพท์ : "></asp:Label></div>
+      </div>
       <br />
       <b>ต้องการส่งเครื่องมือวัดมาเพื่อ</b>
       <div><asp:Label ID="Label5" runat="server" Text="Label"></asp:Label></div>
       <br />
       <b>รายการดังต่อไปนี้</b>
-      <div><asp:Label ID="Label6" runat="server" Text="Label"></asp:Label></div>
-      <div><asp:Label ID="Label7" runat="server" Text="Label"></asp:Label></div>
-      <div><asp:Label ID="Label8" runat="server" Text="Label"></asp:Label></div>
-      <div><asp:Label ID="Label9" runat="server" Text="Label"></asp:Label></div>
+      <div class="row">
+        <div class="col-6"><asp:Label ID="Label6" runat="server" Text="Label"></asp:Label></div>
+        <div class="col-6"><asp:Label ID="Label15" runat="server" Text="Label"></asp:Label></div>
+      </div>
+      <div class="row">
+        <div class="col-6"><asp:Label ID="Label7" runat="server" Text="Label"></asp:Label></div>
+        <div class="col-6"><asp:Label ID="Label16" runat="server" Text="Label"></asp:Label></div>
+      </div>
+      <div class="row">
+        <div class="col-6"><asp:Label ID="Label8" runat="server" Text="Label"></asp:Label></div>
+        <div class="col-6"><asp:Label ID="Label17" runat="server" Text="Label"></asp:Label></div>
+      </div>
+      <div class="row">
+        <div class="col-6"><asp:Label ID="Label9" runat="server" Text="Label"></asp:Label></div>
+        <div class="col-6"><asp:Label ID="Label18" runat="server" Text="Label"></asp:Label></div>
+      </div>
       <br />
       <b>รายละเอียด</b>
       <div></div>

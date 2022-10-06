@@ -16,7 +16,8 @@ namespace Calibration
       {
         DataTable dt = Model.Database.SqlQuery(@"
           SELECT en.id, en.code, n.second, n.master, en.notifier, 
-          en.detail, en.detail_other, en.approved_date, en.status
+          en.detail, en.detail_other, en.approved_date, en.status,
+          en.note, en.comment, en.solution, en.updated_at
           FROM dbo.email_notification_error en
           INNER JOIN dbo.notification n ON n.department_id = en.dep_id
           ORDER BY id DESC;
@@ -33,24 +34,26 @@ namespace Calibration
           string status;
           string bg;
           if (int.Parse(dt.Rows[i]["status"].ToString()) == 0)
-          { status = "รออนุมัติ"; bg = "bg-warning"; }
-          else { status = "อนุมัติแล้ว"; bg = "bg-success text-light"; }
+          { status = "รอแจ้งรับ"; bg = "bg-warning"; }
+          else { status = "แจ้งรับแล้ว"; bg = "bg-success text-light"; }
 
           TableRowData.Text += $@"
           <tr>
           <td width='1%'></td>
+          <td class='text-center {bg}'>{status}</td>
           <td>{dt.Rows[i]["code"]}</td>
           <td>{dt.Rows[i]["second"]}</td>
           <td>{dt.Rows[i]["master"]}</td>
           <td>{dt.Rows[i]["notifier"]}</td>
           <td>{dt.Rows[i]["detail"]}</td>
           <td>{dt.Rows[i]["detail_other"]}</td>
-          <td class='text-center {bg}'>{status}</td>
+          <td>{dt.Rows[i]["note"]}</td>
           <td>{dt.Rows[i]["approved_date"].ToString().Split(' ')[0]}</td>
           <td>
           <div class=""btn-group"" role=""group"" aria-label=""Basic mixed styles example"">
             {EditBtn}
-            <a href='#' target=""_blank"" class=""btn btn-sm btn-secondary"">
+            <a href='Print/prin_notification_page.aspx?id={dt.Rows[i]["id"]}&type=e' 
+            target=""_blank"" class=""btn btn-sm btn-secondary"">
             <i class=""bi bi-printer-fill""></i>
             Print</a>
           </div>
@@ -69,6 +72,24 @@ namespace Calibration
               </thead>
               <tbody>
                 {RenderTools(dt.Rows[i]["id"].ToString())}
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class='table table-sm table-striped table-bordered nowrap'>
+              <thead>
+                <tr>
+                  <th scope=""col"">รายละเอียด</th>
+                  <th scope=""col"">วิธีแก้ไข</th>
+                  <th scope=""col"">อัพเดท</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{dt.Rows[i]["comment"]}</td>
+                  <td>{dt.Rows[i]["solution"]}</td>
+                  <td>{dt.Rows[i]["updated_at"].ToString().Split(' ')[0]}</td>
+                </tr>
               </tbody>
             </table>
           </td>
