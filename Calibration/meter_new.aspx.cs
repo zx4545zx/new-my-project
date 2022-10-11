@@ -21,7 +21,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.meter", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/meter.aspx");
+        Response.Redirect("meter.aspx");
       }
       else
       {

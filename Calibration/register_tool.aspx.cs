@@ -289,7 +289,7 @@ namespace Calibration
       else
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้', '/Default.aspx');", true);
+          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้', 'Default.aspx');", true);
       }
     }
   }

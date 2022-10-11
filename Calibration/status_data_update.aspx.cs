@@ -24,7 +24,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.data_status", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/status_data.aspx");
+        Response.Redirect("status_data.aspx");
       }
       else
       {

@@ -8,8 +8,8 @@
       <div class="d-flex justify-content-between align-items-end w-100 mb-3">
         <h4 class="m-0 text-lg">
           <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;ทะเบียนเครื่องมือ</h4>
-        <a href="administrator.aspx" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a>
         <div>
+          <a href="administrator.aspx" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a>
         </div>
       </div>
 

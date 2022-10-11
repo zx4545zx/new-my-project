@@ -159,12 +159,14 @@ namespace Calibration
         "code,detail,notifier,dep_id",
         $"'{RegCode()}','{CheckBoxValue()}','{Text3.Value}',{Department.SelectedValue}");
 
-      string[] arrData = Session["tool_id"].ToString().Split(' ');
-      for (int i = 0; i < arrData.Length; i++)
-      {
-        Model.Database.Insert("email_noti_tool", "tool_id,email_noti_id", $"{arrData[i]},{id}");
+      if (Session["tool_id"] != null) {
+        string[] arrData = Session["tool_id"].ToString().Split(' ');
+        for (int i = 0; i < arrData.Length; i++)
+        {
+          Model.Database.Insert("email_noti_tool", "tool_id,email_noti_id", $"{arrData[i]},{id}");
+        }
+        Session.Remove("tool_id");
       }
-      Session.Remove("tool_id");
       SendEmail();
     }
 

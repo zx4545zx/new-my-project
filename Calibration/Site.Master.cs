@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 using System;
+using System.Data;
 using System.Web.UI;
 
 namespace Calibration
@@ -13,9 +14,19 @@ namespace Calibration
         PanelLogIn.Visible = true;
         PanelLogOut.Visible = false;
         SideBar.Visible = false;
+        Panel1.Visible = false;
       }
       else
       {
+        if (Session["username"].ToString() == "admin")
+        {
+          Panel1.Visible = true;
+        }
+        else
+        {
+          Panel1.Visible = false;
+        }
+
         PanelLogIn.Visible = false;
         PanelLogOut.Visible = true;
         SideBar.Visible = true;
@@ -25,11 +36,22 @@ namespace Calibration
 
     protected void LogInBtn_Click(object sender, EventArgs e)
     {
-      // call user on database for check username and password.
-      // use else if foe check.
+      string sql = $@"
+        SELECT *
+        FROM dbo.user_calibate
+        WHERE username = '{Username.Value}'
+        AND password = '{Password.Value}';
+      ";
+      DataTable dt = Model.Database.SqlQuery(sql);
+
       if (Username.Value == "admin" && Password.Value == "1234")
       {
         Session["username"] = Username.Value;
+        Response.Redirect("administrator.aspx");
+      }
+      else if (dt.Rows.Count > 0)
+      {
+        Session["username"] = dt.Rows[0]["name"];
         Response.Redirect("administrator.aspx");
       }
       else

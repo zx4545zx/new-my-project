@@ -1920,9 +1920,12 @@
     <Content Include="status_data_new.aspx" />
     <Content Include="status_data_update.aspx" />
     <Content Include="tool_cancel.aspx" />
-    <Content Include="tool_details.aspx" />
     <Content Include="tool_history.aspx" />
     <Content Include="tool_plan_update.aspx" />
+    <Content Include="user.aspx" />
+    <Content Include="user_new.aspx" />
+    <Content Include="user_update.aspx" />
+    <Content Include="user_update_password.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2348,13 +2351,6 @@
     <Compile Include="tool_cancel.aspx.designer.cs">
       <DependentUpon>tool_cancel.aspx</DependentUpon>
     </Compile>
-    <Compile Include="tool_details.aspx.cs">
-      <DependentUpon>tool_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tool_details.aspx.designer.cs">
-      <DependentUpon>tool_details.aspx</DependentUpon>
-    </Compile>
     <Compile Include="tool_history.aspx.cs">
       <DependentUpon>tool_history.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2368,6 +2364,34 @@
     </Compile>
     <Compile Include="tool_plan_update.aspx.designer.cs">
       <DependentUpon>tool_plan_update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user.aspx.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user.aspx.designer.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_new.aspx.cs">
+      <DependentUpon>user_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_new.aspx.designer.cs">
+      <DependentUpon>user_new.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_update.aspx.cs">
+      <DependentUpon>user_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_update.aspx.designer.cs">
+      <DependentUpon>user_update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_update_password.aspx.cs">
+      <DependentUpon>user_update_password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_update_password.aspx.designer.cs">
+      <DependentUpon>user_update_password.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

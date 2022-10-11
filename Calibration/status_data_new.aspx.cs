@@ -21,7 +21,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.data_status", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/status_data.aspx");
+        Response.Redirect("status_data.aspx");
       }
       else
       {

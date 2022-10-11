@@ -21,7 +21,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.exam_location", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/location.aspx");
+        Response.Redirect("location.aspx");
       }
       else
       {

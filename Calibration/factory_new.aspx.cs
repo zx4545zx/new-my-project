@@ -21,7 +21,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.factory", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/factory.aspx");
+        Response.Redirect("factory.aspx");
       }
       else
       {

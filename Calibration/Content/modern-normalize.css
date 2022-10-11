@@ -172,8 +172,7 @@ summary {
 
 .cm-sidebar {
   max-height: 100%;
-  max-width: 220px;
-  min-width: 180px;
+  min-width: 240px;
   background-color: #e3f2fd;
 }
 

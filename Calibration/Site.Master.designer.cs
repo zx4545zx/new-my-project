@@ -51,6 +51,15 @@ namespace Calibration
     protected global::System.Web.UI.WebControls.Panel PanelLogOut;
 
     /// <summary>
+    /// Button1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Button1;
+
+    /// <summary>
     /// Username control.
     /// </summary>
     /// <remarks>
@@ -69,6 +78,15 @@ namespace Calibration
     protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password;
 
     /// <summary>
+    /// Button2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Button2;
+
+    /// <summary>
     /// SideBar control.
     /// </summary>
     /// <remarks>
@@ -76,6 +94,15 @@ namespace Calibration
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Panel SideBar;
+
+    /// <summary>
+    /// Panel1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Panel1;
 
     /// <summary>
     /// MainContent control.

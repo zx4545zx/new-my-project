@@ -65,17 +65,23 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto my-2 my-lg-0">
+              <ul class="navbar-nav me-auto my-2 my-lg-0 gap-2">
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary" aria-current="page" href="register_tool.aspx">
+                    <i class="bi bi-check2-circle"></i>&nbsp;ขึ้นทะเบียนเครื่องมือ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary" aria-current="page" href="plan.aspx">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;แผนการสอบเทียบเครื่องมือ</a>
+                </li>
                 <li class="nav-item dropdown">
-                  <a class="dropdown-toggle btn btn-outline-primary" href="#" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">ทะเบียนเครื่องมือ</a>
+                  <a class="dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">เพิ่มเติม</a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="register_tool.aspx">ขึ้นทะเบียนเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="Default.aspx">ตรวจสอบทะเบียนเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="plan.aspx">แผนการสอบเทียบเครื่องมือ</a></li>
                     <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
                     <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
                     <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="tool_history.aspx">ประวัติเครื่องมือ</a></li>
                   </ul>
                 </li>
@@ -90,7 +96,7 @@
                   </button>
                 </asp:Panel>
                 <asp:Panel ID="PanelLogOut" runat="server">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onserverclick="LogOutBtn_Click" runat="server">ออกจากระบบ</button>
+                  <asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" CausesValidation="false" Text="ออกจากระบบ" OnClick="LogOutBtn_Click" />
                 </asp:Panel>
               </div>
             </div>
@@ -119,9 +125,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
-                onserverclick="LogInBtn_Click" runat="server">
-                Log in</button>
+              <asp:Button ID="Button2" CssClass="btn btn-primary" runat="server" Text="Log in" CausesValidation="false" OnClick="LogInBtn_Click" />
             </div>
           </div>
         </div>
@@ -212,12 +216,14 @@
                   <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
                 </ul>
               </li>
-              <%--<li class="nav-item">
-                <a class="nav-link" href="#">
+              <asp:Panel ID="Panel1" runat="server">
+              <li class="nav-item">
+                <a class="nav-link" href="user.aspx">
                   <i class="bi bi-key-fill"></i>
                   &nbsp; ผู้มีสิทธิ์เข้าใช้งาน
                 </a>
-              </li>--%>
+              </li>
+              </asp:Panel>
             </ul>
           </div>
         </asp:Panel>

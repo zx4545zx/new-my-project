@@ -34,7 +34,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.notification", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/notification_setting.aspx");
+        Response.Redirect("notification_setting.aspx");
       }
       else
       {

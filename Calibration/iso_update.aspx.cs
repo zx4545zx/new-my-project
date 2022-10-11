@@ -19,7 +19,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.iso", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/iso.aspx");
+        Response.Redirect("iso.aspx");
       }
       else
       {

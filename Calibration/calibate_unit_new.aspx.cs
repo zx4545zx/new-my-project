@@ -16,7 +16,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.calibration_unit", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/calibate_unit.aspx");
+        Response.Redirect("calibate_unit.aspx");
       }
       else
       {

@@ -25,7 +25,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.department", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/department.aspx");
+        Response.Redirect("department.aspx");
       }
       else
       {

@@ -184,12 +184,12 @@ namespace Calibration
       if (r && c && t && p && tr)
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลเรียบร้อย', '/administrator.aspx');", true);
+          "MyScript", "MessageNoti('success', 'บันทึกข้อมูลสำเร็จ', 'บันทึกข้อมูลเรียบร้อย', 'administrator.aspx');", true);
       }
       else
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลได้', '/administrator.aspx');", true);
+          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลได้', 'administrator.aspx');", true);
       }
     }
 

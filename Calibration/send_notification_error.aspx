@@ -45,14 +45,14 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">เรียน : </label>
                   <input type="text" class="form-control" id="master"
-                    placeholder="เรียน..." runat="server" required disabled>
+                    placeholder="เรียน..." runat="server" disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="email" class="form-label px-0">Email : </label>
                   <input type="email" class="form-control" id="email"
-                    placeholder="example@cpram.co.th" runat="server" required disabled>
+                    placeholder="example@cpram.co.th" runat="server" disabled>
                 </div>
               </div>
             </div>
@@ -62,14 +62,14 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">เรื่อง : </label>
                   <input type="text" class="form-control" id="Text2"
-                    value="แจ้งไม่สามารถสอบเทียบได้" runat="server" required>
+                    value="แจ้งไม่สามารถสอบเทียบได้" runat="server">
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">จาก : </label>
                   <input type="text" class="form-control" id="Text4"
-                    value="แผนกสอบเทียบ" runat="server" required>
+                    value="แผนกสอบเทียบ" runat="server">
                 </div>
               </div>
             </div>
@@ -139,14 +139,14 @@
                 <div class="mb-3 row">
                   <label for="second" class="form-label px-0">ผู้รับทราบ : </label>
                   <input type="text" class="form-control" id="second"
-                    placeholder="เรียน..." runat="server" required disabled>
+                    placeholder="เรียน..." runat="server" disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="email" class="form-label px-0">Email : </label>
                   <input type="email" class="form-control" id="email1"
-                    placeholder="example@cpram.co.th" runat="server" required disabled>
+                    placeholder="example@cpram.co.th" runat="server" disabled>
                 </div>
               </div>
             </div>
@@ -158,7 +158,7 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">ผู้แจ้ง : </label>
                   <input type="text" class="form-control" id="Text3"
-                    value="" runat="server" required>
+                    value="" runat="server">
                 </div>
               </div>
               <div class="col"></div>

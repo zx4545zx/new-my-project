@@ -22,7 +22,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.cotton", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/cotton.aspx");
+        Response.Redirect("cotton.aspx");
       }
       else
       {

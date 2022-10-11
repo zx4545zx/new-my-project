@@ -20,7 +20,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.iso", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/iso.aspx");
+        Response.Redirect("iso.aspx");
       }
       else
       {

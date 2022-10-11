@@ -21,7 +21,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.cotton", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/cotton.aspx");
+        Response.Redirect("cotton.aspx");
       }
       else
       {

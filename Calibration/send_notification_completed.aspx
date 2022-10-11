@@ -45,14 +45,14 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">เรียน : </label>
                   <input type="text" class="form-control" id="master"
-                    placeholder="เรียน..." runat="server" required disabled>
+                    placeholder="เรียน..." runat="server" disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="email" class="form-label px-0">Email : </label>
                   <input type="email" class="form-control" id="email"
-                    placeholder="example@cpram.co.th" runat="server" required disabled>
+                    placeholder="example@cpram.co.th" runat="server" disabled>
                 </div>
               </div>
             </div>
@@ -62,14 +62,14 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">เรื่อง : </label>
                   <input type="text" class="form-control" id="Text2"
-                    value="แจ้งเตือนเครื่องมือสอบเทียบเสร็จ" runat="server" required>
+                    value="แจ้งเตือนเครื่องมือสอบเทียบเสร็จ" runat="server">
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">จาก : </label>
                   <input type="text" class="form-control" id="Text4"
-                    value="แผนกสอบเทียบ" runat="server" required>
+                    value="แผนกสอบเทียบ" runat="server">
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@
               <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="flexDefault"
-                    id="flexDefault1" value="แจ้งเตือนการสอบเทียบประจำเดือน" runat="server" checked required>
+                    id="flexDefault1" value="แจ้งเตือนการสอบเทียบประจำเดือน" runat="server" checked>
                   <label class="form-check-label" for="flexRadioDefault1">
                     แจ้งเตือนเครื่องมือสอบเทียบเสร็จ
                   </label>
@@ -143,14 +143,14 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">ผู้รับทราบ : </label>
                   <input type="text" class="form-control" id="Text1"
-                    placeholder="เรียน..." runat="server" required disabled>
+                    placeholder="เรียน..." runat="server" disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
                   <label for="email" class="form-label px-0">Email : </label>
                   <input type="email" class="form-control" id="email1"
-                    placeholder="example@cpram.co.th" runat="server" required disabled>
+                    placeholder="example@cpram.co.th" runat="server" disabled>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@
                 <div class="mb-3 row">
                   <label for="master" class="form-label px-0">ผู้แจ้ง : </label>
                   <input type="text" class="form-control" id="Text3"
-                    value="" runat="server" required>
+                    value="" runat="server">
                 </div>
               </div>
               <div class="col"></div>

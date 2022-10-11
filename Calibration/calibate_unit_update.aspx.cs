@@ -20,7 +20,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.calibration_unit", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/calibate_unit.aspx");
+        Response.Redirect("calibate_unit.aspx");
       }
       else
       {

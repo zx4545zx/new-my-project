@@ -10,6 +10,11 @@
   <asp:UpdatePanel ID="updatepnl" runat="server">
     <ContentTemplate>
 
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i>&nbsp; เว็บไซต์นี้ไม่รองรับการทำงานบน &nbsp;<strong><u>Internet Explorer</u></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
       <div class="d-flex justify-content-between align-items-end w-100">
         <h4 class="m-0 text-lg">
           <i class="bi bi-file-earmark-spreadsheet-fill"></i>

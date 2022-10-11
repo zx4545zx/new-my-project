@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Calibration
 {
@@ -21,7 +16,7 @@ namespace Calibration
       bool cb = Model.Database.Insert("dbo.approver", columName, value);
       if (cb == true)
       {
-        Response.Redirect("/approver.aspx");
+        Response.Redirect("approver.aspx");
       }
       else
       {

@@ -153,7 +153,10 @@ namespace Calibration
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-      Session.Remove("tool_id");
+      if (Session["tool_id"] != null)
+      {
+        Session.Remove("tool_id");
+      }
       SendEmail();
     }
 

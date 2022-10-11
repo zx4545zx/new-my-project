@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Calibration
 {
@@ -25,7 +20,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.production_company", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/production_company.aspx");
+        Response.Redirect("production_company.aspx");
       }
       else
       {

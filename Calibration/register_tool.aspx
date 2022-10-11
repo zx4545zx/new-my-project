@@ -18,7 +18,7 @@
                   <div class="mb-3 row">
                     <label for="name" class="form-label px-0">ชื่อผู้ขอ : </label>
                     <input type="text" class="form-control" id="name"
-                      placeholder="กรุณากรอกชื่อ และนามสกุล..." runat="server" required>
+                      placeholder="กรุณากรอกชื่อ และนามสกุล..." runat="server">
                   </div>
                 </div>
                 <div class="col"></div>
@@ -29,14 +29,14 @@
                   <div class="mb-3 row">
                     <label for="email" class="form-label px-0">Email : </label>
                     <input type="email" class="form-control" id="email"
-                      placeholder="ex : example@cpram.co.th" runat="server" required>
+                      placeholder="ex : example@cpram.co.th" runat="server">
                   </div>
                 </div>
                 <div class="col">
                   <div class="mb-3 row">
                     <label for="tel" class="form-label px-0">เบอร์ติดต่อ : </label>
                     <input type="tel" class="form-control" id="tel"
-                      placeholder="ex : xxx, xxx" runat="server" required>
+                      placeholder="ex : xxx, xxx" runat="server">
                   </div>
                 </div>
               </div>
@@ -127,14 +127,14 @@
                   <h6>มีใบ Certificate หรือไม่?</h6>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" runat="server"
-                      required>
+                     >
                     <label class="form-check-label" for="flexRadioDefault1">
                       มี
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="0" runat="server"
-                      required>
+                     >
                     <label class="form-check-label" for="flexRadioDefault2">
                       ไม่มี
                     </label>
@@ -159,7 +159,7 @@
               <div class="row mb-3">
                 <div class="col">
                   <label for="ntool" class="form-label px-0">ชื่อเครื่องมือวัด : </label>
-                  <input type="text" class="form-control" id="ntool" placeholder="กรุณากรอกชื่อเครื่องมือ..." runat="server" required>
+                  <input type="text" class="form-control" id="ntool" placeholder="กรุณากรอกชื่อเครื่องมือ..." runat="server">
                 </div>
               </div>
 
@@ -174,26 +174,26 @@
                 <div class="col me-4">
                   <div class="mb-3 row">
                     <label for="type" class="form-label px-0">รุ่น : </label>
-                    <input type="text" class="form-control" id="model" placeholder="ex : model" runat="server" required>
+                    <input type="text" class="form-control" id="model" placeholder="ex : model" runat="server">
                   </div>
                 </div>
 
                 <div class="col">
                   <label for="notool" class="form-label px-0">หมายเลขเครื่อง : </label>
-                  <input type="text" class="form-control" id="notool" placeholder="ex : no." runat="server" required>
+                  <input type="text" class="form-control" id="notool" placeholder="ex : no." runat="server">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <div class="col me-4">
                   <label for="location" class="form-label px-0">สถานที่ใช้งาน : </label>
-                  <input type="text" class="form-control" id="location" placeholder="กรุณากรอกชื่อสถานที่ใช้งาน..." runat="server" required>
+                  <input type="text" class="form-control" id="location" placeholder="กรุณากรอกชื่อสถานที่ใช้งาน..." runat="server">
                 </div>
 
                 <div class="col me-4">
                   <label class="form-label px-0">ช่วงใช้งาน : </label>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ex: 0-100" id="unitRang" runat="server" required>
+                    <input type="text" class="form-control" placeholder="ex: 0-100" id="unitRang" runat="server">
                     <asp:DropDownList ID="Unit1" runat="Server" CssClass="form-select">
                       <asp:ListItem Text="กรุณาเลือก" Value="0" />
                     </asp:DropDownList>
@@ -203,7 +203,7 @@
                 <div class="col me-4">
                   <label class="form-label px-0">ค่าผิดพลาดที่ยอมรับได้ : </label>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ex: +-1" id="unitError" runat="server" required>
+                    <input type="text" class="form-control" placeholder="ex: +-1" id="unitError" runat="server">
                     <asp:DropDownList ID="Unit2" runat="Server" CssClass="form-select">
                       <asp:ListItem Text="กรุณาเลือก" Value="0" />
                     </asp:DropDownList>

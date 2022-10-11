@@ -39,7 +39,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.notification", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/notification_setting.aspx");
+        Response.Redirect("notification_setting.aspx");
       }
       else
       {

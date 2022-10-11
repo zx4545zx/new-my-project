@@ -25,7 +25,7 @@ namespace Calibration
       bool cb = Model.Database.UpdateByID("dbo.factory", statement, id);
       if (cb == true)
       {
-        Response.Redirect("/factory.aspx");
+        Response.Redirect("factory.aspx");
       }
       else
       {
