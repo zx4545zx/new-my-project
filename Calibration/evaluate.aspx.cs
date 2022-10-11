@@ -12,11 +12,15 @@ namespace Calibration
     {
       if (string.IsNullOrEmpty(Request.QueryString["id"]))
       {
-        Response.Redirect("/administrator.aspx");
+        Response.Redirect("administrator.aspx");
       }
 
       if (!IsPostBack)
       {
+        if (Session["username"] != null)
+        {
+          TextBox2.Text = Session["username"].ToString();
+        }
         DataTable AllData = Model.Database.SqlQuery(
           $@"
             SELECT r.register_code, r.code, FORMAT(CAST(p.date_plan AS DATE),'dd-MM-yyyy') AS date_plan, p.rang, p.rang_unit

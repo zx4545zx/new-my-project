@@ -142,12 +142,6 @@
                   &nbsp; ทะเบียนเครื่องมือ
                 </a>
               </li>
-              <%--<li class="nav-item">
-                <a class="nav-link" href="tool_cancel.aspx">
-                  <i class="bi bi-clipboard-x-fill"></i>
-                  &nbsp; ยกเลิกเครื่องมือ
-                </a>
-              </li>--%>
               <li class="nav-item">
                 <a class="nav-link" href="plan.aspx">
                   <i class="bi bi-table"></i>
@@ -160,16 +154,10 @@
                   &nbsp; ประวัติเครื่องมือ
                 </a>
               </li>
-              <%--<li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="bi bi-file-earmark-bar-graph-fill"></i>
-                  &nbsp; รายงาน
-                </a>
-              </li>--%>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                   <i class="bi bi-envelope-paper-fill"></i>
-                  &nbsp; สรุปผลแจ้งเตือน
+                  &nbsp; ข้อมูลการแจ้งเตือน
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
@@ -215,6 +203,12 @@
                   </li>
                   <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="report.aspx">
+                  <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                  &nbsp; สรุปรายงาน
+                </a>
               </li>
               <asp:Panel ID="Panel1" runat="server">
               <li class="nav-item">

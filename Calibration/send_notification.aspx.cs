@@ -140,7 +140,6 @@ namespace Calibration
       string body = EmailBody(dep_id, email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
-      cb = true; //////////////////////////////////////////////////////////////////////////////
       if (cb)
       {
         ScriptManager.RegisterStartupScript(this, GetType(),

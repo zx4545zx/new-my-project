@@ -1910,6 +1910,7 @@
     <Content Include="production_company_new.aspx" />
     <Content Include="production_company_update.aspx" />
     <Content Include="register_tool.aspx" />
+    <Content Include="report.aspx" />
     <Content Include="Scripts\Config.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
     <Content Include="send_notification.aspx" />
@@ -1919,7 +1920,6 @@
     <Content Include="status_data.aspx" />
     <Content Include="status_data_new.aspx" />
     <Content Include="status_data_update.aspx" />
-    <Content Include="tool_cancel.aspx" />
     <Content Include="tool_history.aspx" />
     <Content Include="tool_plan_update.aspx" />
     <Content Include="user.aspx" />
@@ -2283,6 +2283,13 @@
     <Compile Include="register_tool.aspx.designer.cs">
       <DependentUpon>register_tool.aspx</DependentUpon>
     </Compile>
+    <Compile Include="report.aspx.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report.aspx.designer.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="send_notification.aspx.cs">
       <DependentUpon>send_notification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2343,13 +2350,6 @@
     </Compile>
     <Compile Include="status_data_update.aspx.designer.cs">
       <DependentUpon>status_data_update.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="tool_cancel.aspx.cs">
-      <DependentUpon>tool_cancel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tool_cancel.aspx.designer.cs">
-      <DependentUpon>tool_cancel.aspx</DependentUpon>
     </Compile>
     <Compile Include="tool_history.aspx.cs">
       <DependentUpon>tool_history.aspx</DependentUpon>
