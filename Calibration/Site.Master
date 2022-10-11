@@ -179,12 +179,12 @@
                   &nbsp; ข้อมูลพื้นฐาน
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/cotton.aspx">ฝ่ายต้นสังกัด</a></li>
-                  <li><a class="dropdown-item" href="/department.aspx">แผนก</a></li>
-                  <li><a class="dropdown-item" href="/factory.aspx">โรงงาน</a></li>
-                  <li><a class="dropdown-item" href="/meter.aspx">เครื่องมือวัด</a></li>
-                  <li><a class="dropdown-item" href="/production_company.aspx">บริษัทผู้ผลิต</a></li>
-                  <li><a class="dropdown-item" href="/calibate_unit.aspx">หน่วยสอบเทียบ</a></li>
+                  <li><a class="dropdown-item" href="cotton.aspx">ฝ่ายต้นสังกัด</a></li>
+                  <li><a class="dropdown-item" href="department.aspx">แผนก</a></li>
+                  <li><a class="dropdown-item" href="factory.aspx">โรงงาน</a></li>
+                  <li><a class="dropdown-item" href="meter.aspx">เครื่องมือวัด</a></li>
+                  <li><a class="dropdown-item" href="production_company.aspx">บริษัทผู้ผลิต</a></li>
+                  <li><a class="dropdown-item" href="calibate_unit.aspx">หน่วยสอบเทียบ</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -193,9 +193,9 @@
                   &nbsp; ข้อมูลทะเบียน
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/iso.aspx">ISO</a></li>
-                  <li><a class="dropdown-item" href="/location.aspx">สถานที่สอบเทียบ</a></li>
-                  <li><a class="dropdown-item" href="/status_data.aspx">สถานะข้อมูล</a></li>
+                  <li><a class="dropdown-item" href="iso.aspx">ISO</a></li>
+                  <li><a class="dropdown-item" href="location.aspx">สถานที่สอบเทียบ</a></li>
+                  <li><a class="dropdown-item" href="status_data.aspx">สถานะข้อมูล</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
