@@ -23,7 +23,7 @@ namespace Calibration
         }
         DataTable AllData = Model.Database.SqlQuery(
           $@"
-            SELECT r.register_code, r.code, FORMAT(CAST(p.date_plan AS DATE),'dd-MM-yyyy') AS date_plan, p.rang, p.rang_unit
+            SELECT r.register_code, r.code, FORMAT(p.date_plan, 'dd/MM/yyyy', 'en-us') AS date_plan, p.rang, p.rang_unit
             FROM dbo.tool_register r
             INNER JOIN dbo.calibration_plan p
             ON r.calibration_plan_id = p.id
@@ -54,10 +54,13 @@ namespace Calibration
         }
 
         DataTable AllResult = Model.Database.SqlQuery($@"
-          SELECT tc.*, cr.*, ds.title
+          SELECT tc.*, cr.*, FORMAT(cr.date_calibrat, 'dd/MM/yyyy', 'en-us') AS date_cal,
+          FORMAT(cr.created_at, 'dd/MM/yyyy', 'en-us') AS created, ds.title
           FROM dbo.tool_register_calibration_results tc
-          INNER JOIN dbo.calibration_results cr ON tc.calibration_results_id = cr.id
-          INNER JOIN dbo.data_status ds ON cr.data_status_id = ds.id
+          INNER JOIN dbo.calibration_results cr 
+          ON tc.calibration_results_id = cr.id
+          INNER JOIN dbo.data_status ds 
+          ON cr.data_status_id = ds.id
           WHERE tc.tool_register_id = {Request.QueryString["id"]}
           ORDER BY cr.id DESC;
         ");
@@ -79,16 +82,14 @@ namespace Calibration
 
           RowData.Text += $@"
             <tr>
-              <td scope='row'></td>
+              <td scope='row'>{i+1}</td>
               <td scope='row' class='text-center'>{AllResult.Rows[i]["error"]}</td>
               <td scope='row' class='text-center'>{status}</td>
-              <td scope='row' class='text-center'>
-              {AllResult.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
+              <td scope='row' class='text-center'>{AllResult.Rows[i]["created"]}</td>
               <td scope='row'>{AllResult.Rows[i]["resultant"]}</td>
               <td scope='row' class='text-center'>{AllResult.Rows[i]["title"]}</td>
               <td scope='row'>{AllResult.Rows[i]["comment"]}</td>
-              <td scope='row' class='text-center'>
-              {AllResult.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
+              <td scope='row' class='text-center'>{AllResult.Rows[i]["date_cal"]}</td>
               <td scope='row' class='text-center'>
               <a href='evaluate_update.aspx?id={AllResult.Rows[i]["id"]}&tool_id={Request.QueryString["id"]}'
               class='btn btn-sm btn-warning'>

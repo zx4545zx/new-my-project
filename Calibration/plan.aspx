@@ -30,7 +30,7 @@
 
             <div class="mb-3">
               <label for="picker" class="form-label">เดือน/ปี : </label>
-              <input type="month" class="form-control" name="picker" id="Picker" runat="server" required />
+              <input type="month" class="form-control" name="picker" id="Picker" runat="server" />
             </div>
 
             <div class="mb-3">

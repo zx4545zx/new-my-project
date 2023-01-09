@@ -96,8 +96,9 @@ table.dataTable > tbody > tr.child {
   table.dataTable > tbody > tr.child ul.dtr-details {
     display: inline-block;
     list-style-type: none;
+    width: 100%;
     margin: 0;
-    padding: 0
+    padding: 20px
   }
 
     table.dataTable > tbody > tr.child ul.dtr-details > li {

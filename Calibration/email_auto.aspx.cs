@@ -10,7 +10,7 @@ namespace Calibration
     protected void Page_Load(object sender, EventArgs e)
     {
       string sql = @"
-      SELECT d.code, d.name AS d_name, ea.id AS ea_id, ea.*, n.*
+      SELECT d.code, d.name AS d_name, ea.id AS ea_id, FORMAT(ea.start_date, 'dd/MM/yyyy', 'en-us') AS startDate, ea.*, n.*
       FROM dbo.email_auto ea
       INNER JOIN dbo.department d
       ON ea.dep_id = d.id
@@ -30,7 +30,7 @@ namespace Calibration
         <tr>
           <td width=""1%""></td>
           <td>{dt.Rows[i]["code"]} | {dt.Rows[i]["d_name"]}</td>
-          <td class='text-center'>{dt.Rows[i]["start_date"].ToString().Split(' ')[0]}</td>
+          <td class='text-center'>{dt.Rows[i]["startDate"]}</td>
           <td class='text-center'>ทุก {dt.Rows[i]["rang_month"]} เดือน</td>
           <td>{dt.Rows[i]["master_email"]},{dt.Rows[i]["second_email"]}</td>
           <td class='text-center {StatusColor(dt.Rows[i]["status"].ToString())}'>

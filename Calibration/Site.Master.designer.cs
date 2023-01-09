@@ -24,6 +24,15 @@ namespace Calibration
     protected global::System.Web.UI.ScriptManager scriptmanager1;
 
     /// <summary>
+    /// Image1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Image Image1;
+
+    /// <summary>
     /// Label1 control.
     /// </summary>
     /// <remarks>
@@ -96,6 +105,15 @@ namespace Calibration
     protected global::System.Web.UI.WebControls.Panel SideBar;
 
     /// <summary>
+    /// Panel3 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Panel3;
+
+    /// <summary>
     /// Panel1 control.
     /// </summary>
     /// <remarks>
@@ -103,6 +121,15 @@ namespace Calibration
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Panel Panel1;
+
+    /// <summary>
+    /// Panel2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Panel2;
 
     /// <summary>
     /// MainContent control.

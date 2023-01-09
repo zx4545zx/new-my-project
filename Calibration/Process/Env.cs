@@ -7,6 +7,6 @@
     public static readonly string ServerUser = "sa";
     public static readonly string ServerPass = "zx4545zx";
 
-    public static readonly string Host = "https://localhost:44335";
+    public static readonly string Host = "http://crsvwe06/Project_F/";
   }
 }

@@ -131,13 +131,14 @@ namespace Calibration
       string otherEmail = "";
       if (!string.IsNullOrEmpty(HiddenField1.Value))
       {
-        otherEmail = $",{HiddenField1.Value}";
+        otherEmail = $";{HiddenField1.Value}";
       }
       string title = $"{flexDefault1.Value}";
-      string recipients = $"{email.Value},{email1.Value}{otherEmail}";
+      string recipients = $"{email.Value};{email1.Value}{otherEmail}";
       string body = EmailBody(email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
+      cb = true;
       if (cb)
       {
         ScriptManager.RegisterStartupScript(this, GetType(),

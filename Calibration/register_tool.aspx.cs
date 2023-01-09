@@ -67,7 +67,7 @@ namespace Calibration
         return string.Join(",", objective.ToArray());
       }
 
-      return "";
+      return "-";
     }
 
     private void CallDataAndRender()
@@ -130,11 +130,24 @@ namespace Calibration
 
     private string RegCode()
     {
-      DataTable regCode = Model.Database.SelectAttributeByCondition(
-        "register_code", "dbo.tool_register", $"register_code LIKE '%{Shared.DateTimeTH.GetYear()}%'");
-      int nextCount = regCode.Rows.Count + 1;
-      string register_code = Shared.DateTimeTH.GetYear() + "/" + nextCount.ToString().PadLeft(6, '0');
-      return register_code;
+      DataTable lastRow = Model.Database.SqlQuery($@"
+      SELECT register_code FROM dbo.tool_register WHERE id=(SELECT max(id) FROM dbo.tool_register) AND register_code LIKE '{Shared.DateTimeTH.GetYear()}%';;
+      ");
+
+      string register_code;
+      if (lastRow.Rows.Count > 0)
+      {
+        string[] yearNlastCode = lastRow.Rows[0]["register_code"].ToString().Split('/');
+        int newCode = int.Parse(yearNlastCode[1]) + 1;
+
+        register_code = $"{Shared.DateTimeTH.GetYear()}/{newCode.ToString().PadLeft(6, '0')}";
+        return register_code;
+      }
+      else
+      {
+        register_code = $"{Shared.DateTimeTH.GetYear()}/{("1").PadLeft(6, '0')}";
+        return register_code;
+      }
     }
 
     private string StartUpLoad()
@@ -193,9 +206,9 @@ namespace Calibration
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-      string Name = name.Value;
-      string PhoneNumber = tel.Value;
-      string Email = email.Value;
+      string Name = name.Text;
+      string PhoneNumber = tel.Text;
+      string Email = email.Text;
       string CottonValue = Cotton.SelectedValue;
       string FactoryValue = Factory.SelectedValue;
       string MeterValue = Meter.SelectedValue;
@@ -203,14 +216,14 @@ namespace Calibration
       string ApproverValue = Approver.SelectedValue;
       string ObjecttiveValue = CheckBoxValue();
       int Certificate = int.Parse(RedioValue());
-      string Tool = ntool.Value;
+      string Tool = ntool.Text;
       string iso_id = Iso.SelectedValue;
       string Company = PCompany.SelectedValue;
-      string ModelType = model.Value;
-      string ToolNumber = notool.Value;
-      string Location = location.Value;
-      string Rang = unitRang.Value + Unit1.SelectedValue;
-      string Accept_Error = unitError.Value + Unit2.SelectedValue;
+      string ModelType = model.Text;
+      string ToolNumber = notool.Text;
+      string Location = location.Text;
+      string Rang = unitRang.Text + Unit1.SelectedValue;
+      string Accept_Error = unitError.Text + Unit2.SelectedValue;
       string Detail = floatingTextarea2.Value;
       string ImgUrl = StartUpLoad();
       string code = GetCodeForReg(CottonValue, FactoryValue, MeterValue, DepartmentValue);
@@ -263,17 +276,16 @@ namespace Calibration
           <p>แผนก สอบเทียบ</p>
           <br>
           <h4>รายละเอียด มีดังนี้</h4>
-          <p>ชื่อเครื่องมือ : {ntool.Value}</p>
-          <p>รุ่น : {model.Value}</p>
-          <p>หมายเลขเครื่อง : {notool.Value}</p>
+          <p>ชื่อเครื่องมือ : {ntool.Text}</p>
+          <p>รุ่น : {model.Text}</p>
+          <p>หมายเลขเครื่อง : {notool.Text}</p>
           <p>บริษัทที่ผลิต : {PCompany.SelectedItem}</p>
-          <p>สถานที่ใช้งาน : {location.Value}</p>
-          <p>ช่วงใช้งาน : {unitRang.Value}</p>
-          <p>ค่าความผิดพลาดที่รับได้ : {unitError.Value}</p>
+          <p>สถานที่ใช้งาน : {location.Text}</p>
+          <p>ช่วงใช้งาน : {unitRang.Text}</p>
+          <p>ค่าความผิดพลาดที่รับได้ : {unitError.Text}</p>
           <p>รายละเอียด : {floatingTextarea2.Value}</p>
           <br>
-          <a href='{Process.Env.Host}/ApprovePage/notification_approve.aspx?dep_id=
-          {Department.SelectedValue}'>อนุมัติขึ้นทะเบียนเครื่องมือใหม่</a>
+          <a href=""{Process.Env.Host}notification_approve.aspx"">อนุมัติขึ้นทะเบียนเครื่องมือใหม่</a>
           <br>
           <h5>จึงเรียนมาเพื่อทราบ</h5>
         ";
@@ -289,7 +301,7 @@ namespace Calibration
       else
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้', 'Default.aspx');", true);
+          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'ไม่สามารถบันทึกข้อมูลการลงทะเบียนเครื่องมือได้');", true);
       }
     }
   }

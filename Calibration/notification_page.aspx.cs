@@ -9,7 +9,7 @@ namespace Calibration
     protected void Page_Load(object sender, EventArgs e)
     {
       DataTable dt = Model.Database.SqlQuery(@"
-        SELECT en.id, en.code, n.second, n.master, en.notifier, en.detail, en.approved_date, en.status
+        SELECT en.id, en.code, n.second, n.master, en.notifier, en.detail, FORMAT(en.approved_date, 'dd/MM/yyyy', 'en-us') AS approved_date, en.status
         FROM dbo.email_notification en
         INNER JOIN dbo.notification n ON n.department_id = en.dep_id
         ORDER BY id DESC;
@@ -32,7 +32,7 @@ namespace Calibration
           <td>{dt.Rows[i]["master"]}</td>
           <td>{dt.Rows[i]["notifier"]}</td>
           <td>{dt.Rows[i]["detail"]}</td>
-          <td>{dt.Rows[i]["approved_date"].ToString().Split(' ')[0]}</td>
+          <td>{dt.Rows[i]["approved_date"]}</td>
           <td>
             <table class='table table-sm table-striped table-bordered nowrap'>
               <thead>

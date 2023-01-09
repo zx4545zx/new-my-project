@@ -16,16 +16,16 @@ namespace Calibration.Shared
 
     private static string UseSQLString(string title, string recipients, string body)
     {
-      string SqlString = (
-        "DECLARE @TitleBar VARCHAR(MAX);" +
-        $"SET @TitleBar = '{title}'" +
-        "EXEC msdb.dbo.sp_send_dbmail" +
-        "@profile_name = 'datafac'," +
-        $"@recipients = '{recipients}'," +
-        "@subject = @TitleBar," +
-        $"@body = '{body}'," +
-        "@body_format = 'HTML';"
-        );
+      string SqlString = ($@"
+        DECLARE @TitleBar VARCHAR(MAX);
+        SET @TitleBar = '{title}' 
+        EXEC msdb.dbo.sp_send_dbmail 
+        @profile_name = 'datafac',
+        @recipients = '{recipients}',
+        @subject = @TitleBar,
+        @body = '{body}',
+        @body_format = 'HTML';
+        ");
       return SqlString;
     }
 

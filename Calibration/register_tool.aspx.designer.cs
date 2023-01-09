@@ -30,7 +30,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText name;
+    protected global::System.Web.UI.WebControls.TextBox name;
 
     /// <summary>
     /// email control.
@@ -39,7 +39,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
+    protected global::System.Web.UI.WebControls.TextBox email;
 
     /// <summary>
     /// tel control.
@@ -48,7 +48,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tel;
+    protected global::System.Web.UI.WebControls.TextBox tel;
 
     /// <summary>
     /// Cotton control.
@@ -156,7 +156,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText ntool;
+    protected global::System.Web.UI.WebControls.TextBox ntool;
 
     /// <summary>
     /// PCompany control.
@@ -174,7 +174,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText model;
+    protected global::System.Web.UI.WebControls.TextBox model;
 
     /// <summary>
     /// notool control.
@@ -183,7 +183,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText notool;
+    protected global::System.Web.UI.WebControls.TextBox notool;
 
     /// <summary>
     /// location control.
@@ -192,7 +192,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText location;
+    protected global::System.Web.UI.WebControls.TextBox location;
 
     /// <summary>
     /// unitRang control.
@@ -201,7 +201,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText unitRang;
+    protected global::System.Web.UI.WebControls.TextBox unitRang;
 
     /// <summary>
     /// Unit1 control.
@@ -219,7 +219,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputText unitError;
+    protected global::System.Web.UI.WebControls.TextBox unitError;
 
     /// <summary>
     /// Unit2 control.

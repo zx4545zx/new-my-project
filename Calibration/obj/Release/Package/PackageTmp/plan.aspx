@@ -3,74 +3,83 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
   <asp:UpdatePanel ID="updatepnl" runat="server">
     <ContentTemplate>
-      <table class="table table-striped table-bordered nowrap" style="width: 100%">
-        <thead>
-          <tr>
-            <th rowspan="2">ลำดับ</th>
-            <th rowspan="2">รหัสใหม่</th>
-            <th rowspan="2">แผนก</th>
 
-            <th colspan="3" class="text-center">รายการ</th>
-            <th colspan="10" class="text-center">ประจำเดือน: xxxx ปี: xxxx</th>
-          </tr>
-          <tr>
-            <th>ชื่อ</th>
-            <th>ยี่ห้อ</th>
-            <th>รุ่น</th>
+      <div class="d-flex justify-content-between align-items-end w-100">
+        <h4 class="m-0 text-lg">
+          <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+          แผนการสอบเทียบเครื่องมือ</h4>
+        <div>
+          <button id="export_button" type="button" class="btn btn-success"
+            runat="server" onserverclick="export_button_ServerClick">
+            <i class="bi bi-file-spreadsheet-fill"></i>
+            &nbsp;REPORT
+          </button>
+          <button id="filter_button" type="button" class="btn btn-secondary"
+            data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+            <i class="bi bi-funnel-fill"></i>
+          </button>
+        </div>
+      </div>
 
-            <th width="1%">1</th>
-            <th width="1%">2</th>
-            <th width="1%">3</th>
-            <th width="1%">4</th>
-            <th width="1%">5</th>
-            <th width="1%">6</th>
-            <th width="1%">7</th>
-            <th width="1%">8</th>
-            <th width="1%">9</th>
-            <th width="1%">10</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Donna Snider</td>
-            <td>Customer Support</td>
-            <td>$112,000</td>
-            <td>New York</td>
-            <td>4226</td>
-            <td>d.snider@datatables.net</td>
-            <td></td>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>ลำดับ</th>
-            <th>รหัสใหม่</th>
-            <th>แผนก</th>
-            <th>ชื่อ</th>
-            <th>ยี่ห้อ</th>
-            <th>รุ่น</th>
-            <th width="1%">1</th>
-            <th width="1%">2</th>
-            <th width="1%">3</th>
-            <th width="1%">4</th>
-            <th width="1%">5</th>
-            <th width="1%">6</th>
-            <th width="1%">7</th>
-            <th width="1%">8</th>
-            <th width="1%">9</th>
-            <th width="1%">10</th>
-          </tr>
-        </tfoot>
-      </table>
+      <!-- Modal -->
+      <div class="collapse" id="collapseExample">
+        <hr />
+        <div class="card mb-3" style="background-color: #f0f9ff;">
+          <div class="card-body">
+
+            <div class="mb-3">
+              <label for="picker" class="form-label">เดือน/ปี : </label>
+              <input type="month" class="form-control" name="picker" id="Picker" runat="server" />
+            </div>
+
+            <div class="mb-3">
+              <label for="SelectCode" class="form-label px-0">รหัสแผนก : </label>
+              <asp:DropDownList ID="SelectCode" runat="Server" CssClass="form-select">
+                <asp:ListItem Text="แสดงทั้งหมด" Value="0" />
+              </asp:DropDownList>
+            </div>
+
+            <div class=" d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">
+                ปิด</button>
+              <button id="Submit" type="button" class="btn btn-primary"
+                runat="server" onserverclick="Submit_ServerClick">
+                ยืนยัน</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div id="showeTable" style="display: none;">
+        <table id="scrollx" class="table table-sm table-striped table-bordered nowrap" style="width: 100%">
+          <thead>
+            <tr>
+              <th rowspan="2" class="text-nowrap text-center">ลำดับ</th>
+              <th rowspan="2" class="text-nowrap text-center">รหัส</th>
+              <th rowspan="2" class="text-nowrap text-center">แผนก</th>
+              <th colspan="3" class="text-center">รายการ</th>
+              <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+              <th colspan="2" class="text-center">หมายเหตุ</th>
+            </tr>
+            <tr>
+              <th>ชื่อเครื่องมือ</th>
+              <th>ยี่ห้อ</th>
+              <th>รุ่น</th>
+              <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+              <th>วันที่ทำการสอบเทียบ</th>
+              <th>วันสอบเทียบครั้งถัดไป</th>
+            </tr>
+          </thead>
+          <tbody>
+            <asp:Literal ID="RowData" runat="server"></asp:Literal>
+          </tbody>
+        </table>
+      </div>
     </ContentTemplate>
   </asp:UpdatePanel>
 </asp:Content>

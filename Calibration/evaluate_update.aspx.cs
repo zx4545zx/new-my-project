@@ -32,7 +32,7 @@ namespace Calibration
     {
       string sql = $@"
       SELECT tr.register_code, tr.code, cr.error, cr.status, 
-      cr.created_at AS dateformat, cr.data_status_id, cr.resultant, cr.comment
+      FORMAT(cr.created_at, 'yyyy-MM-dd', 'en-us') AS dateformat, cr.data_status_id, cr.resultant, cr.comment
       FROM dbo.calibration_results cr
       INNER JOIN dbo.tool_register_calibration_results trcr
       ON trcr.calibration_results_id = cr.id
@@ -46,17 +46,10 @@ namespace Calibration
       Label2.Text = AllResult.Rows[0]["code"].ToString();
       TextBox1.Text = AllResult.Rows[0]["error"].ToString();
       Status.SelectedValue = AllResult.Rows[0]["status"].ToString();
-      DatePlan.Value = ConvertSqlDateToHtml(AllResult.Rows[0]["dateformat"].ToString());
+      DatePlan.Value = AllResult.Rows[0]["dateformat"].ToString();
       StatusData.SelectedValue = AllResult.Rows[0]["data_status_id"].ToString();
       TextBox2.Text = AllResult.Rows[0]["resultant"].ToString();
       floatingTextarea2.Value = AllResult.Rows[0]["comment"].ToString();
-    }
-
-    private string ConvertSqlDateToHtml(string exDate)
-    {
-      string[] ex_date = exDate.Split(' ')[0].Split('/');
-      return (int.Parse(ex_date[2]) - 543).ToString() + "-"
-        + ex_date[1].PadLeft(2, '0') + "-" + ex_date[0].PadLeft(2, '0');
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -68,15 +61,15 @@ namespace Calibration
       data_status_id={StatusData.SelectedValue}, created_at=Cast( '{DatePlan.Value}' as DATE), status={Status.SelectedValue}
       ";
       bool cb = Model.Database.UpdateByID("dbo.calibration_results", statement, id);
-      DataTable data = Model.Database.SqlQuery(
-      $@"
-        SELECT p.id, p.date_plan, p.rang, p.rang_unit
-        FROM dbo.tool_register r
-        INNER JOIN dbo.calibration_plan p
-        ON r.calibration_plan_id = p.id
-        WHERE r.id = {tool_id};
-      "
-      );
+      //DataTable data = Model.Database.SqlQuery(
+      //$@"
+      //  SELECT p.id, FORMAT(p.date_plan, 'yyyy/MM/dd', 'en-us') AS date_plan, p.rang, p.rang_unit
+      //  FROM dbo.tool_register r
+      //  INNER JOIN dbo.calibration_plan p
+      //  ON r.calibration_plan_id = p.id
+      //  WHERE r.id = {tool_id};
+      //"
+      //);
 
       if (cb)
       {

@@ -58,7 +58,7 @@
         <nav class="shadow-sm navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
           <div class="container-fluid">
             <a href="Default.aspx">
-              <img src="Images/logo.png" alt="logo" width="100" height="32" class="me-3" />
+              <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo.png" Width="100" Height="32" CssClass="me-3" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -81,7 +81,9 @@
                     <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
                     <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
                     <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="tool_history.aspx">ประวัติเครื่องมือ</a></li>
                   </ul>
                 </li>
@@ -90,7 +92,8 @@
               <div class="d-flex">
                 <asp:Label ID="Label1" runat="server" CssClass="btn btn-light disabled me-2" Text="Guest"></asp:Label>
                 <asp:Panel ID="PanelLogIn" runat="server">
-                  <button type="button" class="btn btn-primary"
+                  <a class="btn btn-success" href="approver_login.aspx">ผู้อนุมัติ</a>
+                  <button type="button" class="btn btn-primary me-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     ผู้ดูแลระบบ
                   </button>
@@ -134,89 +137,125 @@
       <div class="d-flex m-auto">
         <!-- Side Bar -->
         <asp:Panel ID="SideBar" runat="server" CssClass="cm-sidebar">
-          <div class="m-2 rounded pb-4 flex-shrink-0" style="max-width: 270px; min-width: 205px;">
+          <div class="m-2 rounded pb-4 flex-shrink-0" style="max-width: 350px;">
             <ul class="container nav row py-2 m-0">
-              <li class="nav-item">
-                <a class="nav-link" href="administrator.aspx">
-                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                  &nbsp; ทะเบียนเครื่องมือ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="plan.aspx">
-                  <i class="bi bi-table"></i>
-                  &nbsp; แผนสอบเทียบ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="tool_history.aspx">
-                  <i class="bi bi-clipboard2-pulse-fill"></i>
-                  &nbsp; ประวัติเครื่องมือ
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-envelope-paper-fill"></i>
-                  &nbsp; ข้อมูลการแจ้งเตือน
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
-                  <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
-                  <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-people-fill"></i>
-                  &nbsp; ข้อมูลพื้นฐาน
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="cotton.aspx">ฝ่ายต้นสังกัด</a></li>
-                  <li><a class="dropdown-item" href="department.aspx">แผนก</a></li>
-                  <li><a class="dropdown-item" href="factory.aspx">โรงงาน</a></li>
-                  <li><a class="dropdown-item" href="meter.aspx">เครื่องมือวัด</a></li>
-                  <li><a class="dropdown-item" href="production_company.aspx">บริษัทผู้ผลิต</a></li>
-                  <li><a class="dropdown-item" href="calibate_unit.aspx">หน่วยสอบเทียบ</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-clipboard2-plus-fill"></i>
-                  &nbsp; ข้อมูลทะเบียน
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="iso.aspx">ISO</a></li>
-                  <li><a class="dropdown-item" href="location.aspx">สถานที่สอบเทียบ</a></li>
-                  <li><a class="dropdown-item" href="status_data.aspx">สถานะข้อมูล</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-envelope-fill"></i>
-                  &nbsp; ข้อมูลแจ้งเตือน
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="approver.aspx">ผู้อนุมัติ (ฝ่าย)</a></li>
-                  <li><a class="dropdown-item" href="notification_setting.aspx">ตั้งค่าแจ้งเตือน Email</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="report.aspx">
-                  <i class="bi bi-file-earmark-bar-graph-fill"></i>
-                  &nbsp; สรุปรายงาน
-                </a>
-              </li>
+              <asp:Panel ID="Panel3" runat="server">
+
+                <li class="nav-item">
+                  <a class="nav-link" href="administrator.aspx">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                    &nbsp; ทะเบียนเครื่องมือ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="plan.aspx">
+                    <i class="bi bi-table"></i>
+                    &nbsp; แผนสอบเทียบ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="tool_history.aspx">
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                    &nbsp; ประวัติเครื่องมือ
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-envelope-paper-fill"></i>
+                    &nbsp; ข้อมูลการแจ้งเตือน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
+                    <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-people-fill"></i>
+                    &nbsp; ข้อมูลพื้นฐาน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="cotton.aspx">ฝ่ายต้นสังกัด</a></li>
+                    <li><a class="dropdown-item" href="department.aspx">แผนก</a></li>
+                    <li><a class="dropdown-item" href="factory.aspx">โรงงาน</a></li>
+                    <li><a class="dropdown-item" href="meter.aspx">เครื่องมือวัด</a></li>
+                    <li><a class="dropdown-item" href="production_company.aspx">บริษัทผู้ผลิต</a></li>
+                    <li><a class="dropdown-item" href="calibate_unit.aspx">หน่วยสอบเทียบ</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-clipboard2-plus-fill"></i>
+                    &nbsp; ข้อมูลทะเบียน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="iso.aspx">ISO</a></li>
+                    <li><a class="dropdown-item" href="location.aspx">สถานที่สอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="status_data.aspx">สถานะข้อมูล</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-envelope-fill"></i>
+                    &nbsp; ข้อมูลแจ้งเตือน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="approver.aspx">ผู้อนุมัติ (ฝ่าย)</a></li>
+                    <li><a class="dropdown-item" href="notification_setting.aspx">ตั้งค่าแจ้งเตือน Email</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
+                  </ul>
+                </li>
+
+              </asp:Panel>
               <asp:Panel ID="Panel1" runat="server">
-              <li class="nav-item">
-                <a class="nav-link" href="user.aspx">
-                  <i class="bi bi-key-fill"></i>
-                  &nbsp; ผู้มีสิทธิ์เข้าใช้งาน
-                </a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="user.aspx">
+                    <i class="bi bi-key-fill"></i>
+                    &nbsp; ผู้มีสิทธิ์เข้าใช้งาน
+                  </a>
+                </li>
+              </asp:Panel>
+
+              <asp:Panel ID="Panel2" runat="server">
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_approve.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติการขึ้นทะเบียนใหม่
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติการสอบเทียบ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_defective_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติเครื่องมือวัดบกพร่อง
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_error_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติไม่สามารถสอบเทียบเครื่องมือวัดได้
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="approver_reset_password.aspx">
+                    <i class="bi bi-key-fill"></i>
+
+                    &nbsp; เปลี่ยนรหัสผ่าน
+                  </a>
+                </li>
               </asp:Panel>
             </ul>
           </div>

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Calibration
 {
@@ -16,8 +11,8 @@ namespace Calibration
       {
         DataTable dt = Model.Database.SqlQuery(@"
           SELECT en.id, en.code, n.second, n.master, en.notifier, 
-          en.detail, en.detail_other, en.approved_date, en.status,
-          en.note, en.comment, en.solution, en.updated_at
+          en.detail, en.detail_other, FORMAT(en.approved_date, 'dd/MM/yyyy', 'en-us') AS approved_date, en.status,
+          en.note, en.comment, en.solution, FORMAT(en.updated_at, 'dd/MM/yyyy', 'en-us') AS updated_at
           FROM dbo.email_notification_error en
           INNER JOIN dbo.notification n ON n.department_id = en.dep_id
           ORDER BY id DESC;
@@ -48,7 +43,7 @@ namespace Calibration
           <td>{dt.Rows[i]["detail"]}</td>
           <td>{dt.Rows[i]["detail_other"]}</td>
           <td>{dt.Rows[i]["note"]}</td>
-          <td>{dt.Rows[i]["approved_date"].ToString().Split(' ')[0]}</td>
+          <td>{dt.Rows[i]["approved_date"]}</td>
           <td>
           <div class=""btn-group"" role=""group"" aria-label=""Basic mixed styles example"">
             {EditBtn}
@@ -88,7 +83,7 @@ namespace Calibration
                 <tr>
                   <td>{dt.Rows[i]["comment"]}</td>
                   <td>{dt.Rows[i]["solution"]}</td>
-                  <td>{dt.Rows[i]["updated_at"].ToString().Split(' ')[0]}</td>
+                  <td>{dt.Rows[i]["updated_at"]}</td>
                 </tr>
               </tbody>
             </table>

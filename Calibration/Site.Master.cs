@@ -15,9 +15,22 @@ namespace Calibration
         PanelLogOut.Visible = false;
         SideBar.Visible = false;
         Panel1.Visible = false;
+        Panel2.Visible = false;
       }
       else
       {
+        if (Session["role"] != null)
+        {
+          Panel2.Visible = true;
+          Panel3.Visible = false;
+        } 
+        else
+        {
+          Panel2.Visible = false;
+          Panel3.Visible = true;
+        }
+
+
         if (Session["username"].ToString() == "admin")
         {
           Panel1.Visible = true;
@@ -57,8 +70,7 @@ namespace Calibration
       else
       {
         Session.Clear();
-        ScriptManager.RegisterStartupScript(this, GetType(),
-          "MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'กรุณาตรวจสอบ Username หรือ Password อีกครั้ง', 'Default.aspx');", true);
+        ScriptManager.RegisterStartupScript(this, GetType(),"MyScript", "MessageNoti('error', 'เกิดข้อผิดพลาด!!!', 'กรุณาตรวจสอบ Username หรือ Password อีกครั้ง', 'Default.aspx');", true);
 
       }
     }

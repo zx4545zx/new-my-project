@@ -29,8 +29,8 @@ namespace Calibration
     {
       DataTable AllData = Model.Database.SqlQuery($@"
         SELECT tr.*, r.name, r.email, r.tel, c.status AS c_status, c.code AS c_code,
-        c.expiration_date, t.name AS t_name, t.model, t.code AS t_code, t.detail,
-        p.rang, p.rang_unit, p.date_plan
+        FORMAT(c.expiration_date, 'yyyy-MM-dd', 'en-us') AS expiration_date , t.name AS t_name, t.model, t.code AS t_code, t.detail,
+        p.rang, p.rang_unit, FORMAT(p.date_plan, 'yyyy-MM-dd', 'en-us') AS date_plan
         FROM dbo.tool_register tr
         INNER JOIN dbo.registrar r
         ON tr.registrar_id = r.id
@@ -101,31 +101,25 @@ namespace Calibration
       Iso.SelectedValue = AllData.Rows[0]["iso_id"].ToString();
       LocationCali.SelectedValue = AllData.Rows[0]["exam_location_id"].ToString();
       NoCer.Value = AllData.Rows[0]["c_code"].ToString();
+      Textarea1.Value = AllData.Rows[0]["detail_calibate"].ToString();
       if (string.IsNullOrEmpty(AllData.Rows[0]["expiration_date"].ToString()))
       {
         DateOut.Value = "";
       }
       else
       {
-        DateOut.Value = ConvertSqlDateToHtml(AllData.Rows[0]["expiration_date"].ToString());
+        DateOut.Value = AllData.Rows[0]["expiration_date"].ToString();
       }
       if (string.IsNullOrEmpty(AllData.Rows[0]["date_plan"].ToString()))
       {
-        Date1.Value = "";
+        Date1.Text = "";
       }
       else
       {
-        Date1.Value = ConvertSqlDateToHtml(AllData.Rows[0]["date_plan"].ToString());
+        Date1.Text = AllData.Rows[0]["date_plan"].ToString();
       }
-      RoundNumber.Value = AllData.Rows[0]["rang"].ToString();
+      RoundNumber.Text = AllData.Rows[0]["rang"].ToString();
       RoundUnit.SelectedValue = AllData.Rows[0]["rang_unit"].ToString();
-    }
-
-    private string ConvertSqlDateToHtml(string exDate)
-    {
-      string[] ex_date = exDate.Split(' ')[0].Split('/');
-      return (int.Parse(ex_date[2]) - 543).ToString() + "-"
-        + ex_date[1].PadLeft(2, '0') + "-" + ex_date[0].PadLeft(2, '0');
     }
 
     private void ObjectiveCheck(string str)
@@ -278,15 +272,15 @@ namespace Calibration
 
     private bool Save_Plan(DataTable AllData)
     {
-      string calibration_plan_sql = $@"
-       UPDATE dbo.calibration_plan
-       SET new_code='{Label2.Text}',rang={RoundNumber.Value},rang_unit='{RoundUnit.SelectedValue}',
-        date_plan=Cast('{Date1.Value}' as date),status=1
-       WHERE id={AllData.Rows[0]["calibration_plan_id"]};
-      ";
+        string calibration_plan_sql = $@"
+         UPDATE dbo.calibration_plan
+         SET new_code='{Label2.Text}',rang={RoundNumber.Text},rang_unit='{RoundUnit.SelectedValue}',
+          date_plan=Cast('{Date1.Text}' as date),status=1
+         WHERE id={AllData.Rows[0]["calibration_plan_id"]};
+        ";
 
-      bool cb = Model.Database.SqlQueryExecute(calibration_plan_sql);
-      return cb;
+        bool cb = Model.Database.SqlQueryExecute(calibration_plan_sql);
+        return cb;
     }
 
     private bool Save_Tool_Register(DataTable AllData)

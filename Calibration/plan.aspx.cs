@@ -12,10 +12,11 @@ namespace Calibration
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+      
       if (!IsPostBack)
       {
         string sql = $@"
-          SELECT p.new_code, p.date_plan, p.rang, p.rang_unit, p.status,
+          SELECT p.new_code, FORMAT(p.date_plan, 'yyyy/MM/dd', 'en-us') AS date_plan, p.rang, p.rang_unit, p.status,
           t.name AS t_name, pc.name AS pc_name, t.model, d.name AS dep_name
           FROM dbo.tool_register tr
           INNER JOIN dbo.calibration_plan p
@@ -53,6 +54,7 @@ namespace Calibration
       int days = Shared.DateTimeTH.GetDayInMonth();
       (_, _, string month) = Shared.DateTimeTH.GetMonth();
       string year = Shared.DateTimeTH.GetYear();
+
       RenderTable(data, days, month, year);
     }
 
@@ -74,11 +76,34 @@ namespace Calibration
 
       for (var i = 0; i < data.Rows.Count; i++)
       {
-        string NextRound = Shared.Utils.CheckRound(data, i);
-
-        string strDate = data.Rows[i]["date_plan"].ToString().Split(' ')[0];
-        DateTime dateThai = Convert.ToDateTime(strDate, _cultureTHInfo);
+        string NextRound = "";
+        string[] strDate = data.Rows[i]["date_plan"].ToString().Split('/');
+        string CerRound = $"{strDate[2]}/{strDate[1]}/{strDate[0]}";
+        DateTime dateThai = Convert.ToDateTime($"{strDate[2]}/{strDate[1]}/{strDate[0]}");
         int sd = int.Parse(dateThai.ToString("dd", _cultureTHInfo));
+        int count = int.Parse(data.Rows[i]["rang"].ToString());
+
+        if (data.Rows[i]["rang_unit"].ToString() == "d")
+        {
+          NextRound = dateThai.AddDays(count).ToString("dd/MM/yyyy");
+        }
+        else if (data.Rows[i]["rang_unit"].ToString() == "w")
+        {
+          NextRound = dateThai.AddDays(count * 7).ToString("dd/MM/yyyy");
+        }
+        else if (data.Rows[i]["rang_unit"].ToString() == "m")
+        {
+          NextRound = dateThai.AddMonths(count).ToString("dd/MM/yyyy");
+        }
+        else if (data.Rows[i]["rang_unit"].ToString() == "y")
+        {
+          NextRound = dateThai.AddYears(count).ToString("dd/MM/yyyy");
+        }
+        else
+        {
+          NextRound = "";
+        }
+
         RowData.Text += $@"
             <tr>
             <td class='text-center'>{i + 1}</td>
@@ -96,7 +121,7 @@ namespace Calibration
           RowData.Text += $"<td class='text-center {bg}'>{val}</td>";
         }
         RowData.Text += $@"  
-            <th class='text-center'>{strDate}</th>
+            <th class='text-center'>{CerRound}</th>
             <th class='text-center'>{NextRound}</th>
             </tr>
           ";
@@ -114,7 +139,7 @@ namespace Calibration
       string _year = Picker.Value.Split('-')[0].ToString();
       string _month = Picker.Value.Split('-')[1].ToString();
       string sql = $@"
-          SELECT p.new_code, p.date_plan, p.rang, p.rang_unit, p.status,
+          SELECT p.new_code,  FORMAT(p.date_plan, 'yyyy/MM/dd', 'en-us') AS date_plan, p.rang, p.rang_unit, p.status,
           t.name AS t_name, pc.name AS pc_name, t.model, d.name AS dep_name
           FROM dbo.tool_register tr
           INNER JOIN dbo.calibration_plan p
@@ -134,7 +159,7 @@ namespace Calibration
         ";
 
       DataTable data = Model.Database.SqlQuery(sql);
-      int days = DateTime.DaysInMonth(int.Parse(_year), int.Parse(_month));
+      int days = DateTime.DaysInMonth(int.Parse(_year), int.Parse(_month)); //28, 30, 31
 
       Thread.CurrentThread.CurrentCulture = new CultureInfo("th-TH");
       DateTime conV = Convert.ToDateTime($"01-{_month}-{int.Parse(_year)+543}");

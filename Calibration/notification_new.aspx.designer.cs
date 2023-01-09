@@ -48,7 +48,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
+    protected global::System.Web.UI.HtmlControls.HtmlInputText email;
 
     /// <summary>
     /// sname control.
@@ -66,7 +66,7 @@ namespace Calibration
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl semail;
+    protected global::System.Web.UI.HtmlControls.HtmlInputText semail;
 
     /// <summary>
     /// floatingTextarea2 control.

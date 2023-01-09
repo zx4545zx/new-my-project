@@ -4,9 +4,12 @@
 
 <html>
 <head runat="server">
+  <meta name="viewport" content="width=device-width">
   <title><%: Page.Title %></title>
+  <link rel="shortcut icon" href="#">
 
   <!-- bootstrap@5.2.0 -->
+  <link href="./Content/bootstrap@5.2.0/bootstrap.min.css" rel="stylesheet" />
   <link href="./Content/bootstrap@5.2.0/bootstrap.min.css" rel="stylesheet" />
   <script src="./Content/bootstrap@5.2.0/bootstrap.bundle.min.js"></script>
 
@@ -19,21 +22,30 @@
   <!-- jquery@3.5.1 -->
   <script src="./Content/jquery@3.5.1/jquery-3.5.1.js"></script>
 
+  <!-- chart-js -->
+  <script src="./Content/chart-js/chart.js"></script>
+  <script src="./Content/chart-js/utils.js"></script>
+
   <!-- datatables@1.12.1 -->
   <link href="./Content/datatables@1.12.1/dataTables.bootstrap5.min.css" rel="stylesheet" />
   <link href="./Content/datatables@1.12.1/responsive.bootstrap.min.css" rel="stylesheet" />
+  <link href="./Content/datatables@1.12.1/buttons.dataTables.min.css" rel="stylesheet" />
 
   <script src="./Content/datatables@1.12.1/jquery.dataTables.min.js"></script>
   <script src="./Content/datatables@1.12.1/dataTables.bootstrap5.min.js"></script>
-
   <script src="./Content/datatables@1.12.1/dataTables.responsive.min.js"></script>
-  <script src="./Content/datatables@1.12.1/responsive.bootstrap.min.js"></script>
-
-  <!-- chart-js -->
-  <script src="./Content/chart-js/chart.js"></script>
-
   <!-- normalize -->
   <link href="./Content/modern-normalize.css" rel="stylesheet" />
+
+  <!-- transition -->
+  <link href="./Content/transition.min.css" rel="stylesheet" />
+
+  <!-- libs -->
+  <script type="text/javascript" src="./Content/sweetalert2/sweetalert2.all.min.js"></script>
+  <script type="text/javascript" src="./Scripts/xlsx.full.min.js"></script>
+
+  <!-- config -->
+  <script type="text/javascript" src="./Scripts/Config.js" asp-append-version="true"></script>
 
 </head>
 <body>
@@ -45,27 +57,36 @@
       <header id="page-topbar">
         <nav class="shadow-sm navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
           <div class="container-fluid">
-            <a href="/">
-              <img src="/Images/logo.png" alt="logo" style="width: 100px" class="me-3" />
+            <a href="Default.aspx">
+              <%--<img src="./Images/logo.png" alt="logo" width="100" height="32" class="me-3" />--%>
+
+              <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo.png" Width="100" Height="32" CssClass="me-3" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto my-2 my-lg-0">
+              <ul class="navbar-nav me-auto my-2 my-lg-0 gap-2">
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary" aria-current="page" href="register_tool.aspx">
+                    <i class="bi bi-check2-circle"></i>&nbsp;ขึ้นทะเบียนเครื่องมือ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary" aria-current="page" href="plan.aspx">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>&nbsp;แผนการสอบเทียบเครื่องมือ</a>
+                </li>
                 <li class="nav-item dropdown">
-                  <a class="dropdown-toggle btn btn-outline-primary" href="#" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">ทะเบียนเครื่องมือ</a>
+                  <a class="dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">เพิ่มเติม</a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/register_tool.aspx">ขึ้นทะเบียนเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="/">ตรวจสอบทะเบียนเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="/plan.aspx">แผนการสอบเทียบเครื่อง</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลการแจ้งเตือนการสอบเทียบเครื่องมือวัด</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
-                    <li><a class="dropdown-item" href="#">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
-                    <li><a class="dropdown-item" href="#">สรุปรายงานทะเบียนเครื่องมือ</a></li>
-                    <li><a class="dropdown-item" href="#">ประวัติเครื่องมือ</a></li>
+                    <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
+                    <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="tool_history.aspx">ประวัติเครื่องมือ</a></li>
                   </ul>
                 </li>
               </ul>
@@ -73,13 +94,14 @@
               <div class="d-flex">
                 <asp:Label ID="Label1" runat="server" CssClass="btn btn-light disabled me-2" Text="Guest"></asp:Label>
                 <asp:Panel ID="PanelLogIn" runat="server">
-                  <button type="button" class="btn btn-primary"
+                  <a class="btn btn-success" href="approver_login.aspx">ผู้อนุมัติ</a>
+                  <button type="button" class="btn btn-primary me-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     ผู้ดูแลระบบ
                   </button>
                 </asp:Panel>
                 <asp:Panel ID="PanelLogOut" runat="server">
-                  <asp:Button ID="LogOutBtn" CssClass="btn btn-danger" runat="server" Text="ออกจากระบบ" OnClick="LogOutBtn_Click" />
+                  <asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" CausesValidation="false" Text="ออกจากระบบ" OnClick="LogOutBtn_Click" />
                 </asp:Panel>
               </div>
             </div>
@@ -87,7 +109,6 @@
         </nav>
       </header>
 
-      <!-- Modal -->
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -105,15 +126,11 @@
                   <label for="Password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="Password" placeholder="********" runat="server">
                 </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <asp:Button ID="LogInBtn" runat="server" Text="Log in" CssClass="btn btn-primary" OnClick="LogInBtn_Click" />
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+              <asp:Button ID="Button2" CssClass="btn btn-primary" runat="server" Text="Log in" CausesValidation="false" OnClick="LogInBtn_Click" />
             </div>
           </div>
         </div>
@@ -121,57 +138,143 @@
 
       <div class="d-flex m-auto">
         <!-- Side Bar -->
-        <asp:Panel ID="SideBar" runat="server" CssClass="cm-sidebar bg-light">
-          <div class="m-2 rounded pb-4 flex-shrink-0" style="max-width: 270px; min-width: 215px;">
+        <asp:Panel ID="SideBar" runat="server" CssClass="cm-sidebar">
+          <div class="m-2 rounded pb-4 flex-shrink-0" style="max-width: 350px;">
             <ul class="container nav row py-2 m-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/administrator.aspx">
-                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                  &nbsp; ทะเบียนเครื่องมือ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="bi bi-hammer"></i>
-                  &nbsp; การแจ้งซ่อม
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="bi bi-clipboard-x-fill"></i>
-                  &nbsp; ยกเลิกเครื่องมือ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <asp:Panel ID="Panel3" runat="server">
+
+                <li class="nav-item">
+                  <a class="nav-link" href="administrator.aspx">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                    &nbsp; ทะเบียนเครื่องมือ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="plan.aspx">
+                    <i class="bi bi-table"></i>
+                    &nbsp; แผนสอบเทียบ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="tool_history.aspx">
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                    &nbsp; ประวัติเครื่องมือ
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-envelope-paper-fill"></i>
+                    &nbsp; ข้อมูลการแจ้งเตือน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="notification_page.aspx">ข้อมูลการแจ้งเตือนการสอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="notification_defective_page.aspx">ข้อมูลแจ้งเครื่องมือวัดบกพร่อง</a></li>
+                    <li><a class="dropdown-item" href="notification_error_page.aspx">ข้อมูลแจ้งไม่สามารถสอบเทียบได้</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-people-fill"></i>
+                    &nbsp; ข้อมูลพื้นฐาน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="cotton.aspx">ฝ่ายต้นสังกัด</a></li>
+                    <li><a class="dropdown-item" href="department.aspx">แผนก</a></li>
+                    <li><a class="dropdown-item" href="factory.aspx">โรงงาน</a></li>
+                    <li><a class="dropdown-item" href="meter.aspx">เครื่องมือวัด</a></li>
+                    <li><a class="dropdown-item" href="production_company.aspx">บริษัทผู้ผลิต</a></li>
+                    <li><a class="dropdown-item" href="calibate_unit.aspx">หน่วยสอบเทียบ</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-clipboard2-plus-fill"></i>
+                    &nbsp; ข้อมูลทะเบียน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="iso.aspx">ISO</a></li>
+                    <li><a class="dropdown-item" href="location.aspx">สถานที่สอบเทียบ</a></li>
+                    <li><a class="dropdown-item" href="status_data.aspx">สถานะข้อมูล</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <i class="bi bi-envelope-fill"></i>
+                    &nbsp; ข้อมูลแจ้งเตือน
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="approver.aspx">ผู้อนุมัติ (ฝ่าย)</a></li>
+                    <li><a class="dropdown-item" href="notification_setting.aspx">ตั้งค่าแจ้งเตือน Email</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="email_auto.aspx">ตั้งค่าแจ้งเตือน Email อัตโนมัติ</a></li>
+                  </ul>
+                </li>
+
+              </asp:Panel>
+              <%-- <li class="nav-item">
+                <a class="nav-link" href="report.aspx">
                   <i class="bi bi-file-earmark-bar-graph-fill"></i>
-                  &nbsp; รายงาน
+                  &nbsp; สรุปรายงาน
                 </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                  <i class="bi bi-gear-fill"></i>
-                  &nbsp; การตั้งค่า
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">ตั้งค่า Email</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">ข้อมูลพื้นฐาน</a></li>
-                </ul>
-              </li>
+              </li>--%>
+              <asp:Panel ID="Panel1" runat="server">
+                <li class="nav-item">
+                  <a class="nav-link" href="user.aspx">
+                    <i class="bi bi-key-fill"></i>
+                    &nbsp; ผู้มีสิทธิ์เข้าใช้งาน
+                  </a>
+                </li>
+              </asp:Panel>
+
+              <asp:Panel ID="Panel2" runat="server">
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_approve.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติการขึ้นทะเบียนใหม่
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติการสอบเทียบ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_defective_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติเครื่องมือวัดบกพร่อง
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification_error_email.aspx">
+                    <i class="bi bi-app-indicator"></i>
+
+                    &nbsp; อนุมัติไม่สามารถสอบเทียบเครื่องมือวัดได้
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="approver_reset_password.aspx">
+                    <i class="bi bi-key-fill"></i>
+
+                    &nbsp; เปลี่ยนรหัสผ่าน
+                  </a>
+                </li>
+              </asp:Panel>
             </ul>
           </div>
         </asp:Panel>
         <!-- Main Content -->
-        <div class="m-auto py-4 w-auto">
-          <div class="container">
+        <div class=" py-4 w-100" style="min-width: 570px; min-height: 100vh;">
+          <div class="px-4 ld ld-fade-in">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- Footer -->
@@ -188,8 +291,5 @@
       </div>
     </div>
   </form>
-
-  <script type="text/javascript" src="./Scripts/Config.js"></script>
-
 </body>
 </html>

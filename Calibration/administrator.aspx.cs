@@ -8,13 +8,17 @@ namespace Calibration.administrator
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (Session["username"] == null)
+      {
+        Response.Redirect("Default.aspx");
+      }
       if (!IsPostBack)
       {
         TableRowData.Visible = false;
         DataTable AllData = Model.Database.SqlQuery(
           @"
             SELECT t.id, t.register_code, t.code, t.status, r.created_at, r.name, d.code AS depCode, 
-            d.name AS depName, r.tel, r.email, p.date_plan, p.rang, p.rang_unit
+            d.name AS depName, r.tel, r.email,FORMAT(p.date_plan, 'yyyy/MM/dd', 'en-us') AS date_plan, p.rang, p.rang_unit
             FROM dbo.tool_register t
             INNER JOIN dbo.registrar r ON t.registrar_id = r.id
             INNER JOIN dbo.calibration_plan p ON t.calibration_plan_id = p.id

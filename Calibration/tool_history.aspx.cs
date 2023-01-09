@@ -52,29 +52,40 @@ namespace Calibration
       Panel1.Visible = true;
       Panel2.Visible = true;
       RowData.Text = "";
-      GetData();
-      GetTool();
+      try
+      {
+        GetData();
+        GetTool();
+      } catch
+      {
+        return;
+      }
     }
 
     private void GetData()
     {
       string[] my = Picker.Value.Split('-');
-      string sql = $@"
-      SELECT cr.*, ds.title AS ds_name
-      FROM dbo.calibration_results cr
-      INNER JOIN dbo.tool_register_calibration_results trcr
-      ON trcr.calibration_results_id = cr.id
-      INNER JOIN dbo.data_status ds
-      ON ds.id = cr.data_status_id
-      WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
-      AND MONTH(created_at) = {my[1]}
-      AND YEAR(created_at) = {my[0]}
-      ORDER BY cr.created_at ASC;
-      ";
-      if (flexCheckDefault.Checked)
+      string sql;
+      if (flexCheckDefault.Checked == false && Checkbox1.Checked == false)
       {
         sql = $@"
-        SELECT cr.*, ds.title AS ds_name
+        SELECT cr.*,FORMAT(cr.date_calibrat, 'dd/MM/yyyy', 'en-us') AS date_cal,
+          FORMAT(cr.created_at, 'dd/MM/yyyy', 'en-us') AS created, ds.title AS ds_name
+        FROM dbo.calibration_results cr
+        INNER JOIN dbo.tool_register_calibration_results trcr
+        ON trcr.calibration_results_id = cr.id
+        INNER JOIN dbo.data_status ds
+        ON ds.id = cr.data_status_id
+        WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
+        AND MONTH(created_at) = {my[1]}
+        AND YEAR(created_at) = {my[0]}
+        ORDER BY cr.created_at ASC;
+        ";
+      } else if (flexCheckDefault.Checked == true && Checkbox1.Checked == false)
+      {
+        sql = $@"
+        SELECT cr.*,FORMAT(cr.date_calibrat, 'dd/MM/yyyy', 'en-us') AS date_cal,
+          FORMAT(cr.created_at, 'dd/MM/yyyy', 'en-us') AS created, ds.title AS ds_name
         FROM dbo.calibration_results cr
         INNER JOIN dbo.tool_register_calibration_results trcr
         ON trcr.calibration_results_id = cr.id
@@ -82,6 +93,19 @@ namespace Calibration
         ON ds.id = cr.data_status_id
         WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
         AND YEAR(created_at) = {my[0]}
+        ORDER BY cr.created_at ASC;
+        ";
+      } else
+      {
+        sql = $@"
+        SELECT cr.*,FORMAT(cr.date_calibrat, 'dd/MM/yyyy', 'en-us') AS date_cal,
+          FORMAT(cr.created_at, 'dd/MM/yyyy', 'en-us') AS created, ds.title AS ds_name
+        FROM dbo.calibration_results cr
+        INNER JOIN dbo.tool_register_calibration_results trcr
+        ON trcr.calibration_results_id = cr.id
+        INNER JOIN dbo.data_status ds
+        ON ds.id = cr.data_status_id
+        WHERE trcr.tool_register_id = {SelectCode.SelectedValue}
         ORDER BY cr.created_at ASC;
         ";
       }
@@ -94,11 +118,11 @@ namespace Calibration
         <td width='1%'>{i+1}</td>
         <td class='text-center'>{dt.Rows[i]["error"]}</td>
         <td class='text-center'>{CheckStatus(dt.Rows[i]["status"].ToString())}</td>
-        <td class='text-center'>{dt.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
+        <td class='text-center'>{dt.Rows[i]["created"]}</td>
         <td>{dt.Rows[i]["resultant"]}</td>
         <td class='text-center'>{dt.Rows[i]["ds_name"]}</td>
         <td>{dt.Rows[i]["comment"]}</td>
-        <td class='text-center'>{dt.Rows[i]["date_calibrat"].ToString().Split(' ')[0]}</td>
+        <td class='text-center'>{dt.Rows[i]["date_cal"]}</td>
         </tr>
         ";
       }

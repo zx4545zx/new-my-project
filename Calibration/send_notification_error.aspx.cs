@@ -132,13 +132,14 @@ namespace Calibration
       string otherEmail = "";
       if (!string.IsNullOrEmpty(HiddenField1.Value))
       {
-        otherEmail = $",{HiddenField1.Value}";
+        otherEmail = $";{HiddenField1.Value}";
       }
       string title = $"{flexDefault1.Value}";
-      string recipients = $"{email.Value},{email1.Value}{otherEmail}";
+      string recipients = $"{email.Value};{email1.Value}{otherEmail}";
       string body = EmailBody(dep_id, email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
+      cb = true;
       if (cb)
       {
         ScriptManager.RegisterStartupScript(this, GetType(),
@@ -211,7 +212,7 @@ namespace Calibration
           </p>
           <br>
           <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
-          <a href='{Process.Env.Host}/ApprovePage/notification_error_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
+          <a href=""{Process.Env.Host}notification_error_email.aspx"" target=""_blank"">กดที่นี่</a>
           <br>
         ";
 

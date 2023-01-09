@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Globalization;
 
 namespace Calibration.Shared
 {
@@ -294,7 +296,7 @@ namespace Calibration.Shared
           $"onclick=\"ConfirmDel('notification_setting.aspx/Delete',{data.Rows[i]["id"]})\">ลบ</button>" +
           "</div>" +
           "</td>" +
-          $"<td class='text-center'>{data.Rows[i]["code"]} | {data.Rows[i]["name"]}</td>" +
+          $"<td>{data.Rows[i]["code"]} | {data.Rows[i]["name"]}</td>" +
           $"<td>{data.Rows[i]["master"]}</td>" +
           $"<td>{data.Rows[i]["master_email"]}</td>" +
           $"<td>{data.Rows[i]["second"]}</td>" +
@@ -308,22 +310,50 @@ namespace Calibration.Shared
 
     public static string AdministratorPage(DataTable data)
     {
-      string RowData = string.Empty;
+      string RowData = "";
       for (var i = 0; i < data.Rows.Count; i++)
       {
         (string Status, string Color) = Utils.CheckStatus(data, i);
-        string NextRound;
+        string DatePlan = "";
+        string NextRound = "";
 
-        string DatePlan;
-        if (string.IsNullOrEmpty(data.Rows[i]["date_plan"].ToString()))
+        if (!string.IsNullOrEmpty(data.Rows[i]["date_plan"].ToString()))
         {
-          DatePlan = "";
-          NextRound = "";
-        }
-        else
-        {
-          DatePlan = data.Rows[i]["date_plan"].ToString().Split(' ')[0];
-          NextRound = Utils.CheckRound(data, i);
+          string[] strDate = data.Rows[i]["date_plan"].ToString().Split('/');
+          DatePlan = $"{strDate[2]}/{strDate[1]}/{strDate[0]}";
+
+          try
+          {
+            DateTime dateThai = DateTime.ParseExact(DatePlan, "dd/MM/yyyy", null);
+            int count = int.Parse(data.Rows[i]["rang"].ToString());
+
+            if (data.Rows[i]["rang_unit"].ToString() == "d")
+            {
+              NextRound = dateThai.AddDays(count).ToString("dd/MM/yyyy");
+            }
+            else if (data.Rows[i]["rang_unit"].ToString() == "w")
+            {
+              NextRound = dateThai.AddDays(count * 7).ToString("dd/MM/yyyy");
+            }
+            else if (data.Rows[i]["rang_unit"].ToString() == "m")
+            {
+              NextRound = dateThai.AddMonths(count).ToString("dd/MM/yyyy");
+            }
+            else if (data.Rows[i]["rang_unit"].ToString() == "y")
+            {
+              NextRound = dateThai.AddYears(count).ToString("dd/MM/yyyy");
+            }
+            else
+            {
+              NextRound = "";
+            }
+
+          }
+          catch
+          {
+            NextRound = "";
+          }
+
         }
 
         string sql = $@"
@@ -510,7 +540,6 @@ namespace Calibration.Shared
           "
         );
       }
-
       return RowData;
     }
 
@@ -521,6 +550,17 @@ namespace Calibration.Shared
       {
         (string Status, _) = Utils.CheckStatus(data, i);
 
+        string DatePlan = "";
+        if (string.IsNullOrEmpty(data.Rows[i]["date_plan"].ToString()))
+        {
+          DatePlan = "";
+        }
+        else
+        {
+          string[] strDate = data.Rows[i]["date_plan"].ToString().Split('/');
+          DatePlan = $"{strDate[2]}/{strDate[1]}/{strDate[0]}";
+        }
+
         string sql = $@"
         SELECT tr.tool_id AS t_id, tr.objective, c.status, iso.name AS iso_name,
         ct.name AS ct_name, f.name AS f_name,
@@ -529,29 +569,32 @@ namespace Calibration.Shared
         t.code, tr.rang_error, el.name AS el_name,
         tr.accept_error, t.detail, tr.detail_calibate
         FROM dbo.tool_register tr
-        INNER JOIN dbo.certificate c
+        LEFT OUTER JOIN dbo.certificate c
         ON c.id = tr.certificate_id
-        INNER JOIN dbo.tool t
+        LEFT OUTER JOIN dbo.tool t
         ON t.id = tr.tool_id
         LEFT OUTER JOIN dbo.iso iso
         ON iso.id = tr.iso_id
         LEFT OUTER JOIN dbo.exam_location el
         ON el.id = tr.exam_location_id
-        INNER JOIN dbo.production_company pc
+        LEFT OUTER JOIN dbo.production_company pc
         ON pc.id = tr.produc_company_id
-        INNER JOIN dbo.registrar r
+        LEFT OUTER JOIN dbo.registrar r
         ON r.id = tr.registrar_id
-        INNER JOIN dbo.cotton ct
+        LEFT OUTER JOIN dbo.cotton ct
         ON ct.id = r.cotton_id
-        INNER JOIN dbo.factory f
+        LEFT OUTER JOIN dbo.factory f
         ON f.id = r.factory_id
-        INNER JOIN dbo.meter m
+        LEFT OUTER JOIN dbo.meter m
         ON m.id = r.metor_id
-        INNER JOIN dbo.department d
+        LEFT OUTER JOIN dbo.department d
         ON d.id = r.department_id
         WHERE tr.id = {data.Rows[i]["id"]};
         ";
         DataTable dt = Model.Database.SqlQuery(sql);
+
+        //string[] strDate = data.Rows[i]["date_plan"].ToString().Split('/');
+        //string DatePlan = $"{strDate[2]}/{strDate[1]}/{strDate[0]}";
 
         RowData += ($@"
           <tr>
@@ -563,7 +606,7 @@ namespace Calibration.Shared
             <td>{data.Rows[i]["depName"]}</td>
             <td class='text-center'>{data.Rows[i]["tel"]}</td>
             <td>{data.Rows[i]["email"]}</td>
-            <td class='text-center'>{data.Rows[i]["date_plan"].ToString().Split(' ')[0]}</td>
+            <td class='text-center'>{DatePlan}</td>
             <td class='text-center'>{Status}</td>
             <td>{data.Rows[i]["app_name"]}</td>
             <td class='text-center'>
@@ -703,7 +746,7 @@ namespace Calibration.Shared
           <tr>
             <td>{data.Rows[i]["register_code"]}</td>
             <td>{data.Rows[i]["code"]}</td>
-            <td>{data.Rows[i]["created_at"].ToString().Split(' ')[0]}</td>
+            <td>{data.Rows[i]["created_at"]}</td>
             <td>{data.Rows[i]["name"]}</td>
             <td>{data.Rows[i]["d_name"]}</td>
             <td>{data.Rows[i]["tel"]}</td>

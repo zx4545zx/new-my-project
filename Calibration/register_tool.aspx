@@ -17,8 +17,14 @@
                 <div class="col me-4">
                   <div class="mb-3 row">
                     <label for="name" class="form-label px-0">ชื่อผู้ขอ : </label>
-                    <input type="text" class="form-control" id="name"
-                      placeholder="กรุณากรอกชื่อ และนามสกุล..." runat="server">
+                    <%--<input type="text" class="form-control" id="name"
+                      placeholder="กรุณากรอกชื่อ และนามสกุล..." runat="server">--%>
+
+                    <asp:TextBox ID="name" runat="server" CssClass="form-control" placeholder="กรุณากรอกชื่อ และนามสกุล..."></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="name" runat="server" ForeColor="Red" />
+
+
+
                   </div>
                 </div>
                 <div class="col"></div>
@@ -28,15 +34,24 @@
                 <div class="col me-4">
                   <div class="mb-3 row">
                     <label for="email" class="form-label px-0">Email : </label>
-                    <input type="email" class="form-control" id="email"
-                      placeholder="ex : example@cpram.co.th" runat="server">
+
+                    <asp:TextBox ID="email" runat="server" CssClass="form-control" TextMode="Email" placeholder="example@cpram.co.th"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="email" runat="server" ForeColor="Red" />
+
+
+                    <%--<input type="email" class="form-control" id="email"
+                      placeholder="ex : example@cpram.co.th" runat="server">--%>
                   </div>
                 </div>
                 <div class="col">
                   <div class="mb-3 row">
                     <label for="tel" class="form-label px-0">เบอร์ติดต่อ : </label>
-                    <input type="tel" class="form-control" id="tel"
-                      placeholder="ex : xxx, xxx" runat="server">
+
+                    <asp:TextBox ID="tel" runat="server" CssClass="form-control" placeholder="xxxx, xxxx"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="tel" runat="server" ForeColor="Red" />
+
+                 <%--   <input type="tel" class="form-control" id="tel"
+                      placeholder="ex : xxx, xxx" runat="server">--%>
                   </div>
                 </div>
               </div>
@@ -149,8 +164,8 @@
                   <asp:DropDownList ID="Iso" runat="Server" CssClass="form-select">
                     <asp:ListItem Text="กรุณาเลือก" Value="null" />
                   </asp:DropDownList>
-                  <%--<asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Iso"
-                  InitialValue="0" runat="server" ForeColor="Red" />--%>
+                  <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Iso"
+                  InitialValue="null" runat="server" ForeColor="Red" />
                 </div>
               </div>
 
@@ -159,7 +174,10 @@
               <div class="row mb-3">
                 <div class="col">
                   <label for="ntool" class="form-label px-0">ชื่อเครื่องมือวัด : </label>
-                  <input type="text" class="form-control" id="ntool" placeholder="กรุณากรอกชื่อเครื่องมือ..." runat="server">
+                  <%--<input type="text" class="form-control" id="ntool" placeholder="กรุณากรอกชื่อเครื่องมือ..." runat="server" required>--%>
+
+                  <asp:TextBox ID="ntool" runat="server" CssClass="form-control" placeholder="กรุณากรอกชื่อเครื่องมือ..."></asp:TextBox>
+                  <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="ntool" runat="server" ForeColor="Red" />
                 </div>
               </div>
 
@@ -169,45 +187,69 @@
                   <asp:DropDownList ID="PCompany" runat="Server" CssClass="form-select">
                     <asp:ListItem Text="กรุณาเลือก" Value="0" />
                   </asp:DropDownList>
+                  <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="PCompany"
+                  InitialValue="0" runat="server" ForeColor="Red" />
                 </div>
 
                 <div class="col me-4">
                   <div class="mb-3 row">
-                    <label for="type" class="form-label px-0">รุ่น : </label>
-                    <input type="text" class="form-control" id="model" placeholder="ex : model" runat="server">
+                    <label for="model" class="form-label px-0">รุ่น : </label>
+                    <%--<input type="text" class="form-control" id="model" placeholder="กรุณาระบุ" runat="server" required>--%>
+
+                    <asp:TextBox ID="model" runat="server" CssClass="form-control" placeholder="กรุณาระบุ..."></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="model" runat="server" ForeColor="Red" />
                   </div>
                 </div>
 
                 <div class="col">
                   <label for="notool" class="form-label px-0">หมายเลขเครื่อง : </label>
-                  <input type="text" class="form-control" id="notool" placeholder="ex : no." runat="server">
+                  <%--<input type="text" class="form-control" id="notool" placeholder="กรุณาระบุ" runat="server" required>--%>
+
+                  <asp:TextBox ID="notool" runat="server" CssClass="form-control" placeholder="กรุณาระบุ..."></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="notool" runat="server" ForeColor="Red" />
                 </div>
               </div>
 
               <div class="row mb-3">
                 <div class="col me-4">
                   <label for="location" class="form-label px-0">สถานที่ใช้งาน : </label>
-                  <input type="text" class="form-control" id="location" placeholder="กรุณากรอกชื่อสถานที่ใช้งาน..." runat="server">
+                  <%--<input type="text" class="form-control" id="location" placeholder="กรุณากรอกชื่อสถานที่ใช้งาน..." runat="server" required>--%>
+
+                  <asp:TextBox ID="location" runat="server" CssClass="form-control" placeholder="กรุณาระบุ..."></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="location" runat="server" ForeColor="Red" />
                 </div>
 
                 <div class="col me-4">
                   <label class="form-label px-0">ช่วงใช้งาน : </label>
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ex: 0-100" id="unitRang" runat="server">
+                  <div class="input-group">
+                    <%--<input type="text" class="form-control" placeholder="กรุณาระบุ 0-100" id="unitRang" runat="server" required>--%>
+
+                    <asp:TextBox ID="unitRang" runat="server" CssClass="form-control" placeholder="กรุณาระบุ..."></asp:TextBox>
+
                     <asp:DropDownList ID="Unit1" runat="Server" CssClass="form-select">
                       <asp:ListItem Text="กรุณาเลือก" Value="0" />
                     </asp:DropDownList>
                   </div>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="unitRang" runat="server" ForeColor="Red" />
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Unit1"
+                  InitialValue="0" runat="server" ForeColor="Red" />
                 </div>
 
                 <div class="col me-4">
                   <label class="form-label px-0">ค่าผิดพลาดที่ยอมรับได้ : </label>
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ex: +-1" id="unitError" runat="server">
+                  <div class="input-group">
+                    <%--<input type="text" class="form-control" placeholder="กรุณาระบุ +-1" id="unitError" runat="server" required>--%>
+
+                    <asp:TextBox ID="unitError" runat="server" CssClass="form-control" placeholder="กรุณาระบุ..."></asp:TextBox>
+
+
                     <asp:DropDownList ID="Unit2" runat="Server" CssClass="form-select">
                       <asp:ListItem Text="กรุณาเลือก" Value="0" />
                     </asp:DropDownList>
                   </div>
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณากรอกข้อมูล..." ControlToValidate="unitError" runat="server" ForeColor="Red" />
+                    <asp:RequiredFieldValidator ErrorMessage="กรุณาเลือก..." ControlToValidate="Unit2"
+                  InitialValue="0" runat="server" ForeColor="Red" />
                 </div>
               </div>
 

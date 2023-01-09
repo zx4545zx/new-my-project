@@ -49,7 +49,7 @@ function fixHeader() {
   })
 }
 
-function MessageNoti(status, title, message, href) {
+function MessageNoti(status, title, message, href = '#') {
   Swal.fire({
     icon: status,
     title: title,

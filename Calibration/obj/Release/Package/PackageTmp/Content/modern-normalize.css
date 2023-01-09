@@ -10,7 +10,30 @@
   font-family: 'Kanit', sans-serif;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #e6e6e6 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  border: 0px solid #ffffff;
+}
+
 html {
+  touch-action: manipulation;
   tab-size: 4;
 }
 
@@ -70,6 +93,15 @@ table {
   text-indent: 0; /* 1 */
   border-color: inherit; /* 2 */
 }
+
+a {
+  text-decoration: none;
+  color: #ffff;
+}
+
+  a:hover {
+    color: aliceblue;
+  }
 
 button,
 input,
@@ -139,6 +171,32 @@ summary {
 }
 
 .cm-sidebar {
-  
   max-height: 100%;
+  min-width: 240px;
+  background-color: #e3f2fd;
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal-content {
+  box-shadow: 5px 5px 20px lightgrey;
+}
+
+.bi {
+  vertical-align: bottom;
+}
+
+.twocol {
+  columns: 2;
+}
+
+.list-twocol {
+  list-style-position: inside;
+  list-style: none;
+}
+
+.sub-color {
+  background-color: #f0f9ff;
 }

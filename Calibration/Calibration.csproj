@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,32 +63,36 @@
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.10.1.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
       <HintPath>..\packages\TaskScheduler.2.10.1\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="administrator.aspx" />
-    <Content Include="ApprovePage\notification_defective_email.aspx" />
-    <Content Include="ApprovePage\notification_email.aspx" />
-    <Content Include="ApprovePage\notification_error_email.aspx" />
+    <Content Include="approver_reset_password.aspx" />
+    <Content Include="notification_defective_email.aspx" />
+    <Content Include="approver_login.aspx" />
+    <Content Include="notification_email.aspx" />
+    <Content Include="notification_error_email.aspx" />
     <Content Include="approver.aspx" />
-    <Content Include="ApprovePage\notification_approve.aspx" />
+    <Content Include="notification_approve.aspx" />
     <Content Include="approver_new.aspx" />
     <Content Include="approver_update.aspx" />
     <Content Include="calibate_unit.aspx" />
@@ -1936,25 +1941,39 @@
     <Compile Include="administrator.aspx.designer.cs">
       <DependentUpon>administrator.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ApprovePage\notification_defective_email.aspx.cs">
+    <Compile Include="approver_reset_password.aspx.cs">
+      <DependentUpon>approver_reset_password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="approver_reset_password.aspx.designer.cs">
+      <DependentUpon>approver_reset_password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notification_defective_email.aspx.cs">
       <DependentUpon>notification_defective_email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ApprovePage\notification_defective_email.aspx.designer.cs">
+    <Compile Include="notification_defective_email.aspx.designer.cs">
       <DependentUpon>notification_defective_email.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ApprovePage\notification_email.aspx.cs">
+    <Compile Include="approver_login.aspx.cs">
+      <DependentUpon>approver_login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="approver_login.aspx.designer.cs">
+      <DependentUpon>approver_login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notification_email.aspx.cs">
       <DependentUpon>notification_email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ApprovePage\notification_email.aspx.designer.cs">
+    <Compile Include="notification_email.aspx.designer.cs">
       <DependentUpon>notification_email.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ApprovePage\notification_error_email.aspx.cs">
+    <Compile Include="notification_error_email.aspx.cs">
       <DependentUpon>notification_error_email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ApprovePage\notification_error_email.aspx.designer.cs">
+    <Compile Include="notification_error_email.aspx.designer.cs">
       <DependentUpon>notification_error_email.aspx</DependentUpon>
     </Compile>
     <Compile Include="approver.aspx.cs">
@@ -1964,11 +1983,11 @@
     <Compile Include="approver.aspx.designer.cs">
       <DependentUpon>approver.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ApprovePage\notification_approve.aspx.cs">
+    <Compile Include="notification_approve.aspx.cs">
       <DependentUpon>notification_approve.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ApprovePage\notification_approve.aspx.designer.cs">
+    <Compile Include="notification_approve.aspx.designer.cs">
       <DependentUpon>notification_approve.aspx</DependentUpon>
     </Compile>
     <Compile Include="approver_new.aspx.cs">

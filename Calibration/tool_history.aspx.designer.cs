@@ -33,6 +33,15 @@ namespace Calibration
     protected global::System.Web.UI.HtmlControls.HtmlButton export_button;
 
     /// <summary>
+    /// Panel3 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Panel3;
+
+    /// <summary>
     /// Picker control.
     /// </summary>
     /// <remarks>
@@ -49,6 +58,15 @@ namespace Calibration
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox flexCheckDefault;
+
+    /// <summary>
+    /// Checkbox1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox1;
 
     /// <summary>
     /// SelectCode control.

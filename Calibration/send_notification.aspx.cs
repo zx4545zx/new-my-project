@@ -133,10 +133,10 @@ namespace Calibration
       string otherEmail = "";
       if (!string.IsNullOrEmpty(HiddenField1.Value))
       {
-        otherEmail = $",{HiddenField1.Value}";
+        otherEmail = $";{HiddenField1.Value}";
       }
       string title = $"{flexDefault1.Value}";
-      string recipients = $"{email.Value},{email1.Value}{otherEmail}";
+      string recipients = $"{email.Value};{email1.Value}{otherEmail}";
       string body = EmailBody(dep_id, email.Value, email1.Value, otherEmail);
 
       bool cb = Shared.SendEmail.Send(title, recipients, body);
@@ -230,8 +230,8 @@ namespace Calibration
           </table>
           </p>
           <br>
-          <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>
-          <a href='{Process.Env.Host}/ApprovePage/notification_email.aspx?dep_id={dep_id}' target='_blank'>กดที่นี่</a>
+          <p>ท่านสามารถแจ้งข้อมูลกลับดังต่อไปนี้</p>" +
+          $"<a href=\"{Process.Env.Host}notification_email.aspx\" target=\"_blank\">กดที่นี่</a>" + @"
           <br>
         ";
       return body;

@@ -33,13 +33,13 @@ namespace Calibration
         }
 
         DataTable AllEmailAuto = Model.Database.SqlQuery($@"
-          SELECT *, start_date AS startDate FROM dbo.email_auto WHERE id={Request.QueryString["id"]};
+          SELECT *, FORMAT(start_date, 'yyyy-MM-dd', 'en-us') AS startDate FROM dbo.email_auto WHERE id={Request.QueryString["id"]};
         ");
 
         Department.SelectedValue = AllEmailAuto.Rows[0]["dep_id"].ToString();
         floatingTextarea2.Value = AllEmailAuto.Rows[0]["detail"].ToString();
         Text3.Value = AllEmailAuto.Rows[0]["notifier"].ToString();
-        Date1.Value = ConvertSqlDateToHtml(AllEmailAuto.Rows[0]["startDate"].ToString());
+        Date1.Value = AllEmailAuto.Rows[0]["startDate"].ToString();
         Round.Value = AllEmailAuto.Rows[0]["rang_month"].ToString();
         DropDownList1.SelectedValue = AllEmailAuto.Rows[0]["status"].ToString();
         RowData.Text = RenderTools();
@@ -57,7 +57,7 @@ namespace Calibration
       string rowDatas = string.Empty;
       string sql = $@"
       SELECT t.id, tr.register_code, tr.code, t.name,
-      t.model, tr.rang_error, cp.date_plan
+      t.model, tr.rang_error, FORMAT(cp.date_plan, 'dd/MM/yyyy', 'en-us') AS date_plan
       FROM dbo.email_auto_tool eat
       INNER JOIN dbo.tool_register tr
       ON tr.tool_id = eat.tool_id
@@ -78,18 +78,11 @@ namespace Calibration
             <td class=""text-center"">{dt.Rows[i]["name"]}</td>
             <td class=""text-center"">{dt.Rows[i]["model"]}</td>
             <td class=""text-center"">{dt.Rows[i]["rang_error"]}</td>
-            <td class=""text-center"">{dt.Rows[i]["date_plan"].ToString().Split(' ')[0]}</td>
+            <td class=""text-center"">{dt.Rows[i]["date_plan"]}</td>
           </tr>
         ";
       }
       return rowDatas;
-    }
-
-    private string ConvertSqlDateToHtml(string exDate)
-    {
-      string[] ex_date = exDate.Split(' ')[0].Split('/');
-      return (int.Parse(ex_date[2]) - 543).ToString() + "-"
-        + ex_date[1].PadLeft(2, '0') + "-" + ex_date[0].PadLeft(2, '0');
     }
 
     protected void Department_SelectedIndexChanged(object sender, EventArgs e)
